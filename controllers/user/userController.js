@@ -6,7 +6,7 @@ const env = require('dotenv').config()
 
 const loadHomePage = async (req, res) => {
 
-    console.log('dfghjk');
+    console.log('worked');
     
     try {
 
@@ -20,11 +20,21 @@ const loadHomePage = async (req, res) => {
     }
 }
 
+const loadSignup = (req, res) => {
+    try {
+        return res.render('user/signup', {msg: null})
+    } catch (error) {
+        res.status(500).send('Error while loading signup page', err)
+    }
+} 
+
+
 const pageNotFound = (req, res) => {
     try {
-        return res.render('user/error')
+        return res.render('error');  
     } catch (error) {
-        res.status(500).send('Error while loading error page')
+        console.log('Error loading error page', error);
+        res.status(500).send('Error while loading error page');
     }
 }
 
@@ -32,27 +42,19 @@ const pageRedirect = (req, res) => {
     res.redirect('/pageNotFound')
 }
 
-
-const loadSignup = (req, res) => {
-    try {
-        return res.render('user/signup', {msg: null})
-    } catch (error) {
-        res.status(500).send('Error while loading signup page')
-    }
-} 
-
 const loadLogin = (req, res) => {
     try {
-        if (!req.session.user) {
-            return res.render('user/login', {message: null})
+        if (!req.session || !req.session.user) {
+            return res.render('user/login', { message: null });
         } else {
-            res.redirect('/')
+            return res.redirect('/');
         }
     } catch (error) {
-        res.redirect('/pageNotFound')
-        res.status(500).send('Error while loading the login page')
+        console.error('Error while loading login page:', error);
+        res.status(500).send('Error while loading the login page');
     }
 }
+
 
 const login = async (req, res) => {
     try {

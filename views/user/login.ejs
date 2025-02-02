@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Signup Page</title>
+    <title>Login Page</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             color: #333;
         }
 
-        .signup-container {
+        .login-container {
             background: #fff;
             width: 100%;
             max-width: 400px;
@@ -52,7 +52,7 @@
             }
         }
 
-        .signup-container h2 {
+        .login-container h2 {
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
@@ -91,7 +91,7 @@
             margin-top: 5px;
         }
 
-        .signup-btn {
+        .login-btn {
             width: 100%;
             padding: 12px;
             font-size: 16px;
@@ -103,11 +103,11 @@
             transition: background 0.3s ease;
         }
 
-        .signup-btn:hover {
+        .login-btn:hover {
             background: #2575fc;
         }
 
-        .google-signup-btn {
+        .google-login-btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -123,11 +123,11 @@
             transition: background 0.3s ease;
         }
 
-        .google-signup-btn:hover {
+        .google-login-btn:hover {
             background: #eaeaea;
         }
 
-        .google-signup-btn i {
+        .google-login-btn i {
             margin-right: 10px;
             font-size: 18px;
             color: #db4437;
@@ -169,66 +169,34 @@
 
 <body>
 
-    <div class="signup-container">
-
-        <% if (locals.error) { %>
-            <p class="error"><%= error %></p>
-        <% } %>
-        
-        <div class="error-msg">
-            <%= msg %>
-        </div>
-        <h2>Sign Up</h2>
-        <form id="signup-form" action="/signup" method="POST">
-            <div class="form-group">
-                <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" name="fullName" placeholder="Enter your full name" required>
-                <div class="error-message" id="name-error"></div>
-            </div>
+    <div class="login-container">
+    
+        <h2>Log In</h2>
+        <form id="login-form" action="/login" method="POST">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 <div class="error-message" id="email-error"></div>
             </div>
             <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone" required>
-                <div class="error-message" id="phone-error"></div>
-            </div>
-            <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Create a password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 <div class="error-message" id="password-error"></div>
             </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
-                <div class="error-message" id="confirm-password-error"></div>
-            </div>
-            <button type="submit" class="signup-btn">Sign Up</button>
+            <button type="submit" class="login-btn">Log In</button>
         </form>
-        <a class="google-signup-btn" href="/auth/google" style="text-decoration: none;">
-            <i class="fab fa-google"></i> Sign Up with Google
+        <a class="google-login-btn" href="/auth/google" style="text-decoration: none;">
+            <i class="fab fa-google"></i> Log In with Google
         </a>
         <div class="form-footer">
-            Already have an account? <a href="/login">Log In</a>
+            Don't have an account? <a href="/signup">Sign Up</a>
         </div>
     </div>
+    
 
     <script>
-        document.getElementById("signup-form").addEventListener("submit", function (event) {
+        document.getElementById("login-form").addEventListener("submit", function (event) {
             let isValid = true;
-
-            // Full Name Validation
-            const name = document.getElementById("full-name").value;
-            const nameError = document.getElementById("name-error");
-            const nameRegex = /^[a-zA-Z ]+$/;
-            if (!nameRegex.test(name)) {
-                nameError.textContent = "Name must not contain numbers or special characters.";
-                isValid = false;
-            } else {
-                nameError.textContent = "";
-            }
 
             // Email Validation
             const email = document.getElementById("email").value;
@@ -240,35 +208,14 @@
                 emailError.textContent = "";
             }
 
-            // Phone Validation
-            const phone = document.getElementById("phone").value;
-            const phoneError = document.getElementById("phone-error");
-            if (phone.length !== 10 || isNaN(phone)) {
-                phoneError.textContent = "Phone number must be 10 digits.";
-                isValid = false;
-            } else {
-                phoneError.textContent = "";
-            }
-
             // Password Validation
             const password = document.getElementById("password").value;
             const passwordError = document.getElementById("password-error");
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            if (!passwordRegex.test(password)) {
-                passwordError.textContent = "Password must be at least 8 characters and include uppercase, lowercase, special character, and number.";
+            if (password.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters.";
                 isValid = false;
             } else {
                 passwordError.textContent = "";
-            }
-
-            // Confirm Password Validation
-            const confirmPassword = document.getElementById("confirm-password").value;
-            const confirmPasswordError = document.getElementById("confirm-password-error");
-            if (password !== confirmPassword) {
-                confirmPasswordError.textContent = "Passwords do not match.";
-                isValid = false;
-            } else {
-                confirmPasswordError.textContent = "";
             }
 
             if (!isValid) {

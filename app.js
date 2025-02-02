@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-// const session = require('express-session')
-// const passport = require('./config/passport')
+const session = require('express-session')
+//const passport = require('./config/passport')
 const env = require('dotenv').config()
 const {connectDB} = require('./config/db')
 const path = require('path') 
@@ -11,8 +11,8 @@ const adminRouter = require('./routes/adminRouter')
 // const flash = require('express-flash');
 // const bcrypt = require('bcryptjs');
 
-// Connecting database
-connectDB()
+// // Connecting database
+// connectDB()
 
 
 
@@ -20,44 +20,66 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// // setup session
-// app.use(session ({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         secure: false,
-//         httpOnly: true,
-//         maxAge: 72*60*60*1000
-//     }
-// }))
+// setup session
+app.use(session ({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 72*60*60*1000
+    }
+}))
 
-// app.use(flash())
+// // app.use(flash())
 
 
 
-// //implmenting nocache
-// app.use(nocache())
+// // //implmenting nocache
+// // app.use(nocache())
 
-// // using passport authentication
-// app.use(passport.initialize())
-// app.use(passport.session());
+// // // using passport authentication
+// // app.use(passport.initialize())
+// // app.use(passport.session());
 
-// set up view engine and other configuration
-app.set('view engine', 'ejs')
-app.set('views', [path.join(__dirname, 'views/user'), path.join(__dirname, 'views/admin')])
-app.use(express.static('public'))
+// // set up view engine and other configuration
+// app.set('view engine', 'ejs')
+// app.set('views', [path.join(__dirname, 'views/user'), path.join(__dirname, 'views/admin')])
+// app.use(express.static('public'))
 
-//to handle reqs from user and admin
-app.use('/', userRouter)
-app.use('/admin', adminRouter)
+// //to handle reqs from user and admin
+// app.use('/', userRouter)
+// app.use('/admin', adminRouter)
 
+
+// // Set up server
+// app.listen(process.env.PORT, () => {
+//     console.log(`Server started on ${process.env.PORT}`);
+// })
+
+// module.exports = app
+
+
+// Connecting database
+connectDB();
+
+// Using built-in middleware for JSON payloads and body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Set up view engine and views directory
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // Set views directory to the parent 'views' folder
+app.use(express.static('public'));
+
+// To handle requests from user and admin
+app.use('/', userRouter);
+app.use('/admin', adminRouter);
 
 // Set up server
 app.listen(process.env.PORT, () => {
-    console.log(`Server started on ${process.env.PORT}`);
-})
+  console.log(`Server started on ${process.env.PORT}`);
+});
 
-module.exports = app
-
-
+module.exports = app;
