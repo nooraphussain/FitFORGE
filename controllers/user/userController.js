@@ -10,7 +10,7 @@ const loadHomePage = async (req, res) => {
     
     try {
 
-        res.render('index')
+        res.render('user/index'); 
 
     } catch (error) {
 
