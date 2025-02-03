@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
 const env = require('dotenv').config()
 
+
 const loadHomePage = async (req, res) => {
 
     console.log('worked');
@@ -147,6 +148,9 @@ const signUp = async (req, res) => {
 
         const {fullName, phone, email, password, confirmPassword} = req.body
 
+        console.log('user datas', req.body);
+        
+
         const findUser = await User.findOne({email}) 
         console.log(findUser);
         console.log(req.body);
@@ -157,10 +161,10 @@ const signUp = async (req, res) => {
 
         const otp = generateOtp()
 
-        const emailSent = await sendVerificationEmail(email, otp)
-        if (!emailSent) {
-            return res.json('email-error')
-        }
+        // const emailSent = await sendVerificationEmail(email, otp)
+        // if (!emailSent) {
+        //     return res.json('email-error')
+        // }
 
         req.session.otp = otp
 
@@ -169,6 +173,7 @@ const signUp = async (req, res) => {
         }
 
         console.log(req.session.userData);
+        
         
 
         res.render('user/verify-otp', {otp: otp, timer: 60, email: email})
@@ -180,6 +185,8 @@ const signUp = async (req, res) => {
         console.log('Signup error', error);
         res.redirect('/pageNotFound')
      }
+
+
 }
 
 const otpVerified = async (req, res) => {

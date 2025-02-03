@@ -205,7 +205,7 @@
                 <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
                 <div class="error-message" id="confirm-password-error"></div>
             </div>
-            <button  type="submit" class="signup-btn">Sign Up</button>
+            <button  type="submit" class="signup-btn" id="signup-btn">Sign Up</button>
         </form>
         <a class="google-signup-btn" href="/auth/google" style="text-decoration: none;">
             <i class="fab fa-google"></i> Sign Up with Google
@@ -216,7 +216,7 @@
     </div>
 
     <script>
-        document.getElementById("signup-form").addEventListener("submit", function (event) {
+       document.getElementById("signup-btn").addEventListener("click", function (event) {
             let isValid = true;
 
             // Full Name Validation
@@ -274,8 +274,10 @@
 
             if (!isValid) {
                 event.preventDefault(); // Prevent form submission if validation fails
-            }
+            } 
         });
+
+       
     </script>
 </body>
 

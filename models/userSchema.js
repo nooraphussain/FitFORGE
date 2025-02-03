@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = require('mongoose')
 
-//userSche ma is a schema definition used in databases (typically MongoDB) to define the structure, 
+//userSchema is a schema definition used in databases (typically MongoDB) to define the structure, 
 //validation rules, and behavior of documents in a collection that stores user data.
 
 const userSchema = new mongoose.Schema({
