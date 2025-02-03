@@ -5,11 +5,12 @@ const { route } = require('../app')
 const passport = require('passport')
   
 
-router.get('/', userController.loadHomePage)
+
 router.get('/pageNotFound', userController.pageNotFound)
 router.get('/login', userController.loadLogin)  
 router.post('/login', userController.login)
-
+router.get('/', userController.loadHomePage);
+router.get('/shop', userController.loadShop)
 
 router.get('/signup', userController.loadSignup)
 router.post("/signup", userController.signUp);
@@ -20,6 +21,9 @@ router.post('/otp-verified', userController.otpVerified)
 router.get('/auth/google', 
     passport.authenticate('google', { scope: ['profile', 'email'] })
 );
+
+router.get('/contact', userController.getContactPage);
+
 
 
 router.get('/auth/google/callback', 

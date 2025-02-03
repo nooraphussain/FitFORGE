@@ -17,8 +17,8 @@ const loadHomePage = async (req, res) => {
 
         console.log('Home page not found!', error);
         res.status(500).send('Server error!')
-
     }
+   
 }
 
 const loadSignup = (req, res) => {
@@ -70,17 +70,20 @@ const login = async (req, res) => {
             return res.render('user/login', {message: 'User is blocked by admin'})
         }
 
+        console.log('user values', findUser);
+
 
         const passwordMatch = await bcrypt.compare(password, findUser.password)
 
         if (!passwordMatch) {
+            console.log('Password is not match');
+            
             return res.render('user/login', {message: 'Incorrect password'})
         }
 
         req.session.user = findUser._id 
         console.log(req.session.user);
-        
-        res.redirect('/')
+        res.redirect('/shop')
 
 
     } catch (error) {
@@ -89,6 +92,8 @@ const login = async (req, res) => {
         res.render('user/login', {message: 'login failed. Please try again later'})
     }
 }
+
+
 
 const logout = async (req, res) => {
     try {
@@ -363,6 +368,20 @@ const resetVerify = async (req, res) => {
         res.status(500).send('error happened while resetting password')
     }
 }
+
+const loadShop = async (req, res) => {
+    try {
+        res.render('user/shop')
+    } catch (error) {
+        console.log('`error while laoding the shop section');
+        
+    }
+}
+
+const getContactPage = (req, res) => {
+    res.render('user/contact'); 
+};
+
 module.exports = {
     loadHomePage, 
     pageNotFound,
@@ -378,5 +397,7 @@ module.exports = {
     forgotPassword,
     resetPassword,
     resetVerify,
-    otpVerified
+    otpVerified,
+    loadShop,
+    getContactPage
 }
