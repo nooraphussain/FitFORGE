@@ -2,12 +2,13 @@ const User = require('../../models/userSchema')
 const mongoose = require('mongoose')
 const bycrypt = require('bcrypt')
 
+
 const loadLogin = async (req, res) => {
-    
     if (req.session.admin) {
-        return res.redirect('/admin/dashboard')
+        return res.redirect('/admin/dashboard');
     }
-    res.render('admin-login', {message: null})
+    res.render('admin/admin-login', { message: null }); 
+
 }
 
 
@@ -46,13 +47,16 @@ const login = async (req, res) => {
 const loadDashboard = async (req, res) => {
     try {
         if (req.session.admin) {
-                res.render('dashboard')
+            res.render('admin/dashboard');
+        } else {
+            return res.redirect('/admin/login');  // Redirect if not authenticated
         }
     } catch (error) {
-        console.log('error while loading dashboard');
-        return res.redirect('pageError')
+        console.log('Error while loading dashboard:', error);
+        return res.redirect('/admin/pageError');
     }
-}
+};
+
 
 const pageError = (req, res) => {
     res.render('admin-error')
@@ -72,6 +76,7 @@ const logout = (req, res) => {
         res.redirect('/admin/pageError')
     }
 }
+
 
 module.exports = {
     loadLogin,
