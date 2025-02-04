@@ -77,6 +77,26 @@ const logout = (req, res) => {
     }
 }
 
+const loadUsers = async (req, res) => {
+    try {
+
+        const customers = await User.find({})
+        if (req.session.admin) {
+            res.render('admin/customers', {
+                customers
+            });  
+        } else {
+            res.redirect('/admin/login'); 
+        }
+    } catch (error) {
+        console.log('Error loading users page:', error);
+        res.redirect('/admin/pageError');
+    }
+};
+
+
+
+
 
 module.exports = {
     loadLogin,
@@ -84,4 +104,5 @@ module.exports = {
     loadDashboard,
     pageError,
     logout,
+    loadUsers
 }

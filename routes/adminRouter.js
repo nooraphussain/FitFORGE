@@ -18,6 +18,10 @@ router.get('/logout', adminController.logout)
 router.get('/pageError', adminController.pageError)
 
 
+//customers management
+router.get('/customers', adminAuth, adminController.loadUsers);
+
+
 //customer management
 
 router.get('/users', adminAuth, customerController.customerInfo)
