@@ -6,7 +6,7 @@ const categoryInfo = async (req, res) => {
         const limit = 4;
         const skip = (page - 1) * limit;
 
-        const categoryData = await Category.find()
+        const categoryData = await Category.find({})
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
@@ -14,8 +14,11 @@ const categoryInfo = async (req, res) => {
         const totalCategories = await Category.countDocuments();
         const totalPages = Math.ceil(totalCategories / limit);
 
-        res.render('category', {
-            cat: categoryData,
+        console.log(categoryData);
+        
+
+        res.render('admin/category', {
+            categories: categoryData,
             currentPage: page,
             totalPages: totalPages,
             totalCategories: totalCategories
