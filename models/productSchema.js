@@ -8,7 +8,7 @@ const productSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     brand: {
         type: String,
@@ -26,6 +26,14 @@ const productSchema = new Schema({
     salePrice: {
         type: Number,
         required: true
+    },
+    offer:{
+        type: String,
+        required: false
+    },
+    isListed: {
+        type: Boolean,
+        default: true
     },
     quantity: {
         type: Number,

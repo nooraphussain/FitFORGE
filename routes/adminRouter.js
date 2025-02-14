@@ -16,6 +16,7 @@ router.post('/login', adminController.login)
 router.get('/', adminAuth, adminController.loadDashboard)
 router.get('/logout', adminController.logout)
 router.get('/pageError', adminController.pageError)
+// router.get('/adminError',  adminController.pageError);
 
 
  //customers management
@@ -31,23 +32,24 @@ router.get('/unBlockCustomer', adminAuth, customerController.customerUnBlocked)
 // Category Management
 
 router.get('/category', adminAuth, categoryController.categoryInfo)
-router.post('/addCategory', adminAuth, categoryController.addCategory)
+router.post('/addCategory',adminAuth, categoryController.addCategory)
 router.get('/editCategory', adminAuth, categoryController.getEditCategory)
 router.post('/editCategory/:id', adminAuth, categoryController.editCategory)
 router.get('/listCategory', adminAuth, categoryController.getListCategory)
 router.get('/unlistCategory', adminAuth, categoryController.getUnListCategory)
 
-//product management
-
-// router.get('/addProducts', adminAuth, productController.getProductAddPage)
-router.get('/products', adminAuth, productController.getProducts);
+//product management 
+router.get('/products', productController.getProducts);
 router.get('/products/addProducts', adminAuth, productController.addProducts)
-// router.post('/add-productt', adminAuth, productController.addingProduct)
+router.post('/addProduct', adminAuth, upload.array('productImage'), productController.addingProduct);
 
-router.post('/add-product', adminAuth, upload.array('productImage'), productController.addingProduct);
-router.get('/products/editProduct/:id', adminAuth, productController.getEditProduct)
-router.post('/update-product/:id', adminAuth, upload.array('productImage'), productController.editProduct)
-router.delete('/products/deleteProduct/:id', adminAuth, productController.deleteProduct)
+router.post('/edit-product/:id',  productController.addingProduct)
+router.get('/editProduct/:id', adminAuth, productController.getEditProduct)
+router.post('/editProduct/:id', adminAuth, upload.array('productImage'), productController.editProduct)
+
+router.get('/deleteProduct', adminAuth, productController.deleteProduct)
+
+
 module.exports = router
 
 

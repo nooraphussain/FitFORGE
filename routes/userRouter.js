@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-  const userController = require('../controllers/user/userController')
+const userController = require('../controllers/user/userController')
 const { route } = require('../app')
 const passport = require('passport')
   
@@ -10,7 +10,10 @@ router.get('/pageNotFound', userController.pageNotFound)
 router.get('/login', userController.loadLogin)  
 router.post('/login', userController.login)
 router.get('/', userController.loadHomePage);
-router.get('/shop', userController.loadShop)
+router.get('/shop', userController.loadShop);
+router.get('/product-listing', userController.loadProduct);
+router.get('/product-listing/:id', userController.getProduct);
+router.get('/logout', userController.logout)
 
 router.get('/signup', userController.loadSignup)
 router.post("/signup", userController.signUp);
@@ -24,8 +27,6 @@ router.get('/auth/google',
 
 router.get('/contact', userController.getContactPage);
 
-
-
 router.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/signup'}), 
     (req, res) => {
@@ -37,7 +38,7 @@ router.get('/auth/google/callback',
 
 router.get('/forgot-password', userController.loadForgotPassword)
 router.post('/forgot-otp', userController.forgotPassword)
-router.post('/reset-password', userController.resetPassword)
+router.get('/reset-password', userController.resetPassword)
 router.post('/reset-password-verify', userController.resetVerify)
 
 

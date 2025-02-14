@@ -5,7 +5,7 @@ const Category = require('../../models/categorySchema')
 const User = require('../../models/userSchema')
 const sharp = require('sharp');
 const multer = require('multer');
-
+const flash = require('connect-flash');
 
 
 const storage = multer.diskStorage({
@@ -34,7 +34,11 @@ const storage = multer.diskStorage({
 const addProducts = async (req, res) => {
     
     try {
-        res.render('product-add')
+
+        const category = Category.find()
+        res.render('admin/add-product', {
+            category
+        })
     } catch (error) {
         res.status(500).send('error while loading product add page')
         res.redirect('/admin.pageError')
@@ -42,9 +46,8 @@ const addProducts = async (req, res) => {
 }
 
 const addingProduct = async (req, res) => {
-    console.log("It's coming adding product");
-    
     try {
+        req.session.admin = true
         console.log('Received body:', req.body);
         console.log('Received files:', req.files);
         
@@ -79,8 +82,8 @@ const addingProduct = async (req, res) => {
                 }
             }
 
-            console.log('Looking for category:', products.productCategory);
-            const categoryId = await Category.findOne({ name: products.productCategory });
+            console.log('Looking for category:', products.category); // Updated to use 'category'
+            const categoryId = await Category.findOne({ name: products.category }); // Updated to use 'category'
             console.log('Found category:', categoryId);
             
             if (!categoryId) {
@@ -92,14 +95,15 @@ const addingProduct = async (req, res) => {
 
             const newProduct = new Product({
                 productName: products.productName,
-                description: products.productDescription,
+                description: products.description,
                 category: categoryId._id,
-                regularPrice: products.productAmount,
-                salePrice: products.productAmount,
+                regularPrice: products.regularPrice, // Updated to use 'regularPrice'
+                salePrice: products.salePrice, // Updated to use 'salePrice'
                 createdAt: new Date(),
-                quantity: products.stockCount,
+                quantity: products.quantity, // Updated to use 'quantity'
                 size: sizes,
-                color: 'green',
+                offer: products.offer,
+                color: products.color, // Updated to use 'color'
                 productImage: images,
                 status: 'Available'
             });
@@ -107,7 +111,8 @@ const addingProduct = async (req, res) => {
             console.log('Attempting to save product:', newProduct);
             await newProduct.save();
             console.log('Product saved successfully');
-            return res.status(201).json({"message": "success"});
+            req.session.admin = true
+            return res.redirect('/admin/products');
         } else {
             return res.status(400).json('Product already exists, please try with another name');
         }
@@ -119,11 +124,15 @@ const addingProduct = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
+
+    console.log('get request from admin', req.session.admin);
     try {
+
         if (req.session.admin) {
+            
             const search = req.query.search || "";
             const page = parseInt(req.query.page) || 1;
-            const limit = 4;
+            const limit = 10;
             const skip = (page - 1) * limit;
 
             const productData = await Product.find({
@@ -131,28 +140,27 @@ const getProducts = async (req, res) => {
             })
                 .skip(skip)
                 .limit(limit)
-                .populate('category')
+                .populate('category', 'name') 
                 .exec();
+            
 
             const count = await Product.countDocuments({
                 productName: { $regex: new RegExp("." + search + ".", "i") }
             });
-
-            const category = await Category.find({ isListed: true });
-
+            
+            const category = await Category.find({ isListed: true }, {name: true, _id: false});
+        
             if (category) {
-                const totalPages = Math.ceil(count / limit);
 
-                console.log(productData);
+                const totalPages = Math.ceil(count / limit);
                 
-                
-                res.render('products', {
+                res.render('admin/products', {
                     data: productData,
                     search: search,
                     data: productData,
                     currentPage: page,
                     totalPages: totalPages,
-                    cat: category,
+                    category: category,
                     message:req.flash('success')
                 });
             } else {
@@ -163,33 +171,37 @@ const getProducts = async (req, res) => {
         console.error('Pagination Error:', error);
         res.redirect('/admin/pageError');
     }
+    
 }
 
 const getEditProduct = async (req, res) => {
     try {
         const id = req.params.id;
-        const product = await Product.findOne({ _id: id });
+        const product = await Product.findOne({ _id: id }).populate("category");
+        const categories = await Category.find(); // Fetch all categories
 
         if (product) {
-            return res.render('edit-product', {
+            return res.render("admin/edit-product", {
                 product: product,
-                pageTitle: 'Edit Product',
-                path: '/admin/products'
+                categories: categories, // Send categories to EJS
+                pageTitle: "Edit Product",
+                path: "/admin/products",
             });
         }
-        res.redirect('/admin/products');
+        res.redirect("/admin/products");
     } catch (error) {
-        console.error('Error fetching product:', error);
-        res.status(500).redirect('/admin/products');
+        console.error("Error fetching product:", error);
+        res.status(500).redirect("/admin/products");
     }
 };
+
 
 const editProduct = async (req, res) => {
     const id = req.params.id;
     const {
         productName,
         productDescription,
-        productCategory,
+        productCategory, // Now this should be a valid ObjectId
         regularPrice,
         salePrice,
         quantity,
@@ -201,10 +213,27 @@ const editProduct = async (req, res) => {
         console.log("Product ID:", id);
         console.log("Request Body:", req.body);
 
+        // Validate productCategory as ObjectId
+        const mongoose = require("mongoose");
+        if (!mongoose.Types.ObjectId.isValid(productCategory)) {
+            return res.status(400).json({ message: "Invalid category ID!" });
+        }
+
         // Check if category exists
-        const categoryExists = await Category.findOne({ name: productCategory });
+        const categoryExists = await Category.findById(productCategory);
         if (!categoryExists) {
             return res.status(400).json({ message: "Category does not exist!" });
+        }
+
+        // Safely parse existingImages (handle undefined case)
+        let parsedImages = [];
+        if (existingImages) {
+            try {
+                parsedImages = JSON.parse(existingImages);
+            } catch (error) {
+                console.error("Error parsing existingImages:", error);
+                return res.status(400).json({ message: "Invalid image data!" });
+            }
         }
 
         // Update product
@@ -213,12 +242,12 @@ const editProduct = async (req, res) => {
             {
                 productName,
                 productDescription,
-                productCategory,
+                category: productCategory, // Store category as an ObjectId
                 regularPrice,
                 salePrice,
                 quantity,
                 color,
-                existingImages: JSON.parse(existingImages), // Ensure it's stored as an array
+                existingImages: parsedImages, // Store parsed images safely
             },
             { new: true }
         );
@@ -227,25 +256,33 @@ const editProduct = async (req, res) => {
             return res.status(404).json({ message: "Product not found!" });
         }
 
-        res.status(200).json({
-            message: "Product updated successfully!",
-            updatedProduct,
-        });
+        res.redirect('/admin/products')
+
 
     } catch (error) {
         console.error("Error updating product:", error);
         res.status(500).json({ message: "Internal server error" });
     }
-
-}
+};
 
 const deleteProduct = async (req, res) => {
 
     console.log('delting product');
     
     try {
-        res.status(500).json({"success": "true"})
+
+        const productId = req.query.id
+        const deleteProduct = await Product.findByIdAndDelete(productId, {
+            new: true
+        })
+
+        if (deleteProduct) {
+            return res.redirect('/admin/products')
+        }
+
     } catch (error) {
+        console.log('Error while delteing the product', error);
+        res.redirect('/admin/pageError')
         
     }
 }

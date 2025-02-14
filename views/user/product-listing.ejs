@@ -1,0 +1,281 @@
+<%- include('../partials/user/header') %>
+<style>
+  .img-direita {
+  width: 400px; /* adjust as needed */
+  height: 450px; /* adjust as needed */
+  overflow: hidden;
+  min-height: 450px;
+  }
+
+  .img-esquerda {
+    object-fit: contain;
+    position: relative;
+    width: 200px;
+    height: 450px;
+    overflow: hidden;
+  }
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto; 
+    object-fit: contain; 
+    margin-bottom: 10px; /* Add spacing between images */
+  }
+
+  .arrow-btn {
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 18px;
+    z-index: 10;
+    display: none;
+  }
+
+  .arrow-up {
+    top: 0;
+  }
+
+  .arrow-down {
+    bottom: 0;
+  }
+
+  .div-image {
+    width: 405px;
+    height: 410px;
+    position: absolute;
+    top: 238px;
+    left: 330px;
+
+  }
+
+  .div-image img {
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.zoom-box {
+    position: absolute;
+    top: 220px;
+    left: 52%;  /* Adjust this to position over product details */
+    width: 600px;  /* Size of zoomed image */
+    height: 600px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    background: white;
+    display: none;
+    z-index: 1000;
+}
+
+.zoom-box img {
+    width: 500px; /* Enlarged size */
+    height: 500px;
+    position: absolute;
+}
+  
+</style>
+
+
+    <main>
+      <section>
+        <div class="container">
+            <div class="container-produto">
+                <div class="produto-esquerdo">
+                  
+
+                  <div class="img-esquerda" data-tab-produto="imagem-pequena">
+                    <button class="arrow-btn arrow-up" id="scrollUp" onclick="scrollImages(-1)">&#9650;</button>
+                    <div class="image-container" id="imageContainer" >
+                      <% product.productImage.forEach(image => { %>
+                        <img src="/uploads/product-images/<%= image %>" 
+                             alt="<%= product.productName %>" 
+                             class="product-image thumbnail"
+                             data-image="/uploads/product-images/<%= image %>">
+                    <% }) %>                    
+                    </div>
+                    <button class="arrow-btn arrow-down" id="scrollDown" onclick="scrollImages(1)">&#9660;</button>
+                  </div>
+                
+                  <div class="img-direita" data-tab-produto="imagem-grande">
+                      <img id="mainImage" 
+                          src="/uploads/product-images/<%= product.productImage[0] %>" 
+                          alt="<%= product.productName %>" 
+                          class="product-image">
+                  </div>
+                
+         
+                </div>
+                <div class="produto-direito">
+                    <h1 class="titulo-produto"><%= product.productName %></h1>
+                    <div class="avaliacao">
+                        <img src="/img/Frame 10.svg" alt="" />
+                        <span class="f2-m">4.5/5</span> <!-- replace it dynamically -->
+                    </div>
+                    <div class="precos">
+                        <span class="preco-novo">$<%= product.salePrice %></span>
+                        <span class="preco-ant">$<%= product.regularPrice %></span>
+                        <span class="preco-desc"><%= product.offer %></span>
+                    </div>
+                    <p class="f2-m cor-p4 barra-produto"><%= product.description %></p>
+                    <div class="cores-tamanhos">
+                        <p class="f2-m cor-p4">Select a color</p>
+                        <div class="cores-selecao barra-produto">
+                            <button class="roupa-cor1" style="background-color: '<%= product.color %>';"></button>
+                        </div>
+                        <div>
+                            <p class="f2-m cor-p4">Choose a size</p>
+                            <div class="tamanho-produto barra-produto">
+                                <button>Small</button>
+                                <button>Medium</button>
+                                <button>Large</button>
+                                <button>X-large</button>
+                            </div>
+                        </div>
+                        <div class="botoes-carrinho">
+                            <% if (product.status === 'out of stock') { %>
+                                <button class="botao-quantia">Out of Stock</button>
+                            <% } else { %>
+                                <button class="add-carrinho">Add to Cart</button>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="div-image" id="div-image">
+      <img src='' alt="" id="img-add">
+    </div>
+    <div class="zoom-box" id="zoomBox">
+        <img src='' alt="" id="zoomImage">
+    </div>
+  
+    
+    </main>
+
+
+    <script type="module" src="/public/js/script.js"></script>
+
+    <script>
+
+      //dynamic thumbnails
+      document.addEventListener('DOMContentLoaded', function () {
+          const thumbnails = document.querySelectorAll('.thumbnail');
+          const mainImage = document.getElementById('mainImage');
+
+          if (thumbnails.length > 0) {
+              thumbnails[0].classList.add('active');
+          }
+
+          thumbnails.forEach(thumbnail => {
+          thumbnail.addEventListener('click', function () {
+          console.log('Thumbnail clicked:', this);
+          
+          // Correct the ID to match the HTML element (id="img-add")
+          const imgDiv = document.getElementById('img-add');
+          
+          thumbnails.forEach(t => t.classList.remove('active')); // Remove active class from all thumbnails
+          this.classList.add('active'); // Add active class to the clicked thumbnail
+
+          // Get the new image source from the clicked thumbnail
+          const newSrc = this.getAttribute('data-image');
+          
+          // Update both mainImage and imgDiv if needed
+          mainImage.src = newSrc;  // Updates the main image container
+          imgDiv.src = newSrc;     // Updates the image in the div-image container
+            });
+        });
+
+      });
+
+
+      //To Handle Zoom Effect
+      document.addEventListener('DOMContentLoaded', function () {
+          const imgDiv = document.getElementById('img-add');
+          const zoomBox = document.getElementById('zoomBox');
+          const zoomImage = document.getElementById('zoomImage');
+
+          imgDiv.addEventListener('mouseenter', function () {
+              if (imgDiv.src) {
+                  zoomImage.src = imgDiv.src; // Set zoomed image source
+                  zoomBox.style.display = 'block';
+              }
+          });
+
+          imgDiv.addEventListener('mousemove', function (e) {
+              const rect = imgDiv.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width) * 100;
+              const y = ((e.clientY - rect.top) / rect.height) * 100;
+             
+
+              zoomImage.style.transform = `translate(-${x}%, -${y}%)`;
+          });
+
+          imgDiv.addEventListener('mouseleave', function () {
+              zoomBox.style.display = 'none';
+          });
+      });
+
+
+
+    
+      // Scroll images function (example implementation)
+      function scrollImages(direction) {
+        const container = document.getElementById('imageContainer');
+        const scrollAmount = 100; // Adjust based on thumbnail height
+        container.scrollTop += direction * scrollAmount;
+      }
+   
+      
+      let scrollIndex = 0;
+      const container = document.getElementById("imageContainer");
+      const images = document.querySelectorAll(".product-image");
+      const imageHeight = images[0].clientHeight + parseInt(window.getComputedStyle(images[0]).marginBottom); // Include margin
+      const upBtn = document.getElementById("scrollUp");
+      const downBtn = document.getElementById("scrollDown");
+      const visibleImages = 3;
+      const totalImages = images.length;
+      const maxScroll = totalImages - visibleImages;
+    
+      function updateButtons() {
+        upBtn.style.display = scrollIndex > 0 ? "block" : "none";
+        downBtn.style.display = scrollIndex < maxScroll ? "block" : "none";
+      }
+    
+      function scrollImages(direction) {
+        let newScrollIndex = scrollIndex + direction;
+
+        // Ensure we never scroll too far
+        if (newScrollIndex < 0) newScrollIndex = 0;
+        if (newScrollIndex > maxScroll) newScrollIndex = maxScroll;
+
+        scrollIndex = newScrollIndex;
+        container.style.transform = `translateY(-${scrollIndex * imageHeight}px)`;
+        updateButtons();
+      }
+
+    
+      function adjustContainerHeight() {
+        const containerHeight = visibleImages * imageHeight;
+        document.querySelector(".img-esquerda").style.height = `${containerHeight}px`;
+      }
+    
+      window.onload = () => {
+        adjustContainerHeight();
+        updateButtons();
+      };
+    </script>
+
+
+<%- include('../partials/user/footer') %>

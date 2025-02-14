@@ -59,7 +59,7 @@ const loadDashboard = async (req, res) => {
 
 
 const pageError = (req, res) => {
-    res.render('admin-error')
+    res.render('admin/admin-error')
 }
 
 const logout = (req, res) => {

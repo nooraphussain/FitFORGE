@@ -1,0 +1,37 @@
+.mais-vendido-bg h3{
+    text-align: center;
+    padding: 60px 0px;
+}
+
+
+.mais-vendido{
+    display: flex;
+    flex-flow: nowrap;
+    gap: 20px;
+    overflow: auto;
+
+}
+
+.mais-vendido-item img{
+    max-width: 290px;
+}
+
+.mais-vendido-item p, img, span{
+    margin-bottom: 5px;
+}
+
+.mais-vendido img{
+    border-radius: 15px;
+}
+
+.avaliacao{
+    display: flex;
+    gap: 10px;
+}
+
+@media(max-width:600px){
+    .mais-vendido-bg h3{
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }    
+}

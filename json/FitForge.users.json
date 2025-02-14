@@ -1,0 +1,125 @@
+[{
+  "_id": {
+    "$oid": "67a069a9e0fb2c4e3ab73719"
+  },
+  "name": "Noora Hussain",
+  "email": "noorahussainp2002@gmail.com",
+  "phoneNumber": "7034929567",
+  "password": "$2b$10$UO73RnHs4e.f3UgFjZg8w.kezkJlTx.cu7YfbSoA0bNUx/jlUxvaq",
+  "isBlocked": true,
+  "googleId": "123773",
+  "isActive": true,
+  "isAdmin": false,
+  "cart": [],
+  "wallet": [],
+  "wishlist": [],
+  "orderHistory": [],
+  "createdAt": {
+    "$date": "2025-02-03T07:00:57.187Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-03T07:00:57.187Z"
+  },
+  "searchHistory": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a06e05c7cf13283644c9ee"
+  },
+  "name": "hello",
+  "email": "hello@gmail.com",
+  "phoneNumber": "1234567890",
+  "password": "$2b$10$sgbYDDsdPHp9YS2HLuTQluwKbTFgQWFUgTgDisH028OIPbgeZFd66",
+  "isBlocked": false,
+  "googleId": "845047",
+  "isActive": true,
+  "isAdmin": false,
+  "cart": [],
+  "wallet": [],
+  "wishlist": [],
+  "orderHistory": [],
+  "createdAt": {
+    "$date": "2025-02-03T07:19:33.726Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-03T07:19:33.726Z"
+  },
+  "searchHistory": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a070b9c751adeebdedf806"
+  },
+  "name": "red hood",
+  "email": "red@gmail.com",
+  "phoneNumber": "1234567890",
+  "password": "$2b$10$x3u4DR9Bsx3KZeDi2GSjDOwDn4K.Co6u3yTi2UQvemtQ0PrBQjXhe",
+  "isBlocked": false,
+  "googleId": "939019",
+  "isActive": true,
+  "isAdmin": false,
+  "cart": [],
+  "wallet": [],
+  "wishlist": [],
+  "orderHistory": [],
+  "createdAt": {
+    "$date": "2025-02-03T07:31:05.964Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-03T07:31:05.964Z"
+  },
+  "searchHistory": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a0ab9795478c3695a334ce"
+  },
+  "name": "blue berry",
+  "email": "blue@gmail.com",
+  "phoneNumber": "1234567890",
+  "password": "$2b$10$hznEL08xrWDPFTMlhwlmfeDy9p.jggZOZVEbMGd81kiuId5bp4wvG",
+  "isBlocked": false,
+  "googleId": "233692",
+  "isActive": true,
+  "isAdmin": false,
+  "cart": [],
+  "wallet": [],
+  "wishlist": [],
+  "orderHistory": [],
+  "createdAt": {
+    "$date": "2025-02-03T11:42:15.581Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-03T11:42:15.581Z"
+  },
+  "searchHistory": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a19f65001892666f1873fd"
+  },
+  "name": "admin",
+  "email": "admin123@gmail.com",
+  "phoneNumber": "1234567890",
+  "password": "$2b$10$i.OkyUSqfCDz7yPUtv3jU.E1K30aUtukFU77darfQliXzQV5uUhwq",
+  "isBlocked": false,
+  "googleId": "756282",
+  "isActive": true,
+  "isAdmin": true,
+  "cart": [],
+  "wallet": [],
+  "wishlist": [],
+  "orderHistory": [],
+  "createdAt": {
+    "$date": "2025-02-04T05:02:29.746Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-04T05:02:29.748Z"
+  },
+  "searchHistory": [],
+  "__v": 0
+}]

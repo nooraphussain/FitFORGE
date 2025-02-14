@@ -3,7 +3,7 @@ const Category = require('../../models/categorySchema');
 const categoryInfo = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const limit = 4;
+        const limit = 5;
         const skip = (page - 1) * limit;
 
         const categoryData = await Category.find({})
@@ -13,8 +13,6 @@ const categoryInfo = async (req, res) => {
 
         const totalCategories = await Category.countDocuments();
         const totalPages = Math.ceil(totalCategories / limit);
-
-        console.log(categoryData);
         
 
         res.render('admin/category', {
@@ -31,10 +29,16 @@ const categoryInfo = async (req, res) => {
 
 const addCategory = async (req, res) => {
     const { name, description } = req.body;
+
+    console.log('cname', name);
+    console.log('des', description);
+    
+    
     try {
-        const existingCategory = await Category.findOne({ name });
+        const categoryName = name
+        const existingCategory = await Category.findOne({  categoryName });
         if (existingCategory) {
-            return res.status(500).send({ error: 'Category already exists' });
+            return res.status(500).send({ message: 'Category already exists' });
         }
 
         const newCategory = new Category({
@@ -42,11 +46,17 @@ const addCategory = async (req, res) => {
             description
         });
 
+        console.log(newCategory);
+        
+
         await newCategory.save();
-        return res.json({ message: 'Category added successfully' });
+
+        return res.status(201).json({ message: 'Category added successfully' });
     } catch (error) {
-        return res.status(500).json({ error: 'Internal Server error' });
+        console.error('Error saving category:', error);
+        return res.status(500).json({ error: error.message || 'Internal Server Error' });
     }
+
 };
 
 
@@ -55,7 +65,8 @@ const getEditCategory = async (req, res) => {
         
         const id = req.query.id
         const category = await Category.findOne({_id: id})
-        res.render('edit-category', {category: category})
+        res.render('admin/edit-category', {category: category})
+        // res.send('helloo')
 
     } catch (error) {
         
@@ -69,17 +80,13 @@ const editCategory = async (req, res) => {
 
         const id = req.params.id
         const {categoryname, description} = req.body
+        
         const existingCategory = await Category.findOne({name: categoryname})
 
-
-        if (existingCategory) {
-            return res.status(400).josn({error: 'category already exists, please choose another name'})
-        }
-
-        const updateCategory = await Category.findByIdAndUpdate(id, {
+        const updateCategory = await Category.updateOne({_id: id}, {$set: {
             name: categoryname,
             description: description
-        }, {new: true})
+        }})
 
         if (updateCategory) {
             res.redirect('/admin/category')
@@ -89,6 +96,8 @@ const editCategory = async (req, res) => {
 
 
     } catch (error) {
+        console.log('error happened', error);
+        
         res.status(500).json({error: 'Internal Server error'})
     }
 }
@@ -97,23 +106,36 @@ const getListCategory = async (req, res) => {
     try {
 
         let id = req.query.id
-        await Category.updateOne({_id: id}, {$set: {isListed: false}})
+        await Category.findByIdAndUpdate(id, {isListed: true})
+        
+        // await Category.updateOne({_id: id}, {$set: {isListed: false}})
         res.redirect('/admin/category')
 
+
     } catch (error) {
+        console.log('error happened ', error);
+        
         res.redirect('/pageError')
     }
+    
 }
 
 const getUnListCategory = async (req, res) => {
     try {
+
         let id = req.query.id
-        await Category.updateOne({_id: id}, {$set: {isListed: true}})
+        
+        // await Category.updateOne({_id: id}, {$set: {isListed: true}})
+        const category =  await Category.find({_id: id}, {name: true})
+        await Category.findByIdAndUpdate(id, {isListed: false})
+        
         res.redirect('/admin/category')
     } catch (error) {
         res.redirect('/pageError')
     }
+    
 }
+
 
 
 

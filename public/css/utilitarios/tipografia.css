@@ -1,0 +1,65 @@
+/* DESKTOP */
+.f1-g{
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: 'poppins', sans-serif;
+    line-height: 4rem;
+}
+
+
+.f1-m{
+    font-size: 3rem;
+    font-weight: 800;
+    font-family: 'poppins', sans-serif;
+    line-height: 4rem;
+}
+
+.f2-m{
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'open sans', sans-serif;
+    line-height: 1.375;
+}
+
+.f2-mg{
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'open sans' sans-serif;
+    line-height: 1.3;
+}
+
+
+
+.f2-num{
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'open sans';
+    line-height: normal;
+}
+
+.logo{
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* RESPONSIVO */
+
+
+
+
+/* espacamento */
+.container{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+@media(max-width:900px){
+    .container{
+        padding: 20px 20px;
+    }
+}

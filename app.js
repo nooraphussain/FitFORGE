@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const passport = require('passport');
+const passport = require('./config/passport');
+const cors = require('cors');
+// const cookeieSession = require('cookie-session')
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const env = require('dotenv').config();
 const { connectDB } = require('./config/db');
 const path = require('path');
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
+const flash = require('connect-flash');
 
 // Connecting to the database
 connectDB();
@@ -24,32 +27,25 @@ app.use(session({
     }
 }));
 
+
+app.use(
+  cors({
+    origin: "http://localhost:2006", 
+    credentials: true,
+  })
+);
+
+
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // Middleware to parse JSON data
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-// Passport Google Strategy Configuration
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback",  // Adjust this if your environment differs
-}, (accessToken, refreshToken, profile, done) => {
-    // You can store the profile or user info in the session here
-    return done(null, profile);
-}));
-
-// Serialize and Deserialize user to maintain session
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
+app.use(flash());
 
 // Set up view engine and views directory
 app.set('view engine', 'ejs');
@@ -62,6 +58,7 @@ app.use('/admin', adminRouter);
 
 // Authentication Routes for Google
 app.get('/auth/google', passport.authenticate('google', {
+
     scope: ['profile', 'email']
 }));
 
@@ -69,8 +66,9 @@ app.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/'
 }), (req, res) => {
     // Successful authentication, redirect to index or dashboard
-    res.redirect('/index');
+    res.redirect(process.env.ClIENT_URL);
 });
+
 
 // Start the server
 app.listen(process.env.PORT, () => {

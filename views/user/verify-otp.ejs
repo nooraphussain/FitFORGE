@@ -189,7 +189,7 @@
             }
        }, 1000)
 
-       btn.addEventListener('click', (event) => {                                                                                                                                                           
+       btn.addEventListener('click', async (event) => {                                                                                                                                                           
 
         const serverOTP = "<%=otp%>"
         const userOtp = document.getElementById('otp').value
@@ -198,12 +198,33 @@
         
         if (parseInt(serverOTP) == parseInt(userOtp) && timer > 1) {
 
-            Swal.fire({
-                icon: 'success', 
-                title: 'OTP verified successfully', 
-            }).then((result) => {
-                document.getElementById('reset-password-form').submit()
+            // Swal.fire({
+            //     icon: 'success', 
+            //     title: 'OTP verified successfully', 
+            // }).then((result) => {
+            //     window.location.href = '/shop'
+            //     document.getElementById('reset-password-form').submit()
+            // })
+            // .then(() => {
+            //     window.location.href = '/shop'
+            // })
+
+            const response = await fetch('/otp-verified', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                }
             })
+
+            const data = await response.json()
+
+            if (data.success) {
+                alert('Successful')
+                window.location.href = '/shop'
+                return;
+            }
+
+            alert('Invalid data')
 
         } else if (userOtp) {
 
