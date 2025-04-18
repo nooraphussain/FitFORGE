@@ -1,0 +1,135 @@
+.wishlist-icon {
+    font-size: 30px;
+    color: #d5d5d5;
+    cursor: pointer;
+    margin-left: 10px;
+    border: 2px solid black; 
+    border-radius: 50%; 
+    padding: 5px;
+    background-color: transparent; 
+}
+
+.wishlist-items-div {
+    gap: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+
+}
+
+
+.your-wishlist{
+    font-size: 40px;
+    margin-bottom: 24px;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+    border-color: rgb(226, 232, 240);
+    margin: 0px 0px 24px;
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+    font-family: __integralCF_931021, __integralCF_Fallback_931021, sans-serif;
+    font-style: normal;
+}
+
+.wishlist-block {
+    flex-direction: row;
+    align-items: flex-start;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.wishlist-item-card{
+    padding: 30px 24px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: 1px;
+    border-radius: 20px;
+    flex-direction: column;
+    width: 100% ;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.wishlist-item-datas {
+    align-items: flex-start;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+.wishlist-img {
+    max-width: 124px;
+    background-color: rgb(240, 238, 237);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 100px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-color: rgb(226, 232, 240);
+    color: rgb(2, 8, 23);
+    text-decoration: none solid rgb(2, 8, 23);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.wishlist-product-color {
+    display: flex;
+    flex-direction: row;  
+    align-items: center; 
+    gap: 10px; 
+}
+
+.dlt-wish-product {
+    width: 2.25rem;
+    height: 36px;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    cursor: pointer;
+    appearance: button;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    text-transform: none;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    letter-spacing: normal;
+    color: rgb(2, 8, 23);
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.color-selector button {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.color-selector::after,
+.color-selector::before,
+.color-selector button::after,
+.color-selector button::before {
+    display: none;
+}
+

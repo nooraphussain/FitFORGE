@@ -1,0 +1,441 @@
+.breadcrumb {
+    font-size: 14px;
+    color: #555;
+    margin-top: 30px;
+    margin-bottom: -220px;
+    padding-top: 120px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #555;
+    padding-left: 10px !important;
+    margin-right: 10px;
+}
+
+.breadcrumb span {
+    padding-left: 10px !important;
+}
+
+.breadcrumb a:hover {
+    text-decoration: none;
+}
+
+.style-118 {
+    display: block;
+    border-top-color: rgba(0, 0, 0, 0.1);
+    height: 1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-color: rgba(0, 0, 0, 0.1) rgb(226, 232, 240) rgb(226, 232, 240);
+    margin: 20px 0px;
+    color: rgb(2, 8, 23);
+    border-top-width: 1px;
+    box-sizing: border-box;
+    border: 0px solid rgb(229, 231, 235);
+}
+
+.style-119 {
+    padding: 0px;
+    top: -35px;
+    border-style: none;
+    justify-content: center;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border-color: rgba(0, 0, 0, 0.05);
+    border-top-width: 0px;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    z-index: 10;
+    left: 0px;
+    bottom: 0px;
+    box-sizing: border-box;
+    border: 0px none rgba(0, 0, 0, 0.05);
+}
+
+.style-122, .style-126 {
+    width: 2em;
+    height: 2em; 
+    font-size: 10px; 
+}
+
+
+.style-120 {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+    max-width: 170px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 9999px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 110px;
+    width: 100%;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.style-121 {
+    width: 2rem; 
+    height: 28px;
+    font-size: 24px !important; 
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    border-radius: 6px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    cursor: pointer;
+    appearance: button;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    text-transform: none;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    letter-spacing: normal;
+    color: rgb(2, 8, 23);
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.style-122 {
+    border-color: rgb(226, 232, 240);
+    display: block;
+    box-sizing: border-box;
+}
+
+.style-123 {
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+}
+
+.style-124 {
+    font-size: 18px !important;
+    margin-right: 35px;
+    line-height: 24px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    font-size: 16px;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.style-125 {
+    margin-left: -40px !important;
+    width: 2rem; 
+    height: 28px;
+    font-size: 24px !important; 
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    border-radius: 6px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    cursor: pointer;
+    appearance: button;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    text-transform: none;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    letter-spacing: normal;
+    color: rgb(2, 8, 23);
+    margin: 0px;
+    padding:0px;
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.style-126 {
+    border-color: rgb(226, 232, 240);
+    display: block;
+    box-sizing: border-box;
+}
+
+.style-127 {
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+}
+
+.style-128 {
+    height: 52px;
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 0px;
+    transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    border-radius: 9999px;
+    width: 300px;
+    border: 0px solid rgb(226, 232, 240);
+    cursor: pointer;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-weight: 400;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.style-128:hover {
+    background-color: rgb(30, 30, 30); /* Slightly lighter black */
+    transform: scale(1.02); /* Slight hover effect */
+}
+
+
+.style-129 {
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    width: 100%; 
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.style-130 {
+    margin-bottom: 32px;
+    overflow-x: auto;
+    align-items: center;
+    display: flex;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+    width: 100%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.style-131 {
+    padding: 24px;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    border-color: rgb(0, 0, 0);
+    border-bottom-width: 2px;
+    border-radius: 0px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0%;
+    height: 50px;
+    display: flex;
+    cursor: pointer;
+    appearance: button;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    text-transform: none;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    letter-spacing: normal;
+    color: rgb(2, 8, 23);
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px solid rgb(229, 231, 235);
+}
+
+.style-132 {
+    padding: 24px;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-bottom-width: 1px;
+    border-radius: 0px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0%;
+    height: 49px;
+    display: flex;
+    cursor: pointer;
+    appearance: button;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    text-transform: none;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    letter-spacing: normal;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px solid rgb(229, 231, 235);
+}
+
+.style-133 {
+    padding: 24px;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-bottom-width: 1px;
+    border-radius: 0px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0%;
+    height: 49px;
+    display: flex;
+    cursor: pointer;
+    appearance: button;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    text-transform: none;
+    font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    letter-spacing: normal;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px solid rgb(229, 231, 235);
+}
+
+.style-134 {
+    margin-bottom: 64px;
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+
+.style-135 {
+    border-color: rgb(226, 232, 240);
+    box-sizing: border-box;
+}
+
+.style-136 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    border-color: rgb(226, 232, 240);
+    margin: 0px 0px 24px;
+    box-sizing: border-box;
+    border: 0px solid rgb(226, 232, 240);
+}
+.style-137, .style-142, .style-147, .style-152 {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    width: 100%;
+    padding: 2px 0;
+}
+
+.style-138, .style-143, .style-148, .style-153 {
+    flex-basis: 30%; 
+    min-width: 160px; 
+}
+
+.style-139, .style-144, .style-149, .style-154 {
+    color: rgb(115, 115, 115);
+    line-height: 24px;
+    font-size: 14px;
+    padding-right: 8px;
+    white-space: nowrap;
+}
+
+.style-140, .style-145, .style-150, .style-155 {
+    flex-basis: 30%; 
+    text-align: left; 
+    padding-left: 5px; 
+    background-color: white;
+}
+
+.style-141 {
+    color: rgb(38, 38, 38);
+    line-height: 24px;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+    top: 12px; /* Moves the text slightly downward */
+}
+
+.style-146 {
+    color: rgb(38, 38, 38);
+    line-height: 22px; 
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+    top: -32px; 
+}
+
+.style-141, .style-146, .style-151, .style-156 {
+    color: rgb(38, 38, 38);
+    line-height: 24px;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    padding-top: 2px;
+}
+
+.style-144 {
+    color: rgb(115, 115, 115);
+    line-height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+    top: -12px; 
+}
+.style-149 {
+    color: rgb(115, 115, 115);
+    line-height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+    top: -1px; 
+}
+
+
+.style-hr {
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    color: rgb(2, 8, 23);
+    box-sizing: border-box;
+}

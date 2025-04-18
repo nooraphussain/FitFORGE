@@ -1,0 +1,193 @@
+/* * { font-family: inherit !important; } */
+
+/* .material-symbols-outlined,
+.material-symbols-outlined * {
+  font-family: 'Material Symbols Outlined' !important;
+} */
+.promocao {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Show 4 columns */
+    gap: 20px; /* Adjust spacing between items */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    width: 100%;
+  }
+  
+  .promocao-item {
+    min-width: 290px; /* Set minimum width for items */
+    width: 100%;
+  }
+  .product-imagee{
+    min-height: 300px;
+  }
+  
+  /* Optional: Add responsive behavior */
+  @media (max-width: 1200px) {
+    .promocao {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .promocao {
+      grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+  }
+.container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+
+.cor-bg-p3>div {                   
+    padding: 0px 40px;
+}
+
+.lado-esquerdo {
+    flex-basis: 60%;
+}
+
+.lado-esquerdo .titulo,
+.texto {
+    padding-bottom: 10px;
+
+}
+
+/* brands */
+.marcas-itens img {
+max-height: 70px; /* Adjust as needed */
+width: auto;
+}
+
+.marcas-itens img[src*="abercrombie-fitch-logo"] {
+filter: invert(1); /* Makes black text white */
+max-height: 90px; /* Adjust size to match others */
+}
+/* brands */
+
+
+/* BROWSE BY DRESS STYLE  */
+.estilo p {
+    font-weight: 900; 
+}  
+/* BROWSE BY DRESS STYLE  */
+
+.f1-m {
+    font-weight: 900 !important; /* Increase boldness */
+}
+
+
+.banner{
+    margin: 0;
+}
+
+.lado-direito {
+    align-items: center;
+    flex-basis: 50%;
+    position: relative;
+}
+
+.numeros {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.numeros-item {
+    max-width: 200px;
+    align-items: center;
+}
+
+.botao {
+    padding: 15px 60px;
+    background: var(--cor-p1);
+    color: var(--cor-p3);
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+
+
+.marcas-itens{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.decoracao1{
+    position: absolute;
+    margin-top: 220px;
+    margin-left: 20px;
+}
+.decoracao2{
+    position: absolute;
+    margin-left: 450px;
+    margin-top: 70px;
+}
+
+
+
+
+
+
+
+@media(max-width:1105px) {
+    .lado-esquerdo .f1-g {
+        font-size: 3rem;
+        line-height: 3rem;
+    }
+}
+
+
+@media(max-width:1000px) {
+    .container-main {
+        padding-top: 60px;
+        flex-direction: column;
+    }
+
+    .numeros {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .botao {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media(max-width:600px) {
+    .cor-bg-p3>div {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .lado-esquerdo .f1-g {
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+    }
+
+    .numeros-item .n {
+        font-size: 2rem;
+    }
+
+
+
+    .numeros {
+        gap: 30px;
+    }
+    .banner{
+        margin-left: 20px;
+    }
+    .marcas-itens img{
+        width: 110px;
+    }
+
+}

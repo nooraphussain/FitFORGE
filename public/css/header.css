@@ -1,0 +1,255 @@
+/* header, header * {
+    font-family: 'Merriweather', serif !important;
+  }  */
+
+.header-top {
+    padding: 10px 40px;
+    text-align: center;
+}
+.header-top a:hover {
+    text-decoration: underline;
+  }
+  
+/* account-dropdown-menu*/
+.contamenu {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart {
+color: black !important;
+}  
+
+
+.cart-container {
+position: relative;
+display: inline-block;
+}
+
+.cart-badge {
+position: absolute;
+top: -20px; 
+right: -5px; 
+background-color: black !important; 
+color: white; 
+font-size: 12px; 
+font-weight: bold;
+width: 20px; 
+height: 22px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%; 
+padding: 2px;
+}
+
+/* Ensure hover effect applies ONLY when hovering over the account icon */
+.account-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 25px !important;
+    right: -80px !important; /* Adjust as needed */
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 180px;
+    display: none;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.dropdown-menu a span {
+    margin-right: 8px;
+}
+
+.dropdown-menu a:hover {
+    background: #f0f0f0;
+}
+
+/* Ensure dropdown only appears when hovering over the account icon */
+.conta:hover + .dropdown-menu,
+.dropdown-menu:hover {
+    display: flex;
+}
+
+/* account-dropdown-menu*/
+  
+
+  .container-modal {
+    display: none !important;
+  }
+  
+  .container-modal.active {
+    display: none !important ;
+  }
+  
+.top-fixo{
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.header-fixo{
+    position: fixed;
+    top: 38px;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    border-bottom: 2px solid rgb(227, 227, 227); 
+}
+
+.container-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-itens{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.contamenu{
+    display: flex;
+    gap: 10px;
+}
+
+.nav-itens a:hover{
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cor-p1);
+}
+
+.barra-pesquisa {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.barra-pesquisa .material-symbols-outlined {
+    position: absolute;
+    bottom: 40%;
+    transform: translateY(50%); /* Center icon vertically */
+    left: 15px;
+    font-size: 24px;
+    color: rgb(146, 146, 146);
+}
+
+.pesquisa {
+    width: 578px;
+    height: 48px;
+    border-radius: 32px;
+    border: none;
+    background-color: var(--cor-p3);
+    box-sizing: border-box;
+    padding-left: 50px; 
+    transition: box-shadow 0.3s ease-in-out; 
+}
+
+.pesquisa:focus {
+    outline: none; 
+    box-shadow:  
+        0 4px 6px rgba(58, 58, 58, 0.15),  
+        -3px 3px 6px rgba(58, 58, 58, 0.1), 
+        3px 3px 6px rgba(58, 58, 58, 0.1);  
+}
+
+.pesquisa::placeholder {
+    padding-left: 0px; 
+    font-size: 16px;
+}
+
+.botoes-direito :nth-child(2){
+    margin-left: 20px;
+    
+}
+
+.f2-m a{
+    color: var(--cor-p1);
+}
+
+.menu-mobile{
+    display: none;
+}
+
+@media(max-width:1000px){
+    .barra-pesquisa{
+        width: 150px;
+    }
+}
+
+@media(max-width:1000px){
+    .nav-itens{
+        display: block;
+        position: absolute;
+        top: 75px;
+        background: var(--cor-p2);
+        width: 100%;
+        left: 0px;
+        visibility: hidden;
+        z-index: 99;
+        height: 0;
+        overflow-y: hidden;
+        transition: .6s;
+    }
+
+    .nav-itens.ativo{
+        height: calc(100vw - 70px);
+        visibility: visible;
+        transition: .6s;
+    }
+    
+    .nav-itens li{
+        padding: 1rem 0px;
+        margin: 0 1.5rem;
+        border-bottom: 1px solid var(--cor-p3);
+    }
+
+    .barra-pesquisa{
+        display: none;
+    }
+
+    .cart{
+        display: none;
+    }
+
+    .menu-mobile{
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+    }
+    .hamburger{
+        border-top: 2px solid #000000;
+        width: 20px;
+    }
+    .hamburger::after, .hamburger::before{
+        content: "";
+        display: block;
+        width: 20px;
+        height: 2px;
+        margin-top: 5px;
+        background: var(--cor-p1);
+    }
+    .hamburger{
+        display: block;
+    }
+}

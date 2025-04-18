@@ -1,0 +1,21 @@
+/* Paginas */
+@import url(./global.css);
+@import url(./header.css);
+@import url(./main.css);
+@import url(./promocao.css);
+@import url(./maisvendido.css);
+@import url(./estilo.css);
+@import url(./comentarios.css);
+@import url(./footer.css);
+@import url(./modal.css);
+@import url(./produto.css);
+@import url(./cart.css);
+@import url(./product-listing.css);
+@import url(./wishlist.css);
+@import url(./account.css);
+@import url(./checkout.css);
+@import url(./orders.css);
+
+/* Utilitarios  */
+@import url(./utilitarios/tipografia.css);
+@import url(./utilitarios/cores.css);
