@@ -1,0 +1,174 @@
+<%- include('../partials/user/header') %>
+
+
+
+    <body>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <!-- Sort & Filter Section -->
+            <div style="margin-top: 150px;margin-left: 20px; width: 295px; padding: 20px; border: 1px solid #ddd; border-radius: 12px; background: #ffffff; font-family: Satoshi, sans-serif; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 10px; font-size: 20px; font-weight: bold; color: #333;">Sort & Filter</h3>
+                <hr style="width: 95%; margin-bottom: 10px; border: 1px solid #ccc;">
+                
+                <!-- Advanced Sorting -->
+                <div style="margin-bottom: 20px;">
+                    <strong style="display: block; margin-bottom: 8px; font-size: 16px; color: #444;">Sort By</strong>
+                    <select id="sortOptions" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="" <%= !sortOption ? "selected" : "" %>>Popularity</option>
+                        <option value="priceLowHigh" <%= sortOption === "priceLowHigh" ? "selected" : "" %>>Price: Low to High</option>
+                        <option value="priceHighLow" <%= sortOption === "priceHighLow" ? "selected" : "" %>>Price: High to Low</option>
+                        <option value="averageRatings" <%= sortOption === "averageRatings" ? "selected" : "" %>>Average Ratings</option>
+                        <option value="featured" <%= sortOption === "featured" ? "selected" : "" %>>Featured</option>
+                        <option value="nameAsc" <%= sortOption === "nameAsc" ? "selected" : "" %>>aA - zZ</option>
+                        <option value="nameDesc" <%= sortOption === "nameDesc" ? "selected" : "" %>>zZ - aA</option>
+                    </select>
+                </div>
+                <hr style="width: 95%; border: 1px solid #ccc; margin-bottom: 20px;">
+                
+               <!-- Categories -->
+                <div style="margin-bottom: 20px; margin-top: 20px;">
+                    <strong style="display: block; margin-bottom: 8px; font-size: 16px; color: #444;">Categories</strong>
+                    <% categories.forEach(category => { %>
+                        <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;">
+                            <input type="checkbox" id="<%= category._id %>">
+                            <%= category.name %>
+                        </label>
+                    <% }); %>
+                </div>             
+               <hr style="width: 95%; border: 1px solid #ccc; margin: auto;">
+            
+                <!-- Price Filter -->
+                <div style="margin-bottom: 20px; margin-top: 20px;">
+                    <strong style="display: block; margin-bottom: 8px; font-size: 16px; color: #444;">Price</strong>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        $<input type="number" style="width: 60px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;" value="50">
+                        -
+                        $<input type="number" style="width: 60px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;" value="5000">
+                    </div>
+                </div>
+                <hr style="width: 95%; border: 1px solid #ccc; margin: auto;">
+                
+                <!-- Colors -->
+                <div style="margin-bottom: 20px; margin-top: 20px;">
+                    <strong style="display: block; margin-bottom: 8px; font-size: 16px; color: #444;">Colors</strong>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="width: 22px; height: 22px; background: red; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"></div>
+                        <div style="width: 22px; height: 22px; background: blue; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"></div>
+                        <div style="width: 22px; height: 22px; background: green; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"></div>
+                    </div>
+                </div>
+                <hr style="width: 95%; border: 1px solid #ccc; margin: auto;">
+                
+                <!-- Size Filter -->
+                <div style="margin-bottom: 20px; margin-top: 20px;">
+                    <strong style="display: block; margin-bottom: 8px; font-size: 16px; color: #444;">Size</strong>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <div style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">S</div>
+                        <div style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">M</div>
+                        <div style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">L</div>
+                        <div style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">XL</div>
+                    </div>
+                </div>
+                <hr style="width: 95%; border: 1px solid #ccc; margin-bottom: 10px;">
+
+                 <!-- Dress Style -->
+                 <div style="margin-bottom: 20px;">
+                    <strong style="display: block; margin-bottom: 8px; font-size: 16px; color: #444;">Dress Style</strong>
+                    <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;"><input type="checkbox" id="tshirt"> T-shirts</label>
+                    <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;"><input type="checkbox" id="shorts"> Shorts</label>
+                    <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;"><input type="checkbox" id="shirts"> Shirts</label>
+                    <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;"><input type="checkbox" id="hoodie"> Hoodie</label>
+                    <label style="display: flex; align-items: center; gap: 8px;"><input type="checkbox" id="jeans"> Jeans</label>
+                </div>
+               
+                
+                
+                <!-- Apply Button -->
+                <button style=" width: 100%; padding: 12px; background: black; color: white; border: none; border-radius: 22px; cursor: pointer; font-size: 16px; font-weight: bold;">Apply Filter</button>
+            </div>            
+        
+            <section class="mais-vendido" style="max-width: 1200px; margin-top: 150px; padding: 20px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+                  <% products.forEach((product) => { 
+                       if (product.isBlocked) return;  
+                  %>
+                    <div class="promocao-item" data-category="<%= product.category ? product.category._id : '' %>" style="width: calc(33.33% - 14px); background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); text-align: center; position: relative;">
+                      
+                      <!-- Offer Badge -->
+                      <% if (product.offer) { %>
+                        <span style="position: absolute; top: 10px; left: 10px; background: red; color: white; padding: 5px 10px; font-size: 14px; font-weight: bold; border-radius: 5px;">
+                          <%= product.offer %> OFF
+                        </span>
+                      <% } %>
+                      
+                      <a href="/product-listing?productId=<%= product._id %>">
+                        <img src="/uploads/product-images/<%= product.productImage[0] %>" alt="<%= product.productName %>" style="width: 100%; height: auto; max-height: 250px; object-fit: contain; border-radius: 8px;">
+                      </a> 
+                      
+                      <p style="font-size: 16px; font-weight: bold; margin-top: 8px; margin-bottom: -15px;"><%= product.productName %></p>
+                      
+                      <!-- Review Section -->
+                      <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin: 0; padding: 0;">
+                        <img src="./img/Frame 10.svg" alt="rating" style="width: 75px; height: 75px;">
+                        <span style="font-size: 14px; color: #666; font-weight: bold; margin: 0; padding: 0;">4.5/5</span>
+                      </div>
+                      
+                      <span style="font-size: 18px; font-weight: bold; color: #333; margin-top:-35px;">$<%= product.salePrice %></span>
+                    </div>
+                  <% }) %>
+                </div>
+              </section>
+                                                                     
+            
+        </div>
+
+        
+    </body> 
+    <script>
+        // Listen to changes on category checkboxes
+        const categoryCheckboxes = document.querySelectorAll('input[type="checkbox"][id]');
+        categoryCheckboxes.forEach(chk => {
+          chk.addEventListener('change', filterProducts);
+        });
+      
+        function filterProducts() {
+          // Get selected category IDs (as strings)
+          const selectedCategories = Array.from(categoryCheckboxes)
+            .filter(chk => chk.checked)
+            .map(chk => chk.id);
+      
+          // Get all product items
+          const productItems = document.querySelectorAll('.promocao-item');
+      
+          productItems.forEach(item => {
+            const productCategory = item.getAttribute('data-category');
+            // If no category is selected, show all products; otherwise show only matching ones
+            if (selectedCategories.length === 0 || selectedCategories.includes(productCategory)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
+      </script>
+      
+    <script>
+        document.getElementById('sortOptions').addEventListener('change', function () {
+            const selectedOption = this.value;
+            const queryParams = new URLSearchParams(window.location.search);
+    
+            if (selectedOption) {
+                queryParams.set('sort', selectedOption);
+            } else {
+                queryParams.delete('sort'); // Remove sorting if 'Default' is selected
+            }
+    
+            window.location.search = queryParams.toString();
+        });
+    </script>
+    
+
+  
+
+
+
+<%- include('../partials/user/footer') %>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed | Fashion Store</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .payment-fail-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .failure-title {
+            color: #d9534f;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .failure-message {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .illustration {
+            max-width: 200px;
+            margin: 20px auto 40px;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+        
+        .order-id {
+            font-size: 14px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-fail-container">
+        <h1 class="failure-title">Payment Failed</h1>
+
+        <p class="failure-message">
+            We're sorry, but your payment for order #<%= order ? order.orderNumber : 'Unknown' %> couldn't be processed at this time.
+            <%= paymentError || "There was an issue with your payment method." %>
+        </p>
+        
+        
+        <div class="illustration">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d9534f" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" stroke="#d9534f" fill="#ffebee"/>
+                <path d="M15 9l-6 6M9 9l6 6"/>
+            </svg>
+        </div>
+        
+        <div class="button-container">
+            <!-- Changed to a direct link to checkout page -->
+            <a href="/checkout" class="btn btn-primary">Retry Payment</a>
+            <a href="/orderDetails-failed?razorpayOrderId=<%= order.id %>" class="btn btn-secondary">View Order Details</a>
+        </div>
+
+        <div class="order-id">
+            Order ID: <%= order.id %>
+            <% if (order.createdAt) { %>
+                • Placed on <%= new Date(order.createdAt).toLocaleDateString() %>
+            <% } %>
+        </div>
+        
+        <div class="support-info" style="margin-top: 30px; font-size: 14px;">
+            Need help? <a href="/contact" style="color: #3498db;">Contact our support team</a>
+        </div>
+    </div>
+    
+    <!-- Include SweetAlert2 for better alerts (optional but recommended) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
+

@@ -1,0 +1,364 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-cart">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/cart">Cart</a> 
+        </div>
+    </nav>
+
+    <div class="cart-items-div" >
+        <!-- Cart Products -->
+        <div class="cart-products">
+            <h2 class="your-cart">Your Cart</h2>
+            <% if (products.length > 0) { %>
+                <% products.forEach(product => { %>
+                    <div class="cart-block" data-stock="<%= product.productId?.quantity %>">
+                        <div class="cart-item-card">
+                            <div class="cart-item-datas">
+                                <a class="cart-img" href="/product-listing?productId=<%= product.productId?._id %>">
+                                    <img src="/uploads/product-images/<%= product.productId?.productImage[0] %>" />
+                                </a>
+                                <div class="style-56">
+                                    <div class="style-57">
+                                        <a class="style-58" href="/product-listing?productId=<%= product.productId?._id %>">
+                                            <%= product.productId?.productName || 'Unknown Product' %>
+                                        </a>
+                                        <button class="dlt-cart-product" onclick="removeFromCart('<%= product._id %>')">🗑️</button>             
+                                    </div>
+                                    <p class="f2-m cor-p4"><strong>Brand:</strong> <%= product.productId?.brand || 'No Brand' %></p>
+                                    <div class="avaliacao">
+                                        <img src="/img/Frame 10.svg" alt="Rating" />
+                                        <span class="f2-m">4.5/5</span>
+                                    </div>
+                                    <div class="precos">
+                                        <span class="preco-novo" data-price="<%= product.effectivePrice %>">
+                                            ₹<%= (product.effectivePrice * product.quantity).toFixed(2) %>
+                                        </span>
+                                        <span class="preco-ant" data-price="<%= product.productId?.regularPrice %>">
+                                            ₹<%= (product.productId?.regularPrice * product.quantity).toFixed(2) %>
+                                        </span>
+                                        <span class="preco-desc">
+                                            <% if (product.appliedOffer > 0) { %>
+                                                <%= product.appliedOffer %>%
+                                            <% } else { %>
+                                                No Discount
+                                            <% } %>
+                                        </span>
+                                    </div>
+                                    <div class="cart-product-color">
+                                        <p class="f2-m cor-p4">Color: </p>
+                                        <div class="color-selectorr per-product">
+                                            <button class="roupa-cor1" style="background-color: <%= product.productId?.color || '#000' %>"></button>
+                                        </div>
+                                        <div class="cart-product-count">
+                                            <button class="minus-count" type="button">
+                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="minus-count svg">
+                                                    <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" class="minus-count path"></path>
+                                                </svg>
+                                            </button>
+                                            <span class="cart-count"><%= product.quantity %></span>
+                                            <button class="plus-count" type="button">
+                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="plus-count svg">
+                                                    <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" class="plus-count path"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="empty-cart-container">
+                    <svg class="empty-cart-icon" stroke="currentColor" fill="none" stroke-width="1" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em">
+                        <path d="M17 10l-2 -6"></path>
+                        <path d="M7 10l2 -6"></path>
+                        <path d="M15 20h-7.756a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h13.999a2 2 0 0 1 1.977 2.304l-.36 2.055"></path>
+                        <path d="M10 14a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M19 16v3"></path>
+                        <path d="M19 22v.01"></path>
+                    </svg>
+                    <span class="empty-cart-text">Your cart is empty.</span>
+                    <a class="continue-shopping-btn" href="/shop">Shop</a>
+                </div>
+            <% } %>
+                   
+        </div>
+    
+        <% if (products.length > 0) { %>
+            <!-- Order Summary -->
+            <div class="order-summary-card">
+                <% 
+                let subtotal = 0;
+                let total = 0;
+                
+                products.forEach(product => {
+                    let quantity = product.quantity || 1;
+                    // Use regular price for subtotal
+                    subtotal += (product.productId?.regularPrice || 0) * quantity;
+                    // Use effective price (with offers) for total
+                    total += (product.effectivePrice || 0) * quantity + delivery;
+                });
+
+                let discount = subtotal - total;
+            %>
+
+            <h6 class="order-summary-title">Order Summary</h6>
+            <div class="summary-details">
+                <div class="summary-item">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value">₹<%= subtotal.toFixed(2) %></span>
+                </div>
+                <div class="summary-item discount-item">
+                    <span class="summary-label">Discount</span>
+                    <span class="discount-value">-₹<%= discount.toFixed(2) %></span>
+                </div>
+                <div class="summary-item delivery-item">
+                    <span class="summary-label">Delivery Fee</span>
+                    <span class="delivery-value"> <%= delivery === 0 ? 'Free' : ('₹ ' + delivery.toFixed(2)) %></span>
+                </div>
+                <hr class="summary-divider" />
+                <div class="summary-item total-item">
+                    <span class="total-label">Total</span>
+                    <span class="total-value">₹<%= total.toFixed(2) %></span>
+                </div>
+            </div>
+
+                <!-- Apply code -->
+                <!-- <div style="margin-top:24px;margin-bottom:0px;display:flex;border-color:rgb(226, 232, 240);box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                    <div style="transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:0.15s;padding-left:16px;background-color:rgb(240, 240, 240);border-radius:9999px;overflow:hidden;align-items:center;width: 100%;display:flex;position:relative;border-color:rgb(226, 232, 240);box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                        <div style="margin-right:12px;border-color:rgb(226, 232, 240);box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color:rgba(0, 0, 0, 0.4);font-size:24px;line-height:32px;border-color:rgb(226, 232, 240);display:block;vertical-align:middle;box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                                <path fill="none" d="M0 0h24v24H0V0z" style="border-color:rgb(226, 232, 240);box-sizing:border-box;"></path>
+                                <path d="m21.41 11.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01 4 11V4h7v-.01l9 9-7 7.02z" style="border-color:rgb(226, 232, 240);box-sizing:border-box;"></path>
+                                <circle cx="6.5" cy="6.5" r="1.5" style="border-color:rgb(226, 232, 240);box-sizing:border-box;"></circle>
+                            </svg>
+                        </div>
+                        <input autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Add promo code" type="text" name="code" 
+                        style="outline:rgba(0, 0, 0, 0) solid 2px;outline-offset:2px;padding-right:16px;padding-top:12px;padding-bottom:12px;background-color:rgba(0, 0, 0, 0);width: 100%;border-color:rgb(226, 232, 240);font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;font-feature-settings:normal;font-variation-settings:normal;font-size:16px;font-weight:400;line-height:24px;letter-spacing:normal;color:rgb(2, 8, 23);margin:0px;padding:12px 16px 12px 0px;box-sizing:border-box;border:0px solid rgb(226, 232, 240);" />
+                    </div> -->
+                    <!-- Apply button -->
+                    <!-- <button type="button" style="transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:0.15s;box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;color:rgb(248, 250, 252);font-weight:500;font-size:14px;line-height:20px;padding-top:8px;padding-bottom:8px;padding-left:16px;padding-right:16px;background-color:rgb(0, 0, 0);
+                    border-radius:9999px;white-space:nowrap;margin-right:0px;margin-left:12px;justify-content:center;align-items:center;max-width:119px;width: 100%;height:48px;display:flex;border-color:rgb(226, 232, 240);cursor:pointer;appearance:button;background-image:none;text-transform:none;font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;font-feature-settings:normal;font-variation-settings:normal;letter-spacing:normal;margin:0px 0px 0px 12px;padding:8px 16px;box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                        Apply
+                    </button>
+                </div> -->
+
+                <!-- Checkout Button -->
+                <a href="/checkout" style="text-decoration: none;">
+                    <button type="button" 
+                            style="font-size:16px;line-height:24px;margin-top:24px;margin-bottom:0px;height:60px;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:0.15s;box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;color:rgb(248, 250, 252);font-weight:500;padding-top:16px;padding-bottom:16px;padding-left:16px;padding-right:16px;
+                            background-color:rgb(0, 0, 0);border-radius:9999px;white-space:nowrap;justify-content:center;align-items:center;width: 100%;display:inline-flex;border-color:rgb(226, 232, 240);cursor:pointer;appearance:button;background-image:none;text-transform:none;font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;font-feature-settings:normal;font-variation-settings:normal;letter-spacing:normal;margin:24px 0px 0px;padding:16px;box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                        Go to Checkout
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:0.15s;font-size:20px;line-height:28px;margin-left:8px;border-color:rgb(226, 232, 240);display:block;vertical-align:middle;box-sizing:border-box;border:0px solid rgb(226, 232, 240);">
+                            <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" style="border-color:rgb(226, 232, 240);box-sizing:border-box;"></path>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        <% } %>
+            
+        
+    </div>    
+</main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function showAlert(message, type = "error") {
+        Swal.fire({
+            icon: type,
+            title: type === "error" ? "Stock Out" : "Quantity Updated",
+            text: message,
+            timer: 1500,
+            showConfirmButton: false,
+        });
+    }
+
+    // Set up event listeners for all plus and minus buttons in the cart
+    document.querySelectorAll(".plus-count").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            let parent = this.closest(".cart-block");
+            let productId = parent.querySelector(".dlt-cart-product")
+                .getAttribute("onclick")
+                .match(/'([^']+)'/)[1];
+            let quantityElem = parent.querySelector(".cart-count");
+            let count = parseInt(quantityElem.innerText);
+
+            // Get available stock from data attribute on the cart block
+            let availableStock = parseInt(parent.getAttribute("data-stock"));
+            // Allowed limit is the minimum of your 5-unit cap and the available stock
+            let allowedLimit = Math.min(5, availableStock);
+            if (count >= allowedLimit) {
+                let productName = parent.querySelector(".style-58").textContent.trim();
+                if (availableStock < 5) {
+                    showAlert(`We're sorry! Only ${availableStock} units of '${productName}' available`);
+                } else {
+                    showAlert(`We're sorry! Only ${allowedLimit} units of '${productName}' allowed in each order`);
+                }
+                return;
+            }
+            let newQuantity = count + 1;
+            updateCart(productId, newQuantity, quantityElem);
+        });
+    });
+
+    document.querySelectorAll(".minus-count").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            let parent = this.closest(".cart-block");
+            let productId = parent.querySelector(".dlt-cart-product")
+                .getAttribute("onclick")
+                .match(/'([^']+)'/)[1];
+            let quantityElem = parent.querySelector(".cart-count");
+            let count = parseInt(quantityElem.innerText);
+            if (count > 1) {
+                let newQuantity = count - 1;
+                updateCart(productId, newQuantity, quantityElem);
+            }
+        });
+    });
+
+    function updateCart(productId, quantity, countSpan) {
+        fetch("/cart", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ productId, quantity }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    countSpan.textContent = data.updatedQuantity; 
+                    
+                    // Get the cart item container
+                    const cartItem = countSpan.closest('.cart-block');
+                    
+                    // Get price elements
+                    const priceElement = cartItem.querySelector('.preco-novo');
+                    const originalPriceElement = cartItem.querySelector('.preco-ant');
+                    
+                    // Get the base prices from data attributes
+                    const unitPrice = parseFloat(priceElement.getAttribute('data-price'));
+                    const originalUnitPrice = parseFloat(originalPriceElement.getAttribute('data-price'));
+                    
+                    // Calculate new total prices
+                    const newTotalPrice = unitPrice * data.updatedQuantity;
+                    const newOriginalTotalPrice = originalUnitPrice * data.updatedQuantity;
+                    
+                    // Update the displayed prices
+                    priceElement.textContent = `₹${newTotalPrice.toFixed(2)}`;
+                    originalPriceElement.textContent = `₹${newOriginalTotalPrice.toFixed(2)}`;
+                    
+                    // Update order summary
+                    updateOrderSummary();
+                    
+                    // Show success message
+                    showAlert("Quantity updated successfully!", "success");
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Update Failed",
+                        text: data.message || "Couldn't update cart item. Try again!",
+                        timer: 1500,
+                        showConfirmButton: false,
+                    });
+                }
+            })
+            .catch((err) => console.error("❌ Cart update error:", err));
+    }
+
+    function updateOrderSummary() {
+        let subtotal = 0;
+        let total = 0;
+        const deliveryFee = <%= delivery %>;
+
+        document.querySelectorAll(".cart-block").forEach((item) => {
+            const quantity = parseInt(item.querySelector(".cart-count").textContent);
+            const priceElement = item.querySelector(".preco-novo");
+            const originalPriceElement = item.querySelector(".preco-ant");
+            
+            // Get unit prices from data attributes
+            const unitPrice = parseFloat(priceElement.getAttribute("data-price"));
+            const originalUnitPrice = parseFloat(originalPriceElement.getAttribute("data-price"));
+            
+            // Calculate totals
+            subtotal += originalUnitPrice * quantity;
+            total += unitPrice * quantity;
+        });
+
+        // Calculate discount
+        const discount = subtotal - total;
+        
+        // Calculate final total with delivery fee
+        const finalTotal = total + deliveryFee;
+        
+        // Update summary display
+        document.querySelector(".summary-value").textContent = `₹${subtotal.toFixed(2)}`;
+        document.querySelector(".discount-value").textContent = `-₹${discount.toFixed(2)}`;
+        document.querySelector(".total-value").textContent = `₹${finalTotal.toFixed(2)}`;
+    }
+
+    // Initialize order summary on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        updateOrderSummary();
+    });
+</script>
+
+<script>
+async function removeFromCart(itemId) {
+    const confirmation = await Swal.fire({
+        title: "Are you sure?",
+        text: "Do you really want to remove this item from the cart?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, remove it!"
+    });
+
+    if (confirmation.isConfirmed) {
+        try {
+            const response = await fetch('/deleteItem', {  
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ itemId }),
+            });
+
+
+            if (response.ok) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Removed!",
+                    text: "The item has been removed from your cart.",
+                    position: "top-end",
+                    toast: true,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error!",
+                    text: "Failed to remove the item. Please try again."
+                });
+            }
+            console.log(response)
+        } catch (error) {
+            console.error("Error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Error!",
+                text: "Something went wrong. Please try again later."
+            });
+        }
+    }
+}
+</script>
+
+  <%- include('../partials/user/footer') %>

@@ -1,0 +1,1535 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-checkout">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/checkout">Checkout</a> 
+        </div>
+    </nav>
+
+    <div style="min-height: 180vh;padding:16px;background-color:rgb(245, 244, 244);font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;">
+        <div style="display:none;height:auto;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;"></div>
+        <div style="height:768px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;">
+            <div style="background-color:rgb(245, 244, 244);display:flex;justify-content:center;margin: auto;max-width:1200px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;padding:0px;vertical-align:baseline;">
+                <div style="margin-right:8px;width: 65%;display:flex;flex-direction:column;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;padding:0px;vertical-align:baseline;">
+                    <!-- if Already logged in  -->
+                    <% if (user) { %>
+                        <div style="border-radius: 12px; padding:40px 88px;background-color:rgb(255, 255, 255);position:relative;">
+                            <div style="font-size:24px;letter-spacing:normal;line-height:32px;display:flex;flex-wrap:wrap;margin:0px 0px 10px;width: 100%;">
+                                <div style="background:rgb(41, 122, 58);border:1px solid rgb(41, 122, 58);border-radius:50%;display:flex;height:26px;justify-content:center;margin-right:12px;width: 26px;">
+                                    <svg width="1em" height="1em" viewBox="0 0 13 11" fill="none" style="color:rgb(255, 255, 255);height:14px;margin-top:6px;width: 16px;">
+                                        <path d="M1 5.5l4.5 4 6-8.5" stroke="currentColor" stroke-width="1.5"></path>
+                                    </svg>
+                                </div>
+                                <div style="font-size:16px;letter-spacing:0.2px;line-height:22px;padding-top:2px;">
+                                    Your Email
+                                </div>
+                            </div>
+                            <div style="font-size:14px;letter-spacing:0.2px;line-height:20px;color:rgb(77, 77, 77);padding-left:40px;">
+                                <%= user.email %>
+                            </div>
+                        </div>
+
+                    <% } else { %>
+                        
+                        <!-- Enter your email -->
+                        <div style="border-radius: 12px; padding:40px 88px;background-color:rgb(255, 255, 255);position:relative;">
+                            <div style="font-size:24px;letter-spacing:normal;line-height:32px;display:flex;flex-wrap:wrap;margin:0px 0px 10px;width: 100%;">
+                                <div style="background:rgb(0, 0, 0);color:rgb(255, 255, 255);border:1px solid rgb(0, 0, 0);border-radius:50%;display:flex;height:26px;justify-content:center;margin-right:12px;width: 26px;">
+                                    <span style="font-size:16px;letter-spacing:0.2px;line-height:24px;padding-top:1px;">1</span>
+                                </div>
+                                <div style="font-size:16px;letter-spacing:0.2px;line-height:22px;padding-top:2px;">
+                                    Enter Your Email
+                                </div>
+                            </div>
+                            <div style="font-size:14px;letter-spacing:0.2px;line-height:20px;color:rgb(0, 0, 0);padding-left:41px;">
+                                Already have an account? 
+                                <button type="button" style="font-size:14px;letter-spacing:0.2px;line-height:20px;color:rgb(0, 0, 0);text-decoration:underline;background-color:transparent;border:0px;cursor:pointer;">
+                                    Log In
+                                </button>
+                            </div>
+
+                            <!-- Email Input Form -->
+                            <div style="padding-left:40px;">
+                                <form style="overflow:hidden;position:relative;display:flex;flex-flow:row wrap;">
+                                    <div style="width: 100%;position:relative;">
+                                        <label for="email-input" aria-label="Email Address*" style="color:rgb(115, 115, 115);">
+                                            <input type="email" autocomplete="email" name="email" style="font-size:14px;display:block;padding:26px 15px 10px;width: 100%;" />
+                                        </label>
+                                    </div>
+                                    <p style="font-size:10px;color:rgb(115, 115, 115);padding:8px 0px;">
+                                        By providing your email, you agree to our 
+                                        <a href="/privacy" style="color:rgb(115, 115, 115);cursor:pointer;">Privacy Policy</a> and 
+                                        <a href="/terms" style="color:rgb(115, 115, 115);cursor:pointer;">Terms</a>.
+                                    </p>
+                                    <button type="submit" style="color:rgb(255, 255, 255);background-color:rgb(38, 38, 38);width: 100%;height:48px;padding:14px;">
+                                        Continue To Shipping
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                    <!-- shipping -->
+                    <div style="background:rgb(245, 244, 244) none repeat scroll 0% 0% / auto padding-box border-box;height:8px;width: 100%;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;"></div>
+                    
+                      <% if (!user) { %>
+                        <!-- If user is not signed in yet: Show only the shipping header -->
+                        <div style="border-radius:12px; padding:40px 88px; background-color:#fff; display:flex; flex-direction:column; position:relative; font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif; font-size:12px; font-weight:400; margin:0; vertical-align:baseline;">
+                          <div style="display:flex; flex-wrap:wrap; margin:0; padding:0; vertical-align:baseline;">
+                            <div style="font-size:24px; line-height:32px; display:flex; flex-wrap:wrap; margin:0 0 10px; width:100%;">
+                              <div style="border:1px solid #000; border-radius:50%; display:flex; height:26px; justify-content:center; margin-right:12px; width:26px;">
+                                <span style="font-size:16px; line-height:24px;color: #fff; padding-top:1px;">2</span>
+                              </div>
+                              <div style="font-size:16px; line-height:22px; padding-top:2px;">Shipping</div>
+                            </div>
+                          </div>
+                        </div>
+                      <% } else { %>
+                        <!-- If user is signed in: Show shipping header + shipping form -->
+                        <div class="shipping-Two" style=" border-radius: 12px; padding:40px 88px;background-color:rgb(255, 255, 255);display:flex;flex-direction:column;position:relative;font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;border:0 none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0;vertical-align:baseline;">
+                          <div style="display:flex;font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;border:0 none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0;padding:0;vertical-align:baseline;">
+                            <div style="font-size:24px;letter-spacing:normal;line-height:32px;font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;display:flex;flex-wrap:wrap;margin:0 0 10px;width:100%;border:0 none rgb(0,0,0);font-weight:400;padding:0;vertical-align:baseline;">
+                              <div style="background:rgb(0, 0, 0) none repeat scroll 0 0 / auto;padding-box;border:1px solid rgb(0, 0, 0);border-radius:50%;display:flex;height:26px;justify-content:center;margin-right:12px;width:26px;font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;font-size:24px;font-weight:400;margin:0 12px 0 0;padding:0;vertical-align:baseline;">
+                                <span style="font-size:16px;letter-spacing:0.2px;line-height:24px;font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;padding-top:1px;border:0 none rgb(255, 255, 255);font-weight:400;margin:0;padding:1px 0 0;vertical-align:baseline;">2</span>
+                              </div>
+                              <div style="font-size:16px;letter-spacing:0.2px;line-height:22px;font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;padding-top:2px;border:0 none rgb(0, 0, 0);font-weight:400;margin:0;padding:2px 0 0;vertical-align:baseline;">
+                                Shipping
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Saved Addresses Section -->
+                          <% if (addresses && addresses.length > 0) { %>
+                            <div style="padding:0px 20px;background-color:rgb(255,255,255);margin-bottom:20px;border-radius:12px;box-sizing:border-box;">
+                              <h3 style="font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;font-size:18px;margin:0 0 10px;">Select a Saved Address</h3>
+                              <% addresses.forEach(function(addressDoc) { %>
+                                <% addressDoc.address.forEach(function(addr, index) { %>
+
+                                  <div class="saved-address" style="border:1px solid rgb(224,224,224); padding:10px; margin-bottom:10px; border-radius:4px; box-sizing:border-box;">
+                                    <!-- Dropdown for Edit/Delete -->
+                                    <div id="dropdownMenu-<%= addr._id %>" style="max-width:35px; float:right; position:relative; box-sizing:border-box; padding:0; overflow:visible;">
+                                        <div style="cursor:pointer; padding:0 8px;">
+                                          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNCAxNiI+CiAgICA8ZyBmaWxsPSIjODc4Nzg3IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIyIi8+CiAgICAgICAgPGNpcmNsZSBjeD0iMiIgY3k9IjgiIHI9IjIiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMTQiIHI9IjIiLz4KICAgIDwvZz4KPC9zdmc+Cg==" 
+                                                style="display:block; border:0; margin:0; padding:0;" />
+                                          <div class="dropdown-options" style="display:none; position:absolute; top:15px; left:10px; z-index:9999; white-space:nowrap; font-size:14px; color:#878787; background:#fff; border:1px solid rgba(0,0,0,0.05); box-shadow:0 6px 6px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.18); padding:5px; border-radius:3px; box-sizing:border-box;">
+                                            <div style="padding:7px 12px; color:#212121; cursor:pointer;" onclick="toggleEditForm('<%= addr._id %>');">Edit</div>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+
+                                    <label style="display:flex; align-items:center; cursor:pointer;">
+                                      <input type="radio" name="selectedAddress" value="<%= addr._id %>" style="margin-right:10px; transform:scale(1.2);" <%= index === 0 ? "checked" : "" %> onchange="updateDeliverButtons()" />
+                                      <div style="flex:1;">
+                                        <p style="margin:0; font-size:14px; font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;">
+                                          <strong><%= addr.name %></strong> (<%= addr.addressType %>)
+                                        </p>
+                                        <p style="margin:4px 0 0; font-size:14px; font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;">
+                                          <%= addr.addressLine %>, <%= addr.city %>, <%= addr.state %> - <%= addr.pincode %>
+                                        </p>
+                                        <% if (addr.landmark) { %>
+                                          <p style="margin:4px 0 0; font-size:12px; color:rgb(115,115,115); font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;">
+                                            Landmark: <%= addr.landmark %>
+                                          </p>
+                                        <% } %>
+                                        <p style="margin:4px 0 0; font-size:14px; font-family:'Maison Neue Book', Helvetica, Arial, sans-serif;">
+                                          Phone: <%= addr.phone %>
+                                        </p>
+                                      </div>
+                                    </label>
+                                    <!-- "Deliver here" Button below the address -->
+                                    <div style="text-align:center; margin-top:10px;">
+                                        <button type="button" class="deliver-here-btn" 
+                                                style="margin-left: 100px; display:<%= index === 0 ? 'block' : 'none' %>; background:rgb(38,38,38); color:#fff; border:none; padding:10px 15px; font-size:16px; border-radius:6px; cursor:pointer; width:60%;"
+                                                onclick="handleDeliverySelection()">
+                                        Deliver here
+                                        </button>
+                                    </div>                                      
+
+                                    <!-- Hidden Edit Form -->
+                                    <div id="edit-form-<%= addr._id %>" style="display:none; margin-top:10px; border-top:1px solid #ddd; padding-top:10px; clear: both;">
+                                        <form action="/account/addresses" method="POST" style="box-sizing:border-box; margin:0; padding:0;">
+                                        <input type="hidden" name="redirectTo" value="checkout">
+                                        <input type="hidden" name="action" value="edit">
+                                        <input type="hidden" name="addressId" value="<%= addr._id %>">
+                                        <div>
+                                            <label style="font-size:18px;">Address Type</label>
+                                            <input type="text" name="locationTypeTag" value="<%= addr.addressType %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">Name</label>
+                                            <input type="text" name="name" value="<%= addr.name %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">City</label>
+                                            <input type="text" name="city" value="<%= addr.city %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">Address (Area and Street)</label>
+                                            <input type="text" name="addressLine1" value="<%= addr.addressLine %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">Landmark (Optional)</label>
+                                            <input type="text" name="landmark" value="<%= addr.landmark %>" style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">State</label>
+                                            <input type="text" name="state" value="<%= addr.state %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">Pincode</label>
+                                            <input type="text" name="pincode" value="<%= addr.pincode %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">Phone</label>
+                                            <input type="text" name="phone" value="<%= addr.phone %>" required style="font-size:16px;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size:18px;">Alternate Phone (Optional)</label>
+                                            <input type="text" name="alternatePhone" value="<%= addr.altPhone %>" style="font-size:16px;">
+                                        </div>
+                                        <div style="margin-top:10px;">
+                                            <button type="submit" style="padding:8px 16px; background:#000; color:#fff; border:none; border-radius:4px; cursor:pointer;">Save</button>
+                                            <button type="button" onclick="toggleEditForm('<%= addr._id %>');" style="padding:8px 16px; margin-left:10px; background:#ccc; color:#000; border:none; border-radius:4px; cursor:pointer;">Cancel</button>
+                                        </div>
+                                        </form>
+                                    </div>  
+
+                                  </div>
+                                  
+                                <% }); %>
+                              <% }); %>
+                            </div>
+                          <% } %>
+
+                          
+                          
+                          <!-- New Address Button -->
+                          <div style="padding:0px 20px; margin-bottom:20px;">
+                            <button type="button" id="newAddressBtn" style="width:100%; background:rgb(38,38,38); color:#fff; padding:10px 15px; font-size:16px; border:none; border-radius:6px; cursor:pointer;">
+                              + New Address
+                            </button>
+                          </div>
+                          
+                          <!-- New Address Form Container (Hidden by default) -->
+                          <div id="newAddressFormContainer" class="address-form-container" style="display:none; background-color:rgb(255, 255, 255); padding:20px; position:relative; box-sizing:border-box; margin:0; border-radius:12px;">
+                            <form action="/account/addresses" method="POST" style="box-sizing:border-box; margin:0; padding:0;">
+                              <input type="hidden" name="redirectTo" value="checkout">
+                              <input type="hidden" name="action" value="add">
+                              <span style="color:rgb(135, 0, 0); font-weight:500; box-sizing:border-box; margin:0; padding:0;">
+                                ADD A NEW ADDRESS
+                              </span>
+                              <div style="margin-top:16px; width:570px; box-sizing:border-box; padding:0;">
+                                <div style="margin-bottom:16px; box-sizing:border-box; padding:0;">
+                                  <button type="button" style="padding:14px 24px; font-size:14px; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; margin:0; background:rgb(0, 0, 0) none repeat scroll 0 0 / auto;padding-box; color:rgb(255, 255, 255); box-shadow:rgba(0, 0, 0, 0.2) 0px 2px 4px 0px; border:0; display:inline-block; border-radius:2px; font-weight:500; transition:box-shadow 0.2s; vertical-align:super; cursor:pointer; outline:rgb(255, 255, 255) none 0;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-right:6px; vertical-align:text-bottom; box-sizing:border-box; padding:0;">
+                                      <g fill="none" fill-rule="evenodd" style="box-sizing:border-box; margin:0; padding:0;">
+                                        <path d="M0 0h16v16H0z" style="box-sizing:border-box; margin:0; padding:0;"></path>
+                                        <path fill="#fff" d="M8 5.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 1 0 0-5.4zm6 2A6 6 0 0 0 8.7 2V.7H7.3V2A6 6 0 0 0 2 7.3H.7v1.4H2A6 6 0 0 0 7.3 14v1.3h1.4V14A6 6 0 0 0 14 8.7h1.3V7.3H14zm-6 5.4A4.7 4.7 0 0 1 3.3 8 4.7 4.7 0 0 1 8 3.3 4.7 4.7 0 0 1 12.7 8 4.7 4.7 0 0 1 8 12.7z" style="box-sizing:border-box; margin:0; padding:0;"></path>
+                                      </g>
+                                    </svg>
+                                    Use my current location
+                                  </button>
+                                </div>
+                                <!-- Name and Phone number -->
+                                <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:20px; width:100%; box-sizing:border-box; margin:0; padding:0;">
+                                  <div style="width:100%; max-width:400px; position:relative; margin-bottom:10px; box-sizing:border-box; padding:0;">
+                                    <input type="text" name="name" required autocomplete="name" tabindex="1" value=""
+                                            style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                            onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                            onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                    <label for="name" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                      Name
+                                    </label>
+                                  </div>
+                                  <div style="width:100%; max-width:400px; position:relative; margin-bottom:10px; box-sizing:border-box; padding:0;">
+                                    <input type="text" name="phone" required maxlength="10" autocomplete="tel" tabindex="2" value=""
+                                            inputmode="numeric" pattern="[0-9]*"
+                                            onkeypress="if(event.charCode < 48 || event.charCode > 57){ event.preventDefault(); }"
+                                            style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                            onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                            onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                    <label for="phone" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                      10-digit mobile number
+                                    </label>
+                                  </div>
+                                </div>
+                                <!-- Pincode and Locality -->
+                                <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:20px; width:100%; box-sizing:border-box; margin:0; padding:0;">
+                                  <div style="width:100%; max-width:400px; position:relative; margin-bottom:10px; box-sizing:border-box; padding:0;">
+                                    <input type="text" name="pincode" required maxlength="6" autocomplete="postal-code" tabindex="3" value=""
+                                            inputmode="numeric" pattern="[0-9]*"
+                                            onkeypress="if(event.charCode < 48 || event.charCode > 57){ event.preventDefault(); }"
+                                            style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                            onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                            onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                    <label for="pincode" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                      Pincode
+                                    </label>
+                                  </div>
+                                  <div style="width:100%; max-width:400px; position:relative; margin-bottom:10px; box-sizing:border-box; padding:0;">
+                                    <input type="text" name="addressLine2" required tabindex="4" value=""
+                                            style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                            onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                            onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                    <label for="addressLine2" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                      Locality
+                                    </label>
+                                  </div>
+                                </div>
+                                <!-- Address (Area and Street) -->
+                                <div style="width:100%; max-width:500px; margin-bottom:10px; display:flex; align-items:flex-start; justify-content:space-between; box-sizing:border-box; padding:0;">
+                                  <div style="width:100%; position:relative; box-sizing:border-box; padding:0;">
+                                    <div style="position:relative; box-sizing:border-box; padding:0;">
+                                      <textarea name="addressLine1" rows="4" cols="10" tabindex="5" required autocomplete="street-address"
+                                        style="width:100%; max-width:500px; resize:none; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:25px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                        onfocus="this.style.fontSize='18px'; this.style.paddingTop='20px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                        onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='25px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }">
+                                      </textarea>
+                                      <label for="addressLine1" style="position:absolute; left:8px; top:15px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                        Address (Area and Street)
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- City and States -->
+                                <div style="display:flex; align-items:flex-start; justify-content:space-between; box-sizing:border-box; margin:0; padding:0;">
+                                  <!-- City/District/Town -->
+                                  <div style="width:280px; margin-bottom:10px; position:relative; box-sizing:border-box; padding-right:10px;">
+                                    <div style="margin-bottom:0; position:relative; box-sizing:border-box; padding:0;">
+                                      <input type="text" name="city" required autocomplete="city" tabindex="6" value=""
+                                        style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                        onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                        onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                      <label for="city" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                        City/District/Town
+                                      </label>
+                                    </div>
+                                    <div style="position:absolute; background-color:#fff; width:100%; bottom:0; border-left:1px solid #e0e0e0; border-right:1px solid #e0e0e0; box-shadow:0 0 4px rgba(224,224,224,0.5); z-index:1; display:none; box-sizing:border-box; margin:0; padding:0;"></div>
+                                  </div>
+                                  <!-- States -->
+                                  <div style="box-sizing:border-box; margin:0; padding:0;">
+                                    <div style="border:1px solid rgb(224,224,224); background-color:rgb(255,255,255); box-sizing:border-box; margin:0; padding:0;">
+                                      <div style="font-size:12px; padding-top:6px; padding-left:13px; cursor:default; color:rgb(135,135,135); box-sizing:border-box; margin:0; padding:6px 0 0 13px;">
+                                        State
+                                      </div>
+                                      <div style="width:280px; position:relative; display:block; box-sizing:border-box; margin:0; padding:0;">
+                                        <select name="state" required tabindex="7" style="padding:2px 16px 7px 13px; font-size:14px; color:rgb(33,33,33); border:0; width:280px; appearance:none; border-radius:0; background:rgb(255,255,255); box-sizing:border-box; margin:0;">
+                                          <option value="" disabled style="box-sizing:border-box; margin:0; padding:0;">--Select State--</option>
+                                          <option value="Andaman &amp; Nicobar Islands" style="box-sizing:border-box; margin:0; padding:0;">Andaman &amp; Nicobar Islands</option>
+                                          <option value="Andhra Pradesh" style="box-sizing:border-box; margin:0; padding:0;">Andhra Pradesh</option>
+                                          <!-- Continue with other state options... -->
+                                        </select>
+                                        <span style="display:none; position:relative; width:100%; background-color:rgb(224,224,224); height:2px; box-sizing:border-box; margin:0; padding:0;"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Landmark and Alternate Phone Number -->
+                                <div style="display:flex; align-items:flex-start; justify-content:space-between; box-sizing:border-box; margin:0; padding:0;">
+                                  <div style="width:320px; position:relative; margin-bottom:10px; box-sizing:border-box; padding-right:10px;">
+                                    <input type="text" name="landmark" autocomplete="off" tabindex="8" maxlength="200" value=""
+                                            style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                            onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                            onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                    <label for="landmark" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                      Landmark (Optional)
+                                    </label>
+                                  </div>
+                                  <div style="width:320px; position:relative; margin-bottom:10px; box-sizing:border-box; padding-left:10px;">
+                                    <input type="text" name="alternatePhone" autocomplete="off" tabindex="9" maxlength="10" value=""
+                                            inputmode="numeric" pattern="[0-9]*"
+                                            onkeypress="if(event.charCode < 48 || event.charCode > 57){ event.preventDefault(); }"
+                                            style="width:100%; height:48px; margin:0; border:1px solid #e0e0e0; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; padding:18px 16px 0 13px; font-size:16px; line-height:1.2;"
+                                            onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                            onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135,135,135)'; }" />
+                                    <label for="alternatePhone" style="position:absolute; left:8px; top:10px; transform-origin:0 0; padding:0 5px; font-size:16px; color:rgb(135,135,135); transition:transform 0.2s, color 0.2s; pointer-events:none; background:#fff;">
+                                      Alternate Phone (Optional)
+                                    </label>
+                                  </div>
+                                </div>
+                                <!-- Address Type -->
+                                <div style="padding-left:13px; width:100%; margin:8px 0; box-sizing:border-box;">
+                                    <p style="font-size:12px; color:rgb(135,135,135); margin-bottom:10px;">Address Type</p>
+                                    <div style="margin-bottom:16px; width:100%; box-sizing:border-box;">
+                                    <label for="radioHome" style="cursor:pointer; margin-right:32px; display:inline-flex; align-items:center;">
+                                        <input type="radio" id="radioHome" name="locationTypeTag" value="Home" style="opacity:0; position:absolute;" onchange="updateRadioStyles();" />
+                                        <div id="customRadioHome" style="border:2px solid rgb(151,151,151); border-radius:100%; height:16px; width:16px; margin-right:12px; display:inline-block;"></div>
+                                        <span style="font-size:14px; color:rgb(33,33,33);">Home</span>
+                                    </label>
+                                    <label for="radioWork" style="cursor:pointer; margin-right:32px; display:inline-flex; align-items:center;">
+                                        <input type="radio" id="radioWork" name="locationTypeTag" value="Work" style="opacity:0; position:absolute;" onchange="updateRadioStyles();" />
+                                        <div id="customRadioWork" style="border:2px solid rgb(151,151,151); border-radius:100%; height:16px; width:16px; margin-right:12px; display:inline-block;"></div>
+                                        <span style="font-size:14px; color:rgb(33,33,33);">Work</span>
+                                    </label>
+                                    </div>
+                                </div>
+                                <div style="justify-content:flex-start; align-items:center; margin-top:30px; display:flex; box-sizing:border-box; margin:30px 0 0; padding:0;">
+                                  <button type="submit" tabindex="10" style="background:rgb(0, 0, 0) none repeat scroll 0 0 / auto;padding:10px 20px; font-size:14px; text-transform:uppercase; height:48px; width:230px; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; margin:0; padding:10px 20px; box-shadow:rgba(0, 69, 130, 0.2) 0px 1px 2px 0px; border:0; color:rgb(255,255,255); display:block; border-radius:12px; font-weight:500; transition:box-shadow 0.2s; vertical-align:super; cursor:pointer; outline:rgb(255,255,255) none 0;">
+                                    Save
+                                  </button>
+                                  <button class="cancel-btn" type="button" tabindex="11" style="box-shadow:none; font-weight:500; color:rgb(197,0,0); background-color:transparent; border:0; margin-left:20px; padding-right:0; font-size:14px; text-transform:uppercase; font-family:Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing:border-box; margin:0 0 0 20px; padding:10px 0 10px 20px; display:block; border-radius:2px; transition:box-shadow 0.2s; vertical-align:super; cursor:pointer; outline:rgb(40,116,240) none 0;">
+                                    Cancel
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          
+                        </div>
+                      <% } %>                          
+                      
+
+                    <!-- when shipping address is selected -->
+                        <div class="shipping-Three" style="display: none; order-radius: 12px; padding:40px 88px;background-color:rgb(255, 255, 255);position:relative;">
+                            <div style="font-size:24px;letter-spacing:normal;line-height:32px;display:flex;flex-wrap:wrap;margin:0px 0px 10px;width: 100%;">
+                                <div style="background:rgb(41, 122, 58);border:1px solid rgb(41, 122, 58);border-radius:50%;display:flex;height:26px;justify-content:center;margin-right:12px;width: 26px;">
+                                    <svg width="1em" height="1em" viewBox="0 0 13 11" fill="none" style="color:rgb(255, 255, 255);height:14px;margin-top:6px;width: 16px;">
+                                        <path d="M1 5.5l4.5 4 6-8.5" stroke="currentColor" stroke-width="1.5"></path>
+                                    </svg>
+                                </div>
+                                <div style="font-size:16px;letter-spacing:0.2px;line-height:22px;padding-top:2px;">
+                                    Shipping
+                                </div>
+                            </div>
+                            <div style="font-size:14px;letter-spacing:0.2px;line-height:20px;color:rgb(77, 77, 77);padding-left:40px;">
+                                selected - address
+                            </div>
+                        </div>
+  
+
+                    <!-- Order Summary 1 -->
+                    <div id="orderSummary1" style="background:rgb(245, 244, 244) none repeat scroll 0% 0%/auto; padding:0; height:8px; width:100%; font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif; border:0; font-size:12px; font-weight:400; margin:0; vertical-align:baseline;"></div>
+                    <div id="orderSummary1Container" style="border-radius:12px; padding:40px 88px; background-color:rgb(255,255,255); display:flex; flex-direction:column; position:relative; font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif; font-size:12px; font-weight:400; margin:0; vertical-align:baseline;">
+                    <div style="display:flex; font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif; font-size:12px; font-weight:400; margin:0; padding:0; vertical-align:baseline;">
+                        <div style="font-size:24px; letter-spacing:normal; line-height:32px; font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif; display:flex; flex-wrap:wrap; margin:0 0 10px; width:100%; font-weight:400; padding:0; vertical-align:baseline;">
+                        <div style="border:1px solid rgb(0,0,0); border-radius:50%; display:flex; height:26px; justify-content:center; margin-right:12px; width:26px; font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif; font-size:24px; font-weight:400; margin:0 12px 0 0; padding:0; vertical-align:baseline;">
+                            <span style="font-size:16px; letter-spacing:0.2px; line-height:24px; font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif; padding-top:1px; font-weight:400; margin:0; padding:1px 0 0; vertical-align:baseline;">3</span>
+                        </div>
+                        <div style="font-size:16px; letter-spacing:0.2px; line-height:22px; font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif; padding-top:2px; font-weight:400; margin:0; padding:2px 0 0; vertical-align:baseline;">Order Summary</div>
+                        </div>
+                    </div>
+
+                    <%
+                        // Calculate delivery date as today + 7 days
+                        const today = new Date();
+                        const deliveryDate = new Date(today);
+                        deliveryDate.setDate(today.getDate() + 7);
+                        const options = { weekday: 'short', month: 'short', day: 'numeric' };
+                        const formattedDate = deliveryDate.toLocaleDateString('en-US', options);
+                    %>
+
+                    
+                    <!-- Hidden order summary -->
+                    <div id="orderSummaryContainer" style="display: none;">
+                        <!-- Order Summary Section -->
+                        <div id="orderSummaryProducts">
+                            <% if (products && products.length > 0) { %>
+                                <% products.forEach(function(product) { %>
+                                  <div class="order-summary-product" 
+                                  data-id="<%= product._id %>" 
+                                  data-regular-price="<%= product.regularPrice %>" 
+                                  data-sale-price="<%= product.regularPrice * (1 - product.appliedOffer/100) %>" 
+                                  data-stock="<%= product.stock %>">
+                                    <div class="order-summary-img" style="width:100px; height:100px; margin-right:15px;">
+                                      <img src="/uploads/product-images/<%= product.productImage %>" alt="<%= product.productName %>" style="width:100%; height:100%; object-fit:cover;" />
+                                    </div>
+                                    <div class="order-summary-details" style="position:relative; flex:1;">
+                                      <!-- Delivery date at top right -->
+                                      <div style="position:absolute; top:0; right:0; font-size:14px; color:rgb(135,135,135);">
+                                        Delivery by <%= formattedDate %>
+                                      </div>
+                                      <h4 style="margin:0 0 5px;"><%= product.productName %></h4>
+                                      <div style="display: flex; align-items: center;">
+                                        <p style="margin: 0 5px 0 0;">Quantity:</p>
+                                        <!-- product quantity display 1 -->
+                                        <input type="text" value="<%= product.quantity %>" style="width:30px; text-align:center; border:1px solid #ccc;" />
+                                      </div>                                          
+                                      <p style="margin:0 0 5px; color:rgb(56,142,60); font-weight:500;">
+                                        <% if (product.appliedOffer > 0) { %>
+                                            <%= product.appliedOffer %>% off 
+                                        <% } else { %>
+                                            No Discount
+                                        <% } %>
+                                    </p>
+                                      <!-- Extra Controls -->
+                                      <div style="margin-top:10px;">
+                                        <div style="display:flex; align-items:center; padding-top:10px; margin-bottom:5px;">
+                                          <button class="decrease-qty" style="width:28px; height:28px; border:1px solid #e0e0e0; border-radius:50%; background:none; cursor:pointer;">–</button>
+                                          <input type="text" class="quantity-input" value="<%= product.quantity %>" style="width:30px; text-align:center; border:1px solid #ccc;" />
+                                          <button class="increase-qty" style="width:28px; height:28px; border:1px solid #e0e0e0; border-radius:50%; background:none; cursor:pointer;">+</button>
+                                        </div>                                             
+                                        <button class="remove-item" style="background:none; border:none; color:#212121; text-transform:uppercase; font-size:14px; cursor:pointer; margin-bottom:5px;">
+                                          Remove
+                                        </button>
+                                      </div>
+                                      <!-- End Extra Controls -->
+                                    </div>
+                                  </div>                                
+                                <% }); %>
+                              <% } else { %>
+                                <div id="no-items"></div>
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                  window.onload = function() {
+                                    Swal.fire({
+                                      icon: 'warning',
+                                      title: 'Your checkout has no items.',
+                                      showConfirmButton: true,
+                                      confirmButtonText: 'GO TO CART'
+                                    }).then(() => {
+                                      window.location.href = '/cart';
+                                    });
+                                  };
+                                </script>
+                              <% } %>                              
+                        </div>
+                        <button id="continueToPayment" type="submit" style="border-radius:12px; color:rgb(255,255,255); background-color:rgb(38,38,38); width:100%; height:48px; padding:14px;">
+                        Continue To Payment
+                        </button>
+                    </div>
+                    </div>
+
+                    <!-- when clicked Continue to payment 2 -->
+                    <div id="orderSummary2" class="shipping-Three" style="display:none; border-radius:12px; padding:40px 88px; background-color:rgb(255,255,255); position:relative;">
+                        <div style="font-size:24px; letter-spacing:normal; line-height:32px; display:flex; flex-wrap:wrap; margin:0 0 10px; width:100%;">
+                          <div style="background:rgb(41,122,58); border:1px solid rgb(41,122,58); border-radius:50%; display:flex; height:26px; justify-content:center; margin-right:12px; width:26px;">
+                            <svg width="1em" height="1em" viewBox="0 0 13 11" fill="none" style="color:rgb(255,255,255); height:14px; margin-top:6px; width:16px;">
+                              <path d="M1 5.5l4.5 4 6-8.5" stroke="currentColor" stroke-width="1.5"></path>
+                            </svg>
+                          </div>
+                          <div style="font-size:16px; letter-spacing:0.2px; line-height:22px; padding-top:2px;">
+                            Order summary
+                          </div>
+                        </div>
+                        <div style="font-size:14px; letter-spacing:0.2px; line-height:20px; color:rgb(77,77,77); padding-left:40px;">
+                          <%= products.length %> items
+                        </div>
+                      </div>                      
+
+                   <!-- payment method -->
+                    <div style="background:rgb(245,244,244); padding:0; height:8px; width:100%; font-family:sans-serif; border:0; font-size:12px; margin:0;"></div>
+                    <div style="border-radius:12px; border-bottom:1px solid #e1e0e0; padding:40px 88px; background:#fff; position:relative; font-family:sans-serif; font-size:12px; margin:0;">
+                      <div style="display:flex; font-size:12px; margin:0 0 10px 0;">
+                        <div style="border:1px solid #000; border-radius:50%; display:flex; height:26px; width:26px; align-items:center; justify-content:center; margin-right:12px;">
+                          <span style="font-size:16px;">4</span>
+                        </div>
+                        <div style="font-size:16px; padding-top:2px;">Payment Option</div>
+                      </div>
+                      <div style="display:flex; justify-content:center;"></div>
+
+                    <!-- Payment Options Dropdown -->
+                    <div id="paymentDropdown" style="margin-left:20px; margin-top:50px;">
+                      <style>
+                        input[type="radio"]:checked + label {
+                          color: black !important;
+                        }
+                      </style>
+                      <input type="hidden" name="addressId" id="addressId" value="<%= typeof selectedAddressId !== 'undefined' ? selectedAddressId : '' %>">
+                      
+                      <div style="margin-bottom:12px;">
+                        <input type="radio" id="wallets2" name="paymentOption2" value="wallets" style="vertical-align:middle; margin-right:8px;" checked>
+                        <label for="wallets2" style="font-size:14px; vertical-align:middle;">Wallets</label>
+                      </div>
+                      <div style="margin-bottom:12px;">
+                        <input type="radio" id="cards2" name="paymentOption2" value="cards" style="vertical-align:middle; margin-right:8px;">
+                        <label for="cards2" style="font-size:14px; vertical-align:middle;">Pay by any UPI apps or Credit/Debit/ATM card</label>
+                      </div>
+                      <div style="margin-bottom:12px;">
+                        <input type="radio" id="cod2" name="paymentOption2" value="cod" style="vertical-align:middle; margin-right:8px;">
+                        <label for="cod2" style="font-size:14px; vertical-align:middle;">Cash on Delivery</label>
+                      </div>
+                      
+                      <!-- Wallet  Button -->
+                      <div id="walletPay" style="display:none; margin-top:20px;">
+                        <button id="walletID" style="padding:10px 20px; border:none; background-color:#262626; color:#fff; border-radius:8px; font-size:14px; cursor:pointer;">
+                          Pay from Wallet
+                        </button>
+                      </div>
+
+                      <!-- Razorpay Continue Button -->
+                      <div id="razorPay" style="display:none; margin-top:20px;">
+                        <button id="payButton" style="padding:10px 20px; border:none; background-color:#262626; color:#fff; border-radius:8px; font-size:14px; cursor:pointer;">
+                          Continue Payment
+                        </button>
+                      </div>
+
+                      <!-- COD Continue Button -->
+                      <div id="codContinue" style="display:none; margin-top:20px;">
+                        <form id="codOrderForm" method="POST">
+                          <input type="hidden" name="addressId" id="codAddressId">
+                          <input type="hidden" name="paymentMethod" value="COD">
+                          <button type="button" id="confirmCodOrder" style="padding:10px 20px; border:none; background-color:#262626; color:#fff; border-radius:8px; font-size:14px; cursor:pointer;">
+                            Confirm Order
+                          </button>
+                        </form>
+                      </div>
+
+                    </div>
+                    
+                   
+
+
+                    </div>
+                    <div style="background:rgb(245,244,244) none repeat scroll 0% 0%/ auto;padding:0;height:8px;width:100%;font-family:__satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0;font-size:12px;font-weight:400;margin:0;vertical-align:baseline;"></div>       
+                </div>
+                
+                
+                <div style=" border-radius: 12px; align-self:flex-start;max-height:768px;overflow-y: auto;position:sticky;top:64px;width: 35%;display:flex;flex-direction:column;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;">
+                    <!-- details -->
+                    <div style=" z-index:7;position:static;background-color:rgb(255, 255, 255);top:48px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;">
+                        <div style=" background:rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;padding:40px 32px 10px;position:sticky;top:0px;z-index:9;align-items:center;display:flex;justify-content:space-between;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;vertical-align:baseline;">
+                            <!-- Confirm details -->
+                            <div style="align-items:center;display:flex;padding:0px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;vertical-align:baseline;">
+                                <h2 style="font-size:20px;letter-spacing:0.2px;line-height:24px;font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;padding:0px 9px;border:0px none rgb(0, 0, 0);font-weight:400;margin:0px;vertical-align:baseline;">
+                                    Confirm details
+                                </h2>
+                            </div> 
+                        </div>
+
+                        <div style="padding:24px 32px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;vertical-align:baseline;">
+                            <!-- sub,discount,total -->
+                            
+                            <div style="padding-top:18px; border-top:1px solid rgb(225,224,224); font-family: sans-serif; font-size:12px; font-weight:400; margin:0; vertical-align:baseline;">
+                              <div style="display:flex; justify-content:space-between; padding:3px 0;">
+                                <p style="font-size:16px;">Subtotal</p>
+                                <p id="subtotalDisplay" style="font-size:16px;">₹ <%= regularSubtotal.toFixed(2) %></p>
+                              </div>
+                              <div style="display:flex; justify-content:space-between; padding:3px 0;">
+                                <p style="font-size:16px;">Discount</p>
+                                <p id="discountDisplay" style="font-size:16px;">-₹ <%= discount.toFixed(2) %></p>
+                              </div>
+                              <div style="display:flex; justify-content:space-between; padding:3px 0;">
+                                <p style="font-size:16px;">Delivery fee</p>
+                                <p id="deliveryDisplay" style="font-size:16px;">
+                                  <%= delivery === 0 ? 'Free' : ('₹ ' + delivery.toFixed(2)) %>
+                                </p>
+                              </div>
+                              <div style="display:flex; justify-content:space-between; padding:3px 0;">
+                                <p style="font-size:16px;">Total</p>
+                                <p id="totalDisplay" style="font-size:16px;">₹ <%= total.toFixed(2) %></p>
+                              </div>
+                            </div>
+                            
+                              
+                            <!-- Apply code -->
+                            <div style="margin-top:24px;">
+                              <div style="display:flex; align-items:center; margin-bottom:10px;">
+                                <div style="flex:1; position:relative;">
+                                  <input autocomplete="off" spellcheck="false" placeholder="Add promo code" type="text" name="code" id="couponCodeInput"
+                                    style="width:100%; padding:12px 16px; border:1px solid #e2e8f0; border-radius:12px;">
+                                </div>
+                                <button type="button" id="applyCouponBtn"
+                                  style="margin-left:12px; padding:8px 16px; background-color:#000; color:#f8fafc; border:none; border-radius:9999px; cursor:pointer;">
+                                  Apply
+                                </button>
+                              </div>
+                              
+                              <!-- Applied coupon display (initially hidden) -->
+                              <div id="appliedCouponContainer" style="display:none; margin-top:10px; padding:10px; border:1px solid #e2e8f0; border-radius:8px; background-color:#f8fafc;">
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                  <div>
+                                    <span id="appliedCouponCode" style="font-weight:bold; color:#000;"></span>
+                                    <span id="appliedCouponAmount" style="margin-left:8px; color:#16a34a;"></span>
+                                  </div>
+                                  <button id="removeCouponBtn" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:14px;">
+                                    Remove
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background:rgb(245, 244, 244) none repeat scroll 0% 0% / auto padding-box border-box;height:0px;width: 100%;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;">
+                    </div>
+                    <div style="background:rgb(245, 244, 244) none repeat scroll 0% 0% / auto padding-box border-box;height:0px;width: 100%;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;padding:0px;vertical-align:baseline;">
+                    </div>
+                    <div style="padding:20px 24px 24px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:12px;font-weight:400;margin:0px;vertical-align:baseline;"><button type="button" style="font-size:14px;letter-spacing:0.2px;line-height:20px;font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;align-items:center;color:rgb(0, 0, 0);display:flex;justify-content:center;padding:0px;background-color:rgba(0, 0, 0, 0);border:0px none rgb(0, 0, 0);outline:rgb(0, 0, 0) none 0px;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;font-size:14px;">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" style="font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;"></path>
+                            </svg><span style="margin-left:4px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:14px;font-weight:400;padding:0px;vertical-align:baseline;">Need help? <em style="font-weight:400;text-decoration:underline solid rgb(0, 0, 0);font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;border:0px none rgb(0, 0, 0);font-size:14px;margin:0px;padding:0px;vertical-align:baseline;">Chat with us</em></span></button>
+                        <p style="font-size:12px;letter-spacing:0.2px;line-height:16px;font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;color:rgb(77, 77, 77);margin-top:8px;border:0px none rgb(77, 77, 77);font-weight:400;margin:8px 0px 0px;padding:0px;vertical-align:baseline;">We're available 6am-8pm PST, 7 days a week.<br style="font-family: __satoshi_5b3efc, __satoshi_Fallback_5b3efc, sans-serif;" />Visit the <button type="button" style="font-size:12px;letter-spacing:0.2px;line-height:16px;font-family:'Maison Neue Demi', Helvetica, Arial, sans-serif;color:rgb(77, 77, 77);display:inline-block;text-decoration:underline solid rgb(77, 77, 77);align-items:center;justify-content:center;padding:0px;background-color:rgba(0, 0, 0, 0);border:0px none rgb(77, 77, 77);outline:rgb(77, 77, 77) none 0px;cursor:pointer;">help center</button> for other contact options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Toggle dropdown on click
+      document.querySelectorAll("[id^='dropdownMenu-']").forEach(function(dropdown) {
+        dropdown.addEventListener("click", function(e) {
+          e.stopPropagation(); // Prevent click from bubbling to document
+          // Toggle the display property of the nested dropdown-options div
+          let options = this.querySelector(".dropdown-options");
+          if (options) {
+            options.style.display = (options.style.display === "block") ? "none" : "block";
+          }
+        });
+      });
+      
+      // Close all dropdowns when clicking outside
+      document.addEventListener("click", function() {
+        document.querySelectorAll(".dropdown-options").forEach(function(options) {
+          options.style.display = "none";
+        });
+      });
+    });
+</script>
+<!-- toggleEditForm -->
+<script>
+    function toggleEditForm(addrId) {
+      const editForm = document.getElementById("edit-form-" + addrId);
+      if (editForm) {
+        editForm.style.display = (editForm.style.display === "block") ? "none" : "block";
+      }
+    }
+</script>
+<!-- Toggle New Address Form Container visibility when "+ New Address" button is clicked    -->
+<script>
+    document.getElementById("newAddressBtn").addEventListener("click", function(){
+      var formDiv = document.getElementById("newAddressFormContainer");
+      if(formDiv.style.display === "none" || formDiv.style.display === ""){
+        formDiv.style.display = "block";
+      } else {
+        formDiv.style.display = "none";
+      }
+    });
+  
+    // Hide New Address Form when the Cancel button is clicked
+    document.querySelector("#newAddressFormContainer .cancel-btn")?.addEventListener("click", function(){
+      document.getElementById("newAddressFormContainer").style.display = "none";
+    });
+  
+    // Update "Deliver here" button visibility based on the selected address radio button
+    function updateDeliverButtons() {
+      var addresses = document.querySelectorAll('.saved-address');
+      addresses.forEach(function(addressDiv) {
+        var radio = addressDiv.querySelector('input[name="selectedAddress"]');
+        var deliverBtn = addressDiv.querySelector('.deliver-here-btn');
+        deliverBtn.style.display = radio.checked ? "block" : "none";
+      });
+    }
+    document.addEventListener("DOMContentLoaded", updateDeliverButtons);
+</script>
+<!-- Separate Script Block for Updating Custom Radio Styles -->
+<script>
+function updateRadioStyles() {
+    var homeRadio = document.getElementById('radioHome');
+    var workRadio = document.getElementById('radioWork');
+    var customRadioHome = document.getElementById('customRadioHome');
+    var customRadioWork = document.getElementById('customRadioWork');
+
+    if (homeRadio.checked) {
+    customRadioHome.style.backgroundColor = '#000';
+    customRadioHome.style.borderColor = '#000';
+    } else {
+    customRadioHome.style.backgroundColor = 'transparent';
+    customRadioHome.style.borderColor = 'rgb(151,151,151)';
+    }
+
+    if (workRadio.checked) {
+    customRadioWork.style.backgroundColor = '#000';
+    customRadioWork.style.borderColor = '#000';
+    } else {
+    customRadioWork.style.backgroundColor = 'transparent';
+    customRadioWork.style.borderColor = 'rgb(151,151,151)';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", updateRadioStyles);
+</script>
+<!-- updateDeliverButtons -->
+<script>
+    function updateDeliverButtons() {
+      var addresses = document.querySelectorAll('.saved-address');
+      addresses.forEach(function(addressDiv) {
+        var radio = addressDiv.querySelector('input[name="selectedAddress"]');
+        var deliverBtn = addressDiv.querySelector('.deliver-here-btn');
+        if (radio.checked) {
+          deliverBtn.style.display = "block";
+        } else {
+          deliverBtn.style.display = "none";
+        }
+      });
+    }
+    document.addEventListener("DOMContentLoaded", updateDeliverButtons);
+</script>
+<!-- toggleOrderSummary -->
+<script>
+    function toggleOrderSummary() {
+      var container = document.getElementById("orderSummaryContainer");
+      // Toggle the display: if hidden, show it; if shown, hide it.
+      if (container.style.display === "none" || container.style.display === "") {
+        container.style.display = "block";
+      } else {
+        container.style.display = "none";
+      }
+    }
+</script>
+<!-- handleDeliverySelection -->
+<script>
+    function handleDeliverySelection() {
+    // Hide the shipping-Two div
+    var shippingTwo = document.querySelector(".shipping-Two");
+    if (shippingTwo) {
+        shippingTwo.style.display = "none";
+    }
+    
+    // Get the selected address radio button
+    var selectedRadio = document.querySelector('input[name="selectedAddress"]:checked');
+    if (!selectedRadio) {
+        alert("Please select an address");
+        return;
+    }
+    
+    // Find the container holding the address details
+    var addressContainer = selectedRadio.closest('.saved-address');
+    var addressDetailsDiv = addressContainer.querySelector("label > div");
+    var addressHTML = addressDetailsDiv ? addressDetailsDiv.innerHTML : "No address details found.";
+    
+    // Show the shipping-Three div with the selected address
+    var shippingThree = document.querySelector(".shipping-Three");
+    if (shippingThree) {
+        shippingThree.style.display = "block";
+        shippingThree.innerHTML = `
+            <div style="font-size:24px;letter-spacing:normal;line-height:32px;display:flex;flex-wrap:wrap;margin:0 0 10px;width: 100%;">
+                <div style="background:rgb(41,122,58);border:1px solid rgb(41,122,58);border-radius:50%;display:flex;height:26px;justify-content:center;margin-right:12px;width:26px;">
+                    <svg width="1em" height="1em" viewBox="0 0 13 11" fill="none" style="color:rgb(255,255,255);height:14px;margin-top:6px;width:16px;">
+                        <path d="M1 5.5l4.5 4 6-8.5" stroke="currentColor" stroke-width="1.5"></path>
+                    </svg>
+                </div>
+                <div style="font-size:16px;letter-spacing:0.2px;line-height:22px;padding-top:2px;">Shipping</div>
+            </div>
+            <div style="font-size:14px;letter-spacing:0.2px;line-height:20px;color:rgb(77,77,77);padding-left:40px;">
+                ${addressHTML}
+            </div>
+        `;
+    }
+    
+    // Show the order summary
+    var orderSummary = document.getElementById("orderSummaryContainer");
+    if (orderSummary) {
+        orderSummary.style.display = "block";
+    }
+    
+    // Store the selected address ID for later use
+    document.getElementById('addressId').value = selectedRadio.value;
+}
+</script>
+<!-- Global recalcSummary function defined before DOMContentLoaded -->
+<script>
+  function recalcSummary() {
+      let regularSubtotal = 0;
+      let saleSubtotal = 0;
+      const delivery = 50;
+      let couponOffer = 0; // Adjust if needed
+
+      document.querySelectorAll('.order-summary-product').forEach(function(elem) {
+          const regularPrice = parseFloat(elem.getAttribute('data-regular-price')) || 0;
+          const salePrice = parseFloat(elem.getAttribute('data-sale-price')) || 0;
+          const qty = parseInt(elem.querySelector('.quantity-input').value, 10) || 0;
+          regularSubtotal += regularPrice * qty;
+          saleSubtotal += salePrice * qty;
+      });
+
+      const discount = (regularSubtotal - saleSubtotal) + couponOffer;
+      const total = saleSubtotal - couponOffer + delivery;
+
+      document.getElementById('subtotalDisplay').innerText = '₹ ' + regularSubtotal.toFixed(2);
+      document.getElementById('discountDisplay').innerText = '₹ ' + discount.toFixed(2);
+      document.getElementById('deliveryDisplay').innerText = (delivery === 0 ? 'Free' : '₹ ' + delivery.toFixed(2));
+      document.getElementById('totalDisplay').innerText = '₹ ' + total.toFixed(2);
+  }
+</script>
+
+<!-- qnty control -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      function updateQuantityDisplay(productElem, qty) {
+          // Update all text inputs in the product element
+          productElem.querySelectorAll('input[type="text"]').forEach(function(input) {
+              input.value = qty;
+          });
+          // Update product price display dynamically
+          const salePrice = parseFloat(productElem.getAttribute('data-sale-price'));
+          const newPrice = salePrice * qty;
+          const priceDisplay = productElem.querySelector('.price-display');
+          if (priceDisplay) {
+              priceDisplay.innerText = "Price: ₹" + newPrice.toFixed(2);
+          }
+      }
+
+      // Increase quantity handler with stock limit check
+      document.querySelectorAll('.increase-qty').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+              const productElem = btn.closest('.order-summary-product');
+              let qty = parseInt(productElem.querySelector('.quantity-input').value, 10);
+              const stock = parseInt(productElem.getAttribute('data-stock'), 10); // Get stock limit
+
+              // Stock validation: prevent increasing if next qty exceeds stock
+              if (qty + 1 > stock) {
+                  if (typeof Swal !== 'undefined') {
+                      Swal.fire('Oops!', `Only ${stock} left in stock!`, 'warning');
+                  } else {
+                      alert(`Only ${stock} left in stock!`);
+                  }
+                  return;
+              }
+
+              if (qty + 1 > 5) {
+                  if (typeof Swal !== 'undefined') {
+                      Swal.fire('Sorry!', "You can't add more than 5 per item", "warning");
+                  } else {
+                      alert("You can't add more than 5 of this item.");
+                  }
+                  return;
+              }
+
+              qty++;
+              updateQuantityDisplay(productElem, qty);
+              recalcSummary();
+
+              const productId = productElem.getAttribute('data-id');
+              // Update quantity on the server
+              fetch(`/cart/update/${productId}`, {
+                  method: 'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ quantity: qty })
+              })
+              .then(res => res.json())
+              .then(data => {
+                  if (!data.success) {
+                      alert("Something went wrong updating quantity.");
+                  }
+              })
+              .catch(err => console.error("Error updating quantity:", err));
+          });
+      });
+
+      // Decrease quantity handler
+      document.querySelectorAll('.decrease-qty').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+              const productElem = btn.closest('.order-summary-product');
+              let qty = parseInt(productElem.querySelector('.quantity-input').value, 10);
+              if (qty > 1) {
+                  qty--;
+                  updateQuantityDisplay(productElem, qty);
+                  recalcSummary();
+
+                  const productId = productElem.getAttribute('data-id');
+                  // Update quantity on the server
+                  fetch(`/cart/update/${productId}`, {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ quantity: qty })
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                      if (!data.success) {
+                          alert("Failed to decrease quantity.");
+                      }
+                  })
+                  .catch(err => console.error("Error updating quantity:", err));
+              }
+          });
+      });
+
+      // Remove item handler
+      document.querySelectorAll('.remove-item').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+              const productElem = btn.closest('.order-summary-product');
+              const productId = productElem.getAttribute('data-id');
+
+              fetch(`/cart/remove/${productId}`, {
+                  method: 'DELETE'
+              })
+              .then(res => res.json())
+              .then(data => {
+                  if (data.success) {
+                      productElem.remove();
+                      setTimeout(recalcSummary, 500); 
+                  } else {
+                      alert("Couldn't remove that item.");
+                  }
+              })
+              .catch(err => console.error("Error removing item:", err));
+          });
+      });
+  });
+</script>
+
+<!-- Continue to Payment button script remains untouched -->
+<script>
+  document.getElementById('continueToPayment').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('orderSummary1Container').style.display = 'none';
+    document.getElementById('orderSummary2').style.display = 'block';
+    document.getElementById('paymentDropdown').style.display = 'block';
+  });
+</script>
+<!-- Coupon -->
+<script>
+  document.getElementById('applyCouponBtn').addEventListener('click', async function () {
+    const code = document.getElementById('couponCodeInput').value.trim();
+    if (!code) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Please enter a coupon code!',
+        confirmButtonColor: '#000'
+      });
+      return;
+    }
+
+    // Get the current total and discount from the display
+    const totalText = document.getElementById('totalDisplay').innerText.replace('₹', '').trim();
+    const discountText = document.getElementById('discountDisplay').innerText.replace('-₹', '').trim();
+    const currentTotal = parseFloat(totalText);
+    const currentDiscount = parseFloat(discountText) || 0;
+
+    try {
+      const response = await fetch('/applyCoupon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, total: currentTotal, discount: currentDiscount })
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        // Coupon applied successfully
+        // Update the discount and total displays based on the response
+        document.getElementById('discountDisplay').innerText = '-₹ ' + result.discount.toFixed(2);
+        document.getElementById('totalDisplay').innerText = '₹ ' + result.total.toFixed(2);
+        
+        // Show the applied coupon container
+        document.getElementById('appliedCouponContainer').style.display = 'block';
+        document.getElementById('appliedCouponCode').innerText = code;
+        document.getElementById('appliedCouponAmount').innerText = '(-₹ ' + (result.discount - currentDiscount).toFixed(2) + ')';
+        
+        // Clear the input field
+        document.getElementById('couponCodeInput').value = '';
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Coupon Applied!',
+          text: result.message,
+          confirmButtonColor: '#000'
+        });
+      } else {
+        // Coupon application failed
+        Swal.fire({
+          icon: 'error',
+          title: 'Coupon Error',
+          text: result.message,
+          confirmButtonColor: '#000'
+        });
+      }
+    } catch (error) {
+      console.error('Error applying coupon:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Something went wrong! Try again.',
+        confirmButtonColor: '#000'
+      });
+    }
+  });
+
+  // Remove coupon functionality
+  document.getElementById('removeCouponBtn').addEventListener('click', function() {
+    // Hide the applied coupon container
+    document.getElementById('appliedCouponContainer').style.display = 'none';
+    
+    // Reset the discount to the original value (without coupon)
+    const originalDiscountText = '<%= discount.toFixed(2) %>';
+    const originalTotalText = '<%= total.toFixed(2) %>';
+    
+    document.getElementById('discountDisplay').innerText = '-₹ ' + originalDiscountText;
+    document.getElementById('totalDisplay').innerText = '₹ ' + originalTotalText;
+    
+    // Clear the session coupon data
+    fetch('/removeCoupon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Coupon Removed',
+          text: 'The coupon has been removed successfully.',
+          confirmButtonColor: '#000'
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Error removing coupon:', error);
+    });
+  });
+</script>
+ <!-- Load Razorpay's checkout.js -->
+ <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ <script>
+   // Payment option change listener
+   document.querySelectorAll('input[name="paymentOption2"]').forEach(function(radio) {
+     radio.addEventListener('change', function() {
+       if (this.value === 'cod') {
+         document.getElementById('codContinue').style.display = 'block';
+         document.getElementById('razorPay').style.display = 'none';
+       } else if (this.value === 'cards') {
+         document.getElementById('razorPay').style.display = 'block';
+         document.getElementById('codContinue').style.display = 'none';
+       } else {
+         document.getElementById('codContinue').style.display = 'none';
+         document.getElementById('razorPay').style.display = 'none';
+       }
+     });
+   });
+
+   // Trigger Razorpay Checkout when Continue Payment is clicked
+   document.getElementById('payButton').addEventListener('click', function(e) {
+  // The razorpayOrder object is passed from the server.
+  const razorpayOrder = <%- JSON.stringify(typeof razorpayOrder !== 'undefined' ? razorpayOrder : {}) %>;
+  if (!razorpayOrder || !razorpayOrder.id) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Payment Error',
+      text: 'Unable to create Razorpay order. Please try again.',
+      confirmButtonColor: '#ed1233'
+    });
+    return;
+  }
+  
+  // Get the total amount from the display to ensure consistency
+  const totalText = document.getElementById('totalDisplay').innerText.replace('₹', '').trim();
+  const totalAmount = parseFloat(totalText);
+  
+  const options = {
+    key: "<%= typeof key_id !== 'undefined' ? key_id : '' %>",
+    // Use the amount from razorpayOrder which should match the displayed total
+    amount: razorpayOrder.amount,
+    currency: "INR",
+    name: "Your Company Name",
+    description: "Order Payment",
+    order_id: razorpayOrder.id,
+    handler: function (response){
+      console.log("Razorpay Payment Success", response);
+      // You can call a verification endpoint here if needed.
+      window.location.href = "/orderPlaced";
+    },
+    prefill: {
+      name: "<%= user.name %>",
+      email: "<%= user.email %>",
+      contact: "<%= user.phone %>"
+    },
+    theme: {
+      color: "#3399cc"
+    }
+  };
+  
+  const rzp1 = new Razorpay(options);
+  rzp1.open();
+  e.preventDefault();
+});
+ </script>
+  <!-- // Payment option change listener -->
+<script>
+// Payment option change listener
+document.querySelectorAll('input[name="paymentOption2"]').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    // Hide all payment option containers first
+    document.getElementById('codContinue').style.display = 'none';
+    document.getElementById('razorPay').style.display = 'none';
+    document.getElementById('walletPay').style.display = 'none';
+    
+    // Show the appropriate container based on selection
+    if (this.value === 'cod') {
+      document.getElementById('codContinue').style.display = 'block';
+    } else if (this.value === 'cards') {
+      document.getElementById('razorPay').style.display = 'block';
+    } else if (this.value === 'wallets') {
+      document.getElementById('walletPay').style.display = 'block';
+    }
+  });
+});
+
+// Trigger the change event on the initially checked radio button
+document.addEventListener('DOMContentLoaded', function() {
+  const checkedPaymentOption = document.querySelector('input[name="paymentOption2"]:checked');
+  if (checkedPaymentOption) {
+    checkedPaymentOption.dispatchEvent(new Event('change'));
+  }
+});
+
+// Handle wallet payment
+document.getElementById('walletID').addEventListener('click', async function() {
+  const selectedAddressRadio = document.querySelector('input[name="selectedAddress"]:checked');
+  if (!selectedAddressRadio) {
+    Swal.fire({
+      icon: 'error',
+      title: 'No Address Selected',
+      text: 'Please select a delivery address'
+    });
+    return;
+  }
+
+  const addressId = selectedAddressRadio.value;
+  
+  // Get the total amount from the display
+  const totalText = document.getElementById('totalDisplay').innerText.replace('₹', '').trim();
+  const totalAmount = parseFloat(totalText);
+  
+  // Show loading indicator
+  Swal.fire({
+    title: 'Processing Payment',
+    text: 'Please wait while we process your wallet payment...',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  try {
+    // First check wallet balance
+    const balanceResponse = await fetch('/wallet/balance');
+    const balanceData = await balanceResponse.json();
+    
+    if (!balanceData.success) {
+      throw new Error(balanceData.message || 'Could not retrieve wallet balance');
+    }
+    
+    if (balanceData.balance < totalAmount) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Insufficient Balance',
+        text: `Your wallet balance (₹${balanceData.balance.toFixed(2)}) is less than the order total (₹${totalAmount.toFixed(2)})`,
+        confirmButtonText: 'Add Money to Wallet',
+        showCancelButton: true,
+        cancelButtonText: 'Choose Another Payment Method'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/account/wallet';
+        }
+      });
+      return;
+    }
+    
+    // Process wallet payment
+    const paymentResponse = await fetch('/wallet/process-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        totalAmount: totalAmount,
+        addressId: addressId
+      })
+    });
+    
+    const paymentData = await paymentResponse.json();
+    
+    if (!paymentData.success) {
+      throw new Error(paymentData.message || 'Payment processing failed');
+    }
+    
+    // After successful payment, create the order
+    const orderResponse = await fetch('/orderPlaced', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        addressId: addressId,
+        paymentMethod: 'Wallet',
+        walletPaymentId: paymentData.transactionId
+      })
+    });
+    
+    const orderData = await orderResponse.json();
+    
+    if (orderData.success) {
+      window.location.href = orderData.redirect || '/orderPlaced';
+    } else {
+      throw new Error(orderData.message || 'Order creation failed');
+    }
+    
+  } catch (error) {
+    console.error('Error processing wallet payment:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Payment Failed',
+      text: error.message || 'Something went wrong with your wallet payment'
+    });
+  }
+});
+</script>
+<!--  Handle COD order submission -->
+<script>
+document.getElementById('confirmCodOrder').addEventListener('click', function() {
+  const selectedAddressRadio = document.querySelector('input[name="selectedAddress"]:checked');
+  if (!selectedAddressRadio) {
+    Swal.fire({
+      icon: 'error',
+      title: 'No Address Selected',
+      text: 'Please select a delivery address'
+    });
+    return;
+  }
+
+  const addressId = selectedAddressRadio.value;
+  document.getElementById('codAddressId').value = addressId;
+
+  // Show loading indicator
+  Swal.fire({
+    title: 'Processing Order',
+    text: 'Please wait while we process your order...',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  // Submit order via AJAX
+  fetch('/orderPlaced', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      addressId: addressId,
+      paymentMethod: 'COD'
+    })
+  })
+  .then(response => {
+    // First check if the response is ok
+    if (!response.ok) {
+      return response.json().then(data => {
+        throw new Error(data.message || 'Server returned an error');
+      });
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.success) {
+      window.location.href = data.redirect || '/orderPlaced';
+    } else {
+      throw new Error(data.message || 'Order processing failed');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Order Failed',
+      text: error.message || 'Something went wrong with your order',
+    });
+  });
+});
+
+</script>
+<!-- Handle razorPay -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Handle Razorpay payment
+  document.getElementById("payButton")?.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const selectedAddressRadio = document.querySelector('input[name="selectedAddress"]:checked');
+    if (!selectedAddressRadio) {
+      Swal.fire({
+        icon: "error",
+        title: "No Address Selected",
+        text: "Please select a delivery address",
+      });
+      return;
+    }
+
+    const addressId = selectedAddressRadio.value;
+
+    // Show loading indicator
+    Swal.fire({
+      title: "Processing Payment",
+      text: "Please wait while we set up your payment...",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    // First create an order on the server
+    fetch("/payment?id=" + addressId + "&paymentMethod=cards", {
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        Swal.close();
+
+        if (!data.success || !data.razorpayOrder || !data.razorpayOrder.id) {
+          console.error("Razorpay order creation failed:", data);
+          Swal.fire({
+            icon: "error",
+            title: "Payment Error",
+            text: data.message || "Unable to create payment order. Please try again.",
+          });
+          return;
+        }
+
+        console.log("Razorpay order created successfully:", data.razorpayOrder);
+
+        const options = {
+          key: data.key_id,
+          amount: data.razorpayOrder.amount,
+          currency: data.razorpayOrder.currency,
+          name: "FitFORGE",
+          description: "Order Payment",
+          order_id: data.razorpayOrder.id,
+          handler: (response) => {
+            // Show processing message
+            Swal.fire({
+              title: "Processing Order",
+              text: "Please wait while we confirm your payment...",
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+
+            console.log("Payment successful:", response);
+
+            // After successful payment, create the order
+            fetch("/orderPlaced", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                addressId: addressId,
+                paymentMethod: "Razorpay",
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  window.location.href = data.redirect || "/orderPlaced";
+                } else {
+                  window.location.href =
+                    "/payment-fail?orderId=" +
+                    response.razorpay_order_id +
+                    "&error=" +
+                    encodeURIComponent(data.message || "Order processing failed");
+                }
+              })
+              .catch((error) => {
+                console.error("Error creating order:", error);
+                window.location.href =
+                  "/payment-fail?orderId=" +
+                  response.razorpay_order_id +
+                  "&error=" +
+                  encodeURIComponent(
+                    "Error processing your order. Your payment may have been processed. Please contact support."
+                  );
+              });
+          },
+          prefill: {
+            name: data.user?.name || "",
+            email: data.user?.email || "",
+            contact: data.user?.phone || "",
+          },
+          theme: {
+            color: "#3399cc",
+          },
+          modal: {
+            ondismiss: () => {
+              console.log("Payment modal dismissed");
+              Swal.fire({
+                icon: "info",
+                title: "Payment Cancelled",
+                text: "You cancelled the payment process."
+              });
+            },
+          },
+        };
+
+        console.log("Initializing Razorpay with options:", options);
+        const rzp1 = new Razorpay(options);
+        rzp1.on("payment.failed", (response) => {
+          console.error("Payment failed:", response.error);
+          // Redirect to payment-fail page instead of showing SweetAlert
+          window.location.href =
+            "/payment-fail?error=" +
+            encodeURIComponent(response.error.description || "Your payment was not successful") +
+            "&orderId=" +
+            (response.error.metadata ? response.error.metadata.order_id : "");
+        });
+        rzp1.open();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Payment Error",
+          text: "Something went wrong while setting up payment. Please try again later.",
+        });
+      });
+  });
+});
+
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  // Function to check total and disable COD if needed
+  function checkCODEligibility() {
+    const totalText = document.getElementById('totalDisplay').innerText.replace('₹', '').trim();
+    const totalAmount = parseFloat(totalText);
+    const codRadio = document.getElementById('cod2');
+    const codLabel = document.querySelector('label[for="cod2"]');
+    
+    if (totalAmount >= 1000) {
+      codRadio.disabled = true;
+      codLabel.style.color = '#999';
+      codLabel.innerHTML = 'Cash on Delivery (Not available for orders ₹1000 or above)';
+      
+      // If COD was selected, switch to another payment method
+      if (codRadio.checked) {
+        document.getElementById('cards2').checked = true;
+        // Trigger change event to update UI
+        document.getElementById('cards2').dispatchEvent(new Event('change'));
+      }
+    } else {
+      codRadio.disabled = false;
+      codLabel.style.color = '';
+      codLabel.innerHTML = 'Cash on Delivery';
+    }
+  }
+  
+  // Run on page load
+  checkCODEligibility();
+  
+  document.getElementById('applyCouponBtn').addEventListener('click', function() {
+    setTimeout(checkCODEligibility, 500);
+  });
+  
+  document.getElementById('removeCouponBtn').addEventListener('click', function() {
+    setTimeout(checkCODEligibility, 500);
+  });
+});
+</script>
+<%- include('../partials/user/footer') %>

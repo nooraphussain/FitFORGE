@@ -1,0 +1,562 @@
+<%- include('../partials/admin/header') %>
+
+<!-- MAIN -->
+<main style="background-color: #eeeeee;">
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/admin">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div class="filter-options">
+            <form action="/admin" method="GET" class="filter-form">
+                <div class="filter-group">
+                    <select name="filterType" id="filterType" onchange="toggleDateInputs()">
+                        <option value="daily" <%= filterType === 'daily' ? 'selected' : '' %>>Daily</option>
+                        <option value="weekly" <%= filterType === 'weekly' ? 'selected' : '' %>>Weekly</option>
+                        <option value="monthly" <%= filterType === 'monthly' ? 'selected' : '' %>>Monthly</option>
+                        <option value="custom" <%= filterType === 'custom' ? 'selected' : '' %>>Custom Range</option>
+                    </select>
+                </div>
+                
+                <div class="date-inputs" id="dateInputs" style="<%= filterType === 'custom' ? 'display: flex;' : 'display: none;' %>">
+                    <div class="filter-group">
+                        <input type="date" name="startDate" id="startDate" value="<%= startDate %>">
+                    </div>
+                    <div class="filter-group">
+                        <input type="date" name="endDate" id="endDate" value="<%= endDate %>">
+                    </div>
+                </div>
+                
+                <button type="submit" class="filter-btn">Apply</button>
+            </form>
+            
+            <a href="/admin/sales-report" class="btn-download">
+                <i class='bx bxs-report'></i>
+                <span class="text">Detailed Report</span>
+            </a>
+        </div>
+    </div>
+
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-group'></i>
+            <span class="text">
+                <h3><%= totalUsers %></h3>
+                <p>Total Users</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bx-shopping-bag'></i>
+            <span class="text">
+                <h3><%= totalSales %></h3>
+                <p>Total Orders</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bx-dollar-circle'></i>
+            <span class="text">
+                <h3>₹<%= totalOrderAmount.toFixed(2) %></h3>
+                <p>Total Sales</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bx-tag'></i>
+            <span class="text">
+                <h3>₹<%= totalDiscounts.toFixed(2) %></h3>
+                <p>Total Discounts</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bx-money'></i>
+            <span class="text">
+                <h3>₹<%= totalFinalAmount.toFixed(2) %></h3>
+                <p>Final Amount</p>
+            </span>
+        </li>
+    </ul>
+
+    <!-- Best Selling Products Section -->
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Best Selling Products (Top 10)</h3>
+                <a href="/admin/products" class="view-all">View All Products</a>
+            </div>
+            <div class="product-grid">
+                <% if (bestSellingProducts && bestSellingProducts.length > 0) { %>
+                    <% bestSellingProducts.forEach(product => { %>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <% if (product._id && product._id.productImage && product._id.productImage.length > 0) { %>
+                                    <img src="/uploads/product-images/<%= product._id.productImage[0] %>" alt="<%= product._id.productName %>">
+                                <% } else { %>
+                                    <div class="no-image">No Image</div>
+                                <% } %>
+                            </div>
+                            <div class="product-info">
+                                <h4><%= product._id ? product._id.productName : 'Unknown Product' %></h4>
+                                <p class="product-price">₹<%= product._id ? product._id.salePrice : 0 %></p>
+                                <p class="product-stats">
+                                    <span class="sold">Sold: <%= product.totalQuantity %></span>
+                                    <span class="revenue">Revenue: ₹<%= product.totalRevenue.toFixed(2) %></span>
+                                </p>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <div class="no-data">No product sales data available</div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Best Selling Category and Brands Section -->
+    <div class="table-data">
+        <div class="order best-category">
+            <div class="head">
+                <h3>Best Selling Category</h3>
+                <a href="/admin/category" class="view-all">View All Categories</a>
+            </div>
+            <% if (bestSellingCategory) { %>
+                <div class="category-card">
+                    <div class="category-info">
+                        <h4><%= bestSellingCategory._id ? bestSellingCategory._id.name : 'Unknown Category' %></h4>
+                        <p class="category-description"><%= bestSellingCategory._id ? bestSellingCategory._id.description : '' %></p>
+                        <p class="category-stats">
+                            <span class="sold">Items Sold: <%= bestSellingCategory.totalQuantity %></span>
+                            <span class="revenue">Total Revenue: ₹<%= bestSellingCategory.totalRevenue.toFixed(2) %></span>
+                        </p>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="no-data">No category sales data available</div>
+            <% } %>
+        </div>
+
+        <div class="order best-brands">
+            <div class="head">
+                <h3>Best Selling Brands (Top 3)</h3>
+                <a href="/admin/brand" class="view-all">View All Brands</a>
+            </div>
+            <% if (bestSellingBrands && bestSellingBrands.length > 0) { %>
+                <div class="brands-container">
+                    <% bestSellingBrands.forEach((brand, index) => { %>
+                        <div class="brand-card <%= index === 0 ? 'top-brand' : '' %>">
+                            <div class="brand-rank"><%= index + 1 %></div>
+                            <div class="brand-info">
+                                <h4><%= brand._id || 'Unknown Brand' %></h4>
+                                <p class="brand-stats">
+                                    <span class="sold">Items Sold: <%= brand.totalQuantity %></span>
+                                    <span class="revenue">Revenue: ₹<%= brand.totalRevenue.toFixed(2) %></span>
+                                </p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <div class="no-data">No brand sales data available</div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Recent Orders</h3>
+                <a href="/admin/orders" class="view-all">View All</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Date Order</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (recentOrders && recentOrders.length > 0) { %>
+                        <% recentOrders.forEach(order => { %>
+                            <tr>
+                                <td>
+                                    <p><%= order.userId ? order.userId.name : 'Unknown User' %></p>
+                                </td>
+                                <td><%= formatDate(order.createdOn) %></td>
+                                <td><span class="status <%= order.status.toLowerCase().replace(' ', '-') %>"><%= order.status %></span></td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="3" class="no-data">No recent orders</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="payment-methods">
+            <div class="head">
+                <h3>Payment Methods</h3>
+            </div>
+            <div class="payment-chart">
+                <div class="payment-method">
+                    <span class="method-name">COD</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= (paymentMethodCounts.COD / totalSales) * 100 %>%"></div>
+                    </div>
+                    <span class="method-count"><%= paymentMethodCounts.COD %></span>
+                </div>
+                <div class="payment-method">
+                    <span class="method-name">Razorpay</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= (paymentMethodCounts.Razorpay / totalSales) * 100 %>%"></div>
+                    </div>
+                    <span class="method-count"><%= paymentMethodCounts.Razorpay %></span>
+                </div>
+                <div class="payment-method">
+                    <span class="method-name">Wallet</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= (paymentMethodCounts.Wallet / totalSales) * 100 %>%"></div>
+                    </div>
+                    <span class="method-count"><%= paymentMethodCounts.Wallet %></span>
+                </div>
+                <div class="payment-method">
+                    <span class="method-name">Card</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= (paymentMethodCounts.Card / totalSales) * 100 %>%"></div>
+                    </div>
+                    <span class="method-count"><%= paymentMethodCounts.Card %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+</section>
+<!-- CONTENT -->
+
+<script>
+    // Toggle date inputs based on filter type
+    function toggleDateInputs() {
+        const filterType = document.getElementById('filterType').value;
+        const dateInputs = document.getElementById('dateInputs');
+        
+        if (filterType === 'custom') {
+            dateInputs.style.display = 'flex';
+        } else {
+            dateInputs.style.display = 'none';
+        }
+    }
+</script>
+
+<style>
+    .filter-options {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .filter-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .filter-group select,
+    .filter-group input {
+        padding: 6px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    .date-inputs {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        background-color: var(--blue);
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+    
+    .view-all {
+        color: var(--blue);
+        font-size: 14px;
+        text-decoration: none;
+    }
+    
+    .view-all:hover {
+        text-decoration: underline;
+    }
+    
+    .payment-methods {
+        background-color: var(--light);
+        padding: 24px;
+        border-radius: 20px;
+        flex-grow: 1;
+    }
+    
+    .payment-chart {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .payment-method {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .method-name {
+        width: 80px;
+        font-size: 14px;
+    }
+    
+    .progress-bar {
+        flex: 1;
+        height: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .progress {
+        height: 100%;
+        background-color: var(--blue);
+    }
+    
+    .method-count {
+        width: 30px;
+        text-align: right;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .status {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .status.completed,
+    .status.delivered {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    
+    .status.pending,
+    .status.processing {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+    
+    .status.cancelled {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    
+    .status.shipped {
+        background-color: #cce5ff;
+        color: #004085;
+    }
+	.status.returned {
+        background-color: #6f7b1f;
+        color:#fff3cd;
+    }
+
+	.status.return-request {
+	background-color: #6e94ec;
+	color: #fff3cd;
+	}
+    
+    .no-data {
+        text-align: center;
+        padding: 20px;
+        color: #6c757d;
+    }
+
+    /* Best Selling Products Styles */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .product-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .no-image {
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+    .product-info {
+        padding: 15px;
+    }
+
+    .product-info h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .product-price {
+        color: var(--blue);
+        font-weight: 600;
+        margin: 5px 0;
+    }
+
+    .product-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 10px;
+    }
+
+    /* Best Category and Brands Styles */
+    .table-data .best-category,
+    .table-data .best-brands {
+        flex: 1;
+    }
+
+    .category-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .category-info h4 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .category-description {
+        color: #6c757d;
+        margin-bottom: 15px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .category-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #495057;
+    }
+
+    .brands-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .brand-card {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .brand-card.top-brand {
+        background-color: #f8f9fa;
+        border-left: 4px solid var(--blue);
+    }
+
+    .brand-rank {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--blue);
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+
+    .brand-info {
+        flex: 1;
+    }
+
+    .brand-info h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .brand-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: #6c757d;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+        
+        .category-stats, .brand-stats {
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+</style>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>

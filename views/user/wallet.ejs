@@ -1,0 +1,405 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-cart">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/account">My Account</a> >
+            <a href="/account/wallet">Wallet</a>
+        </div>
+    </nav>
+    <h2 class="your-profile" style="margin-left: 150px;">Your Wallet</h2>
+    <div style="margin: 0px auto;max-width:1366px;min-width:1128px;box-sizing:border-box;padding:0px;">
+        <div style="margin: 0px auto;position:relative;padding:14px 64px 0px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;">
+            <!-- navbar -->
+            <div style="width: 25%;box-sizing:border-box;margin:0px;padding:0px;">
+                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+
+                    <!-- FitFORGE Customer -->
+                    <div style="box-sizing:border-box;margin:0px;padding:0px;background-color:#d9d9d9;border-radius:20px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                        <div style="padding:12px;margin-bottom:16px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px 0px 16px;">
+                            <img height="50px" width="50px" src="/img/profile-pic.svg" style="vertical-align:middle;width: 50px;height:50px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;" />
+                            <div style="padding:5px 0px 0px 16px;width: calc(100% - 50px);box-sizing:border-box;margin:0px;">
+                                <div style="font-size:12px;box-sizing:border-box;margin:0px;padding:0px;">Hello,</div>
+                                <div style="padding-top:3px;font-size:16px;font-weight:500;display:flex;align-items:center;text-transform:capitalize;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;box-sizing:border-box;margin:0px;"><%= user.name%></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- the next div -->
+                    <div style="margin-bottom:16px;box-sizing:border-box;padding:0px;background-color:#d9d9d9;border-radius:20px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDE4Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04LjY5NCAtMTEpIj48ZWxsaXBzZSBjeD0iMjAuNTU3IiBjeT0iMjAiIHJ4PSIyMC41NTciIHJ5PSIyMCIvPjxwYXRoIGZpbGw9IiMyODc0RjEiIGQ9Ik05IDExdjE3LjEwOGMwIC40OTMuNDEuODkyLjkxOC44OTJoNC45M3YtNS4yNTdoLTMuMDMzbDQuOTEyLTQuNzcgNC45NzIgNC44M2gtMy4wMzVWMjloMTIuNDE3Yy41MDcgMCAuOTE4LS40LjkxOC0uODkyVjExSDl6Ii8+PC9nPjwvc3ZnPg==" 
+                                     style="width: 20px; height: 20px; filter: brightness(0) saturate(100%);"/>
+                                     <a href="/account/orders" style="width: calc(100% - 26px);padding-left:20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);cursor:pointer;text-decoration:none solid rgb(135, 135, 135);border:0px none rgb(135, 135, 135);outline:rgb(135, 135, 135) none 0px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 20px;">
+                                        MY ORDERS
+                                        <span style="margin-top:1px;float:right;box-sizing:border-box;padding:0px;">
+                                            <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" style="width: 14px;height:14px;transform:matrix(-1, 0, 0, -1, 0, 0);box-sizing:border-box;margin:0px;padding:0px;">
+                                                <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="grey" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                            </svg>
+                                        </span>
+                                     </a>
+                                </div>
+                            </div>
+                            <!-- Account settings -->
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMSIgdmlld0JveD0iMCAwIDIyIDIxIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05LjY5NCAtMTApIj48cGF0aCBmaWxsPSIjMjg3NEYwIiBkPSJNMTQuMjc1IDIyLjcwNGMyLjI3Mi0uNDEyIDQuMzQ3LS42MTggNi4yMjUtLjYxOCAxLjg3OCAwIDMuOTUzLjIwNiA2LjIyNS42MThhNS4xNSA1LjE1IDAgMCAxIDQuMjMgNS4wNjhWMzFoLTIwLjkxdi0zLjIyOGE1LjE1IDUuMTUgMCAwIDEgNC4yMy01LjA2OHptMS4yNzQtNy43MjRjMC0yLjU4IDIuMTYzLTQuNjczIDQuODMyLTQuNjczIDIuNjY3IDAgNC44MyAyLjA5MiA0LjgzIDQuNjczIDAgMi41OC0yLjE2MyA0LjY3My00LjgzIDQuNjczLTIuNjcgMC00LjgzMy0yLjA5Mi00LjgzMy00LjY3M3oiLz48ZWxsaXBzZSBjeD0iMjAuNTU3IiBjeT0iMjAiIHJ4PSIyMC41NTciIHJ5PSIyMCIvPjwvZz48L3N2Zz4=" 
+                                    style="width: 20px;height:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);" />
+                                    <div style="padding:0px 0px 12px 20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);box-sizing:border-box;margin:0px;">ACCOUNT SETTINGS</div>
+                                </div>
+                                <!-- Account infos -->
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <a href="/account" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Profile Information
+                                        </div>
+                                    </a>
+                                    <a href="/account/addresses" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Manage Addresses
+                                        </div>
+                                    </a>
+                                    <!-- <a href="/account/pancard" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            PAN Card Information
+                                        </div>
+                                    </a> -->
+                                </div>
+                            </div>
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <!-- PAYMENTS -->
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMyIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIzIDIyIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05LjY5NCAtOSkiPjxlbGxpcHNlIGN4PSIyMC41NTciIGN5PSIyMCIgcng9IjIwLjU1NyIgcnk9IjIwIi8+PHBhdGggZD0iTTcgNmgyOHYyOEg3eiIvPjxwYXRoIGZpbGw9IiMyODc0RjAiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTMxLjUgMjd2MS4xNjdhMi4zNCAyLjM0IDAgMCAxLTIuMzMzIDIuMzMzSDEyLjgzM2EyLjMzMyAyLjMzMyAwIDAgMS0yLjMzMy0yLjMzM1YxMS44MzNBMi4zMzMgMi4zMzMgMCAwIDEgMTIuODMzIDkuNWgxNi4zMzRhMi4zNCAyLjM0IDAgMCAxIDIuMzMzIDIuMzMzVjEzSDIxYTIuMzMzIDIuMzMzIDAgMCAwLTIuMzMzIDIuMzMzdjkuMzM0QTIuMzMzIDIuMzMzIDAgMCAwIDIxIDI3aDEwLjV6TTIxIDI0LjY2N2gxMS42Njd2LTkuMzM0SDIxdjkuMzM0em00LjY2Ny0yLjkxN2MtLjk3IDAtMS43NS0uNzgyLTEuNzUtMS43NXMuNzgtMS43NSAxLjc1LTEuNzVjLjk2OCAwIDEuNzUuNzgyIDEuNzUgMS43NXMtLjc4MiAxLjc1LTEuNzUgMS43NXoiLz48L2c+PC9zdmc+" 
+                                    style="width: 20px;height:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);" />
+                                    <div style="padding:0px 0px 12px 20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);box-sizing:border-box;margin:0px;">
+                                        PAYMENTS
+                                    </div>
+                                </div>
+                                <!-- payment infos -->
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <a href="/account/wallet" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                      <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;font-weight:500;color:rgb(40, 116, 240);background-color:rgb(245, 250, 255);">
+                                          Wallet
+                                          <span style="float:right;padding:0px 20px 0px 5px;color:rgb(56, 142, 60);font-weight:500;box-sizing:border-box;margin:0px;">₹<%= walletBalance.toFixed(2) %></span>
+                                      </div>
+                                    </a>
+                                    <!-- <a href="/account/giftcard" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Gift Cards
+                                            <span style="float:right;padding:0px 20px 0px 5px;color:rgb(56, 142, 60);font-weight:500;box-sizing:border-box;margin:0px;">₹0</span>
+                                        </div>
+                                    </a>
+                                    <a href="/account/vpadetails" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Saved UPI
+                                        </div>
+                                    </a>
+                                    <a href="/account/carddetails" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Saved Cards
+                                        </div>
+                                    </a> -->
+                                </div>
+                            </div>
+
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <!-- My STUFF -->
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMyIgaGVpZ2h0PSIxOSIgdmlld0JveD0iMCAwIDIzIDE5Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMyODc0RjAiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTIwLjUgMi43NWgtOUw5LjI1LjVIMi41QTIuMjQ3IDIuMjQ3IDAgMCAwIC4yNiAyLjc1bC0uMDEgMTMuNUEyLjI1NyAyLjI1NyAwIDAgMCAyLjUgMTguNWgxOGEyLjI1NyAyLjI1NyAwIDAgMCAyLjI1LTIuMjVWNWEyLjI1NyAyLjI1NyAwIDAgMC0yLjI1LTIuMjV6bS01LjYyNSAzLjM3NWEyLjI1NyAyLjI1NyAwIDAgMSAyLjI1IDIuMjUgMi4yNTcgMi4yNTcgMCAwIDEtMi4yNSAyLjI1IDIuMjU3IDIuMjU3IDAgMCAxLTIuMjUtMi4yNSAyLjI1NyAyLjI1NyAwIDAgMSAyLjI1LTIuMjV6bTQuNSA5aC05VjE0YzAtMS40OTYgMy4wMDQtMi4yNSA0LjUtMi4yNXM0LjUuNzU0IDQuNSAyLjI1djEuMTI1eiIvPjxwYXRoIGQ9Ik0tMi00aDI3djI3SC0yeiIvPjwvZz48L3N2Zz4=" 
+                                    style="width: 20px;height:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);" />
+                                    <div style="padding:0px 0px 12px 20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);box-sizing:border-box;margin:0px;">
+                                        MY STUFF
+                                    </div>
+                                </div>
+                                <!-- My stuff infos -->
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <a href="/account/referrals" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Referrals
+                                        </div>
+                                    </a>
+                                    <!-- <a href="/account/rewards" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Coupons
+                                        </div>
+                                    </a>
+                                    <a href="/account/reviews" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Reviews &amp; Ratings
+                                        </div>
+                                    </a>
+                                    <a href="/notifications" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            All Notifications
+                                        </div>
+                                    </a> -->
+                                    <a href="/wishlist" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Wishlist
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        <!-- Logout -->
+                        <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                            <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                 <!-- svg power button -->
+                                 <a href="/logout" style="text-decoration: none;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);">
+                                        <path fill="#2874F0" stroke-width="0.3" stroke="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                    </svg>
+                                </a>
+                                <span style="width: calc(100% - 26px);padding-left:20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);cursor:pointer;box-sizing:border-box;margin:0px;padding:0px 0px 0px 20px;">Logout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 75%;padding-left:16px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 16px;">
+                <div style="min-height:300px;box-sizing:border-box;margin:0px;padding:0px;">
+                    <!-- card -->
+                    <div style="box-sizing:border-box;margin:0px;padding-bottom:40px;background-color:#eeeeee;border-radius:20px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                        <div style="padding:24px 32px;box-sizing:border-box;margin:0px;">
+                            <!-- Wallet Balance Card -->
+                            <div style="background-color:#fff;border-radius:12px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                                    <h3 style="font-size:20px;margin:0;font-weight:500;">Wallet Balance</h3>
+                                    <div style="font-size:24px;font-weight:bold;color:#388E3C;">₹<%= walletBalance.toFixed(2) %></div>
+                                </div>
+                                <div style="margin-top:20px;">
+                                    <button id="addMoneyBtn" style="background-color:#2874F0;color:white;border:none;padding:10px 20px;border-radius:4px;font-size:16px;cursor:pointer;">Add Money</button>
+                                </div>
+                            </div>
+
+                            <!-- Add Money Form (Hidden by default) -->
+                            <div id="addMoneyForm" style="display:none;background-color:#fff;border-radius:12px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                                <h3 style="font-size:18px;margin-bottom:16px;">Add Money to Wallet</h3>
+                                <div style="margin-bottom:16px;">
+                                    <label for="amount" style="display:block;margin-bottom:8px;font-size:14px;">Amount (₹)</label>
+                                    <input type="number" id="amount" min="1" step="1" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:4px;" placeholder="Enter amount">
+                                </div>
+                                <div style="display:flex;gap:10px;">
+                                    <button id="pay100" class="quick-amount" data-amount="100" style="background-color:#f0f0f0;border:1px solid #ddd;padding:8px 16px;border-radius:4px;cursor:pointer;">₹100</button>
+                                    <button id="pay500" class="quick-amount" data-amount="500" style="background-color:#f0f0f0;border:1px solid #ddd;padding:8px 16px;border-radius:4px;cursor:pointer;">₹500</button>
+                                    <button id="pay1000" class="quick-amount" data-amount="1000" style="background-color:#f0f0f0;border:1px solid #ddd;padding:8px 16px;border-radius:4px;cursor:pointer;">₹1000</button>
+                                </div>
+                                <div style="margin-top:20px;display:flex;gap:10px;">
+                                    <button id="proceedToPayBtn" style="background-color:#2874F0;color:white;border:none;padding:10px 20px;border-radius:4px;font-size:16px;cursor:pointer;">Proceed to Pay</button>
+                                    <button id="cancelAddMoney" style="background-color:#f0f0f0;border:1px solid #ddd;padding:10px 20px;border-radius:4px;font-size:16px;cursor:pointer;">Cancel</button>
+                                </div>
+                            </div>
+
+                            <!-- Transaction History -->
+                            <div style="background-color:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                                <h3 style="font-size:20px;margin-bottom:16px;font-weight:500;">Transaction History</h3>
+                                
+                                <% if (transactions && transactions.length > 0) { %>
+                                    <div style="max-height:400px;overflow-y:auto;">
+                                        <table style="width:100%;border-collapse:collapse;">
+                                            <thead>
+                                                <tr style="border-bottom:1px solid #ddd;">
+                                                    <th style="padding:12px 8px;text-align:left;">Date</th>
+                                                    <th style="padding:12px 8px;text-align:left;">Description</th>
+                                                    <th style="padding:12px 8px;text-align:right;">Amount</th>
+                                                    <th style="padding:12px 8px;text-align:center;">Type</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% transactions.forEach(function(transaction) { %>
+                                                    <tr style="border-bottom:1px solid #eee;">
+                                                        <td style="padding:12px 8px;"><%= new Date(transaction.date).toLocaleDateString() %></td>
+                                                        <td style="padding:12px 8px;"><%= transaction.description %></td>
+                                                        <td style="padding:12px 8px;text-align:right;">₹<%= transaction.amount.toFixed(2) %></td>
+                                                        <td style="padding:12px 8px;text-align:center;">
+                                                            <span style="padding:4px 8px;border-radius:4px;font-size:12px;background-color:<%= transaction.type === 'credit' ? '#e6f7e6' : '#ffebee' %>;color:<%= transaction.type === 'credit' ? '#388E3C' : '#d32f2f' %>;">
+                                                                <%= transaction.type === 'credit' ? 'CREDIT' : 'DEBIT' %>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                <% }); %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <% } else { %>
+                                    <div style="text-align:center;padding:20px;color:#757575;">
+                                        <p>No transactions found in your wallet.</p>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle Add Money Form
+        document.getElementById('addMoneyBtn').addEventListener('click', function() {
+            document.getElementById('addMoneyForm').style.display = 'block';
+        });
+
+        document.getElementById('cancelAddMoney').addEventListener('click', function() {
+            document.getElementById('addMoneyForm').style.display = 'none';
+            document.getElementById('amount').value = '';
+        });
+
+        // Quick Amount Buttons
+        document.querySelectorAll('.quick-amount').forEach(function(button) {
+            button.addEventListener('click', function() {
+                document.getElementById('amount').value = this.getAttribute('data-amount');
+            });
+        });
+
+        // Proceed to Pay Button
+        document.getElementById('proceedToPayBtn').addEventListener('click', async function() {
+            const amount = document.getElementById('amount').value;
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Amount',
+                    text: 'Please enter a valid amount (greater than 0)'
+                });
+                return;
+            }
+
+            try {
+                // Create Razorpay order
+                const response = await fetch('/wallet/create-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount })
+                });
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Payment Failed',
+                        text: data.message || 'Failed to create payment order'
+                    });
+                    return;
+                }
+
+                // Configure Razorpay options
+                const options = {
+                    key: data.key_id,
+                    amount: data.order.amount,
+                    currency: 'INR',
+                    name: 'FitFORGE',
+                    description: 'Add money to wallet',
+                    order_id: data.order.id,
+                    handler: async function(response) {
+                        try {
+                            // Verify payment
+                            const verifyResponse = await fetch('/wallet/verify-payment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_signature: response.razorpay_signature,
+                                    amount: data.order.amount
+                                })
+                            });
+
+                            const verifyData = await verifyResponse.json();
+
+                            if (verifyData.success) {
+                                await Swal.fire({
+                                    icon: 'success',
+                                    title: 'Payment Successful!',
+                                    html: `₹${(data.order.amount/100).toFixed(2)} added successfully!<br>New Balance: ₹${verifyData.newBalance.toFixed(2)}`,
+                                    confirmButtonColor: '#2874F0'
+                                });
+                                window.location.reload();
+                            } else {
+                                await Swal.fire({
+                                    icon: 'error',
+                                    title: 'Verification Failed',
+                                    text: verifyData.message || 'Payment verification failed',
+                                    confirmButtonColor: '#2874F0'
+                                });
+                            }
+                        } catch (error) {
+                            console.error('Error verifying payment:', error);
+                            await Swal.fire({
+                                icon: 'error',
+                                title: 'Payment Error',
+                                text: 'Something went wrong while verifying your payment',
+                                confirmButtonColor: '#2874F0'
+                            });
+                        }
+                    },
+                    prefill: {
+                        name: '<%= user.name %>',
+                        email: '<%= user.email %>',
+                        contact: '<%= user.phoneNumber %>'
+                    },
+                    theme: {
+                        color: '#2874F0'
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            console.log('Payment modal closed');
+                        }
+                    }
+                };
+
+                const razorpay = new Razorpay(options);
+                razorpay.on('payment.failed', function(response) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Payment Failed',
+                        text: response.error.description || 'Your payment has failed',
+                        confirmButtonColor: '#2874F0'
+                    });
+                });
+                razorpay.open();
+            } catch (error) {
+                console.error('Error creating order:', error);
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Payment Error',
+                    text: error.message || 'Something went wrong. Please try again later.',
+                    confirmButtonColor: '#2874F0'
+                });
+            }
+        });
+    });
+</script>
+
+<%- include('../partials/user/footer') %>

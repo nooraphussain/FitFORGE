@@ -1,0 +1,149 @@
+<%- include('../partials/admin/header') %>
+
+        <!-- MAIN -->
+        <main style="background-color: #eeeeee;">
+            <div class="head-title">
+                <div class="left">
+                    <h1>Orders</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/admin">Dashboard</a></li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li><a class="active" href="/admin/orders">Orders</a></li>
+                    </ul>
+                </div>
+                <div class="right flex items-center gap-4 w-full">
+                    <!-- <a href="#" class="btn-download flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">
+                        <i class='bx bxs-cloud-download'></i>
+                        <span class="text font-medium">Download PDF</span>
+                    </a> -->
+                    
+                    <button class="filter-btn flex">
+                        <i class="bx bx-search text-lg"></i>
+                        <span class="text font-medium">Filter</span>
+                    </button>
+                </div>
+                
+                <div class="table-data">
+                    <div class="order">
+                        <% let startOrderNo = (currentPage - 1) * itemsPerPage + 1; %> 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order No.</th>
+                                    <th style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Order ID</th>
+                                    <th style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Number of Items</th>
+                                    <th>Status</th>
+                                    <th>Ordered Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (orders && orders.length > 0) { %>
+                                    <% orders.forEach(function(order, index) { %>
+                                        <tr>
+                                            <td><%= startOrderNo + index %></td>  <!-- Updated Order No. logic -->
+                                            <td><%= order.orderId %></td>
+                                            <td style="text-align: center;"><%= order.orderedItems ? order.orderedItems.length : 0 %></td>
+                                            <td><%= order.status %></td>
+                                            <td><%= moment(order.createdOn).format('ddd MMM DD, YYYY') %></td>
+                                            <td>
+                                                <a href="/admin/orderDetails/<%= order.orderId %>" class="btn btn-primary">View details</a>
+                                            </td>
+                                        </tr>
+                                    <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="6">No orders found.</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>                        
+                        </table>
+                        
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation" class="pagination-container" style="display: flex; justify-content: center; margin-top: 20px;">
+                            <ul class="pagination" style="display: flex; list-style: none; padding: 0;">
+                                <% if (currentPage > 1) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous" 
+                                        style="background-color: #86c3ff; color: white; border: none; margin: 0 5px; padding: 8px 12px; text-decoration: none; border-radius: 5px;">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                <% } %>
+                        
+                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                    <li class="page-item" style="margin: 0 5px;">
+                                        <a class="page-link" href="?page=<%= i %>" 
+                                        style="background-color: <%= i === currentPage ? '#2a6fb0' : '#3b91e5' %>; 
+                                                color: white; border: none; padding: 8px 12px; text-decoration: none; 
+                                                border-radius: 5px; font-weight: <%= i === currentPage ? 'bold' : 'normal' %>;">
+                                            <%= i %>
+                                        </a>
+                                    </li>
+                                <% } %>
+                        
+                                <% if (currentPage < totalPages) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next" 
+                                        style="background-color: #3b91e5; color: white; border: none; margin: 0 5px; padding: 8px 12px; text-decoration: none; border-radius: 5px;">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </nav>
+                        
+
+                    </div>
+                </div>
+            </div>   
+        </main>
+        <!-- MAIN -->
+
+
+	</section>
+	<!-- CONTENT -->
+	
+    <script>
+        function confirmBlock(customerId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to block this customer?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, block!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true,
+                customClass: {
+                    popup: 'custom-swal-popup'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/admin/blockCustomer?id=' + customerId;
+                }
+            });
+        }
+
+        function confirmUnblock(customerId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to unblock this customer?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, unblock!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true,
+                customClass: {
+                    popup: 'custom-swal-popup'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/admin/unblockCustomer?id=' + customerId;
+                }
+            });
+        }
+
+    </script>
+	<script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-orders">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/account">Account</a> >
+            <a href="/account/orders">Orders</a> >
+            <p>Order ID: <%= order ? order.orderNumber : 'Unknown' %></p>
+        </div>
+    </nav>
+
+    <div style="box-sizing:border-box;margin:0px;padding:0px; background-color:rgb(245, 244, 244);" >
+        <div style="display: flex;box-sizing:border-box;margin:0px;padding:10px;"></div>
+
+
+        <div style="display: flex; flex-basis: 100%; width: 100%; flex-direction: row; background-color: transparent; margin: 10px; justify-content: center; gap: 10px; min-width: 978px; max-width: 1680px;flex-basis:100%;width: 100%;flex-direction:row;background-color:rgba(251, 15, 15, 0);margin:10px;justify-content:center;gap:10px;min-width:978px;max-width:1680px;box-sizing:border-box;padding:0px;">
+            <div style="display: flex; flex-basis: 50%; width: 50%; flex-direction: row; background-color: transparent; margin: 10px; justify-content: center; gap: 10px;flex-basis:50%;width: 50%;flex-direction:row;background-color:rgba(0, 0, 0, 0);margin:10px;justify-content:center;gap:10px;box-sizing:border-box;padding:0px;">
+                <div style="flex-direction:column;width: 100%;display:flex;box-sizing:border-box;margin:0px;padding:0px;">
+
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(245, 244, 244); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+
+                        </div>
+                    </div>
+                    
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(245, 244, 244); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <!-- second div -->
+                            <div style="width: 100%; background-color: #fff; box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.6); box-sizing: border-box; margin: 0; padding: 0; border-radius: 12px;">
+                                <!-- product details -->
+                                <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240);padding:15px 16px;border-bottom:1px solid rgb(245, 244, 244);box-sizing:border-box;margin:0px;">
+                                    <div data-id="mo-card" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="display: flex; flex-direction: column; box-sizing: border-box; margin: 10px; padding: 0px;">
+                                            <% if (order.products && order.products.length > 0) { %>
+                                              <% order.products.forEach(function(product) { %>
+                                                <div style="display: flex; align-items: center; margin-bottom: 12px; width: 100%;">
+                                                  <!-- Left Side: occupies remaining space -->
+                                                  <div style="flex: 1; box-sizing: border-box; margin: 0; padding: 0;">
+                                                    <div style="cursor:pointer; font-size:17px; margin-bottom:4px; box-sizing:border-box; padding:0;">
+                                                      <strong><%= product.name %></strong>
+                                                    </div>
+                                                    <div style="font-size:12px; margin-bottom:8px; color: rgb(212, 24, 24); box-sizing:border-box; padding:0;">
+                                                      <!-- <%= product.category ? product.category : '' %> -->
+                                                    </div>
+                                                    <div style="font-size:12px; color: rgb(91, 91, 91); box-sizing:border-box; padding:0;">
+                                                      <p class="f2-m cor-p4"><strong>Brand:</strong> <%= product.brand %></p>
+                                                    </div>
+                                                    <div style="vertical-align:middle; margin-top:4px; display:flex; align-items:flex-end; box-sizing:border-box; padding:0;">
+                                                        <span style="font-size:17px; line-height:21px; font-weight:500; box-sizing:border-box;">
+                                                            ₹<%= product.price * product.quantity %>
+                                                        </span>                                                        
+                                                      <span style="color:rgb(38, 165, 65); font-size:12px; font-weight:500; margin-left:8px; box-sizing:border-box;">
+                                                        <% if (product.offer) { %>
+                                                          <%= product.offer %>
+                                                        <% } %>
+                                                      </span>
+                                                    </div>
+                                                    <div style="display:flex; justify-content:center; padding:4px 8px; align-items:center; gap:4px; width: max-content; margin-top:4px; border-radius:4px; box-sizing:border-box;">
+                                                      <p style="font-size:12px; font-weight:500; margin:0; padding:0;"></p>
+                                                    </div>
+                                                  </div>
+                                                  <!-- Right Side: fixed width, aligned to the right -->
+                                                  <div style="width: 90px; box-sizing:border-box; margin: 0; padding: 0; text-align: right;">
+                                                    <div style="width: 72px; margin-left: auto; text-align:center; box-sizing:border-box; padding:0; transform: translateX(-30px) translateY(-10px);">
+                                                        <img src="/uploads/product-images/<%= product.image %>" alt="<%= product.name %>" 
+                                                             style="max-width:100px; max-height:100px; border-radius: 5px; opacity:1; transition: opacity 0.3s linear; border:0; outline:0; box-sizing:border-box; margin-bottom: 5px; padding:0;" 
+                                                             onerror="this.src='/img/default-product.jpg'"/>
+                                                    </div>                                                                                                 
+                                                  </div>
+                                                </div>
+                                              <% }); %>
+                                            <% } else { %>
+                                              <p>No products found for this order.</p>
+                                            <% } %>
+                                        </div>                                          
+                                        
+                                    </div>
+                                </div>
+
+
+                                <div style="width: 100%; border-bottom: 1px solid rgb(240, 240, 240);border-bottom:1px solid rgb(240, 240, 240);padding:0px;box-sizing:border-box;margin:0px;">
+                                    <div style="width: 100%; padding: 15px 16px; border-bottom: none;padding:15px 16px;border-bottom:0px none rgb(37, 1, 1);overflow:hidden;position:relative;box-sizing:border-box;margin:0px;">
+                                        <div title="" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div data-omtr-id="verticalTracking" style="font-size:0px;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                <!-- Order Confirmed -->
+                                                <div style="min-height:30px;margin:4px 0px 16px;padding:0px;display:flex;width: 100%;position:relative;box-sizing:border-box;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:30px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="width: 2px;top:20px;left:9px;background:rgb(61, 53, 53) none repeat scroll 0% 0% / auto padding-box border-box;border-radius:10px;height:30px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="height: 99%;background:rgb(38, 165, 65) none repeat scroll 0% 0% / auto padding-box border-box;left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:visible;opacity:1;height:30px;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#008C00" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="color:rgb(0, 0, 0);float:left;width: 100%;font-size:14px;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        Order Confirmed
+                                                                    </span> , 
+                                                                    <span style="box-sizing:border-box; margin:0; padding:0;">
+                                                                        <%= moment(order.orderDate).format('ddd MMM DD, YYYY') %>
+                                                                    </span>                                                                    
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <!-- Failed -->
+                                                 <div class="cancelled-update" style="padding:4px 0; margin:0; min-height:45px; width:100%; position:relative; box-sizing:border-box; display:flex;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:100%;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="width: 2px;top:20px;left:9px;background:rgb(224, 224, 224) none repeat scroll 0% 0% / auto padding-box border-box;border-radius:10px;height:100%;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="background:rgb(255, 67, 67) none repeat scroll 0% 0% / auto padding-box border-box;background-color:rgb(255, 67, 67);left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:visible;opacity:1;height:37px;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#E32727" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg></div>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="color:rgb(0, 0, 0);float:left;width: 100%;font-size:14px;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <span style="box-sizing:border-box;margin:0;padding:0;">
+                                                                    <span style="box-sizing:border-box;margin:0;padding:0;">Payment Failed</span>, 
+                                                                    <span style="box-sizing:border-box;margin:0;padding:0;">
+                                                                        <%= order.cancellationDate ? moment(order.cancellationDate).format('ddd, MMM Do YYYY') : moment().format('ddd, MMM Do YYYY') %>
+                                                                    </span>
+                                                                </span>                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Retry Payment Button -->
+                                                <div style="margin-top: 20px; text-align: center;">
+                                                    <a href="/checkout" class="btn btn-primary" style="background-color: #3498db; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">
+                                                        Retry Payment
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/user/footer') %>
+

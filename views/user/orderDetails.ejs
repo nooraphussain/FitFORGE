@@ -1,0 +1,982 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-orders">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/account">Account</a> >
+            <a href="/account/orders">Orders</a> >
+            <a href="/account/orders">OD# <%= order.orderNumber %></a> 
+        </div>
+    </nav>
+
+    <div style="box-sizing:border-box;margin:0px;padding:0px; background-color:rgb(245, 244, 244);" >
+        <div style="display: flex;box-sizing:border-box;margin:0px;padding:10px;"></div>
+
+
+        <div style="display: flex; flex-basis: 100%; width: 100%; flex-direction: row; background-color: transparent; margin: 10px; justify-content: center; gap: 10px; min-width: 978px; max-width: 1680px;flex-basis:100%;width: 100%;flex-direction:row;background-color:rgba(251, 15, 15, 0);margin:10px;justify-content:center;gap:10px;min-width:978px;max-width:1680px;box-sizing:border-box;padding:0px;">
+            <div style="display: flex; flex-basis: 50%; width: 50%; flex-direction: row; background-color: transparent; margin: 10px; justify-content: center; gap: 10px;flex-basis:50%;width: 50%;flex-direction:row;background-color:rgba(0, 0, 0, 0);margin:10px;justify-content:center;gap:10px;box-sizing:border-box;padding:0px;">
+                <div style="flex-direction:column;width: 100%;display:flex;box-sizing:border-box;margin:0px;padding:0px;">
+
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(245, 244, 244); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <% if (order.paymentMethod === 'COD' && order.status !== 'Cancelled' && order.status !== 'Delivered' && order.status !== 'Return Processing' && order.status !== 'Returned') { %>
+                                <div style="width: 100%; background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px -1px;border-radius: 12px; margin:0px;padding:0px;">
+                                    <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240);box-sizing:border-box;">
+                                        <div style="display: flex;">
+                                            <div style="width: 80%;">
+                                                <div style="font-size: 17px; font-weight: 500; padding-bottom: 4px; display: flex; align-items: center;">
+                                                    Pay now and ask the delivery agent to drop the item at doorstep
+                                                </div>
+                                                <div style="display: flex; margin-top: 6px; flex-wrap: wrap;">
+                                                    <div style="border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 8px; font-size: 14px; font-weight: 500; border-radius: 4px; height: 40px; min-width: 160px; background-color: rgb(39, 180, 26); color: rgb(0, 0, 0);">
+                                                        PAY ₹<%= order.finalAmount %>
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; justify-content: center; width: 72px; align-items: center; margin-left: 56px;">
+                                                <img src="https://sa-web-h1a.flixcart.com/mosaic/ss/payNow.png?q=80" style="width: 72px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                        </div>
+                    </div>
+                    
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(245, 244, 244); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <!-- second div -->
+                            <div style="width: 100%; background-color: #fff; box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.6); box-sizing: border-box; margin: 0; padding: 0; border-radius: 12px;">
+                             
+                                <!-- product details -->
+                                <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240);padding:15px 16px;border-bottom:1px solid rgb(245, 244, 244);box-sizing:border-box;margin:0px;">
+                                    <div data-id="mo-card" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                        <!-- Product-specific section in orderDetails.html -->
+                                        <div style="display: flex; flex-direction: column; box-sizing: border-box; margin: 10px; padding: 0px;">
+                                            <% if (order.products && order.products.length > 0) { %>
+                                            <% order.products.forEach(function(product) { %>
+                                                <div style="display: flex; align-items: center; margin-bottom: 12px; width: 100%;">
+                                                <!-- Left Side: occupies remaining space -->
+                                                <div style="flex: 1; box-sizing: border-box; margin: 0; padding: 0;">
+                                                    <div style="cursor:pointer; font-size:17px; margin-bottom:4px; box-sizing:border-box; padding:0;">
+                                                    <strong><%= product.name %></strong>
+                                                    </div>
+                                                    <div style="font-size:12px; margin-bottom:8px; color: rgb(212, 24, 24); box-sizing:border-box; padding:0;">
+                                                    <%= product.category %>
+                                                    </div>
+                                                    <div style="font-size:12px; color: rgb(91, 91, 91); box-sizing:border-box; padding:0;">
+                                                    <p class="f2-m cor-p4"><strong>Brand:</strong> <%= product.brand %></p>
+                                                    </div>
+                                                    <!-- Update the product price display -->
+                                                    <div style="vertical-align:middle; margin-top:4px; display:flex; align-items:flex-end; box-sizing:border-box; padding:0;">
+                                                      <span style="font-size:17px; line-height:21px; font-weight:500; box-sizing:border-box;">
+                                                        ₹<%= product.price * product.quantity %>
+                                                      </span>                                                        
+                                                      <span style="color:rgb(38, 165, 65); font-size:12px; font-weight:500; margin-left:8px; box-sizing:border-box;">
+                                                        <% if (product.appliedOffer > 0) { %>
+                                                          <%= product.appliedOffer %>% off
+                                                        <% } %>
+                                                      </span>
+                                                    </div>
+                                                    
+                                                    <!-- Product Status Display -->
+                                                    <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+                                                        <% if (product.status === 'Cancelled') { %>
+                                                            <span style="color: #dc3545; display: inline-block; padding: 3px 8px; background-color: #f8d7da; border-radius: 4px;">Cancelled</span>
+                                                        <% } else if (product.status === 'Delivered') { %>
+                                                            <span style="color: #28a745; display: inline-block; padding: 3px 8px; background-color: #d4edda; border-radius: 4px;">Delivered</span>
+                                                            <button type="button" 
+                                                                class="return-item-btn"
+                                                                onclick="handleReturnRequest('<%= order.orderId %>', '<%= product.id %>', '<%= product.name %>')"
+                                                                style="padding: 5px 12px; font-size: 14px; border-radius: 4px; transition: background-color 0.3s, color 0.3s; background-color: #fff; border: 1px solid #ff9800; color: #ff9800; cursor: pointer; margin-top: 8px;">
+                                                                    Return Item
+                                                            </button>
+                                                        <% } else if (product.status === 'Return Request') { %>
+                                                            <span style="color: #ff9800; display: inline-block; padding: 3px 8px; background-color: #fff3cd; border-radius: 4px;">Return Requested</span>                                                      
+                                                        <% } else if (product.status === 'Return Processing') { %>
+                                                            <span style="color: #0d6efd; display: inline-block; padding: 3px 8px; background-color: #cfe2ff; border-radius: 4px;">Return Processing</span>
+                                                            <div class="refund-message" style="margin-top: 8px; color: #28a745; font-style: italic;">
+                                                                Refund will be processed to wallet, once returned.
+                                                            </div>
+                                                        <% } else if (product.status === 'Return Denied') { %>
+                                                            <span id="statusSpan-<%= product.id %>" style="color: #198754; display: inline-block; padding: 3px 8px; background-color: #d1e7dd; border-radius: 4px;">Returned</span>
+                                                        <% } else if (product.status === 'Returned') { %>
+                                                            <span style="color: #198754; display: inline-block; padding: 3px 8px; background-color: #d1e7dd; border-radius: 4px;">Returned</span>
+                                                            <% if (!product.refunded) { %>
+                                                                <button type="button" 
+                                                                    id="refundBtn-<%= product.id %>"
+                                                                    onclick="processReturnRefund('<%= order.orderId %>', '<%= product.id %>')"
+                                                                    style="padding: 5px 12px; font-size: 14px; border-radius: 4px; transition: background-color 0.3s, color 0.3s; background-color: #fff; border: 1px solid #28a745; color: #28a745; cursor: pointer; margin-top: 8px;">
+                                                                    Process Refund
+                                                                </button>
+                                                            <% } else { %>
+                                                                <span style="color: #28a745; font-weight: bold;">Refunded</span>
+                                                            <% } %> 
+                                                        <% } else { %>
+                                                            <span style="color: #17a2b8; display: inline-block; padding: 3px 8px; background-color: #d1ecf1; border-radius: 4px;"><%= product.status || 'Processing' %></span>
+                                                        <% } %>
+                                                    </div>
+                                                    
+                                                    <!-- Product-specific Cancellation Button - Only show if not cancelled or delivered -->
+                                                    <% if (product.status !== 'Delivered' && product.status !== 'Cancelled' && product.status !== 'Return Request' && product.status !==  'Return Processing' && product.status !==  'Return Denied' && product.status !==  'Returned') { %>
+                                                    <button type="button" 
+                                                            class="cancel-item-btn"
+                                                            onclick="handleProductCancellation('<%= order.orderId %>', '<%= product.id %>', '<%= product.name %>')"
+                                                            style="padding: 5px 12px; font-size: 14px; border-radius: 4px; transition: background-color 0.3s, color 0.3s; background-color: #fff; border: 1px solid #dc3545; color: #dc3545; cursor: pointer; margin-top: 8px;">
+                                                        Cancel Item
+                                                    </button>
+                                                    <% } %>                                                                                                      
+                                                    
+                                                    <div style="display:flex; justify-content:center; padding:4px 8px; align-items:center; gap:4px; width: max-content; margin-top:4px; border-radius:4px; box-sizing:border-box;">
+                                                    <p style="font-size:12px; font-weight:500; margin:0; padding:0;"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- Right Side: fixed width, aligned to the right -->
+                                                <div style="width: 90px; box-sizing:border-box; margin: 0; padding: 0; text-align: right;">
+                                                    <div style="width: 72px; margin-left: auto; text-align:center; box-sizing:border-box; padding:0; transform: translateX(-30px) translateY(-10px);">
+                                                    <img src="/uploads/product-images/<%= product.image %>" alt="<%= product.productName %>" 
+                                                            style="max-width:100px; max-height:100px; border-radius: 5px; opacity:1; transition: opacity 0.3s linear; border:0; outline:0; box-sizing:border-box; margin-bottom: 5px; padding:0;" />
+                                                    </div>                                                                                                 
+                                                </div>
+                                                </div>
+                                            <% }); %>
+                                            <% } else { %>
+                                            <p>No products found for this order.</p>
+                                            <% } %>
+                                        </div>                                        
+                                        
+                                    </div>
+                                </div>
+                                <!-- order status -->
+                                <div style="width: 100%; border-bottom: 1px solid rgb(240, 240, 240);border-bottom:1px solid rgb(240, 240, 240);padding:0px;box-sizing:border-box;margin:0px;">
+                                    <div style="width: 100%; padding: 15px 16px; border-bottom: none;padding:15px 16px;border-bottom:0px none rgb(37, 1, 1);overflow:hidden;position:relative;box-sizing:border-box;margin:0px;">
+                                        <div title="" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div data-omtr-id="verticalTracking" style="font-size:0px;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                <!-- Order Confirmed -->
+                                                <div style="min-height:30px;margin:4px 0px 16px;padding:0px;display:flex;width: 100%;position:relative;box-sizing:border-box;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:30px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="width: 2px;top:20px;left:9px;background:rgb(61, 53, 53) none repeat scroll 0% 0% / auto padding-box border-box;border-radius:10px;height:30px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="height: 99%;background:rgb(38, 165, 65) none repeat scroll 0% 0% / auto padding-box border-box;left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:visible;opacity:1;height:30px;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#008C00" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="color:rgb(0, 0, 0);float:left;width: 100%;font-size:14px;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        Order Confirmed
+                                                                    </span> , 
+                                                                    <span style="box-sizing:border-box; margin:0; padding:0;">
+                                                                        <%= moment(order.orderDate).format('ddd MMM DD , YYYY') %>
+                                                                    </span>                                                                    
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Pending -->
+                                                <div class="pending-update" style="background:rgb(230, 243, 230); border-top:3px solid rgb(230, 243, 230); border-bottom:3px solid rgb(230, 243, 230); border-radius:2px; min-height:30px; margin:4px 0 16px; padding:0; display:<%= order.status === 'Cancelled' ? 'none' : 'flex' %>; width:100%; position:relative; box-sizing:border-box;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:38.3906px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="width: 2px;top:20px;left:9px;background:rgb(224, 224, 224) none repeat scroll 0% 0% / auto padding-box border-box;border-radius:10px;height:38.3906px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="height: 57%;background:rgb(38, 165, 65) none repeat scroll 0% 0% / auto padding-box border-box;left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="top: 98.6%;left:-4px;bottom:0px;min-height:20px;float:none;padding:4px 16px 0px 0px;position:absolute;box-sizing:border-box;margin:0px;">
+                                                            <div style="background-color:rgb(38, 165, 65);border-color:rgb(38, 165, 65);top:0px;animation-duration:4s;width: 10px;height:10px;left:0px;animation-name:M06Elm;animation-iteration-count:infinite;animation-fill-mode:forwards;border-radius:50%;position:absolute;display:block;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                            <div style="background-image:radial-gradient(circle at 50% 50%, rgba(56, 142, 60, 0), rgba(56, 142, 60, 0.01) 20%, rgba(56, 142, 60, 0.25));top:-9px;animation-name:YJsRU3;opacity:1;width: 28px;height:28px;left:-9px;animation-iteration-count:infinite;animation-fill-mode:forwards;animation-duration:4s;border-radius:50%;position:absolute;display:block;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                            <div style="background-image:radial-gradient(circle at 50% 50%, rgba(56, 142, 60, 0), rgba(56, 142, 60, 0.01) 20%, rgba(56, 142, 60, 0.25));top:-9px;animation-name:YJsRU3;opacity:1;width: 28px;height:28px;left:-9px;animation-iteration-count:infinite;animation-fill-mode:forwards;animation-duration:4s;border-radius:50%;position:absolute;display:block;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:visible;opacity:1;height:38.3906px;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#008C00" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg></div>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="color:rgb(0, 0, 0);float:left;width: 100%;font-size:14px;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                Pending
+                                                            </div>
+                                                            <div style="font-weight:400;padding-top:2px;font-size:12px;color:rgb(17, 17, 18);box-sizing:border-box;margin:0px;padding:2px 0px 0px;">
+                                                                Your item is pending to be processed.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Processing -->
+                                                <div class="processing-update" style="min-height:30px; margin:4px 0 16px; padding:0; display:<%= order.status === 'Cancelled' ? 'none' : 'flex' %>; width:100%; position:relative; box-sizing:border-box;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:30px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="background:rgb(38, 165, 65) none repeat scroll 0% 0% / auto padding-box border-box;left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:hidden;height:0px;opacity:0;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#008C00" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg></div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <circle cx="10" cy="10" r="7" fill="white" stroke="#B8BBBF" stroke-width="2" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="float:left;width: 100%;font-size:14px;color:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                Processing
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Shipped -->
+                                                <div class="shipped-update" style="min-height:30px; margin:4px 0 16px; padding:0; display:<%= order.status === 'Cancelled' ? 'none' : 'flex' %>; width:100%; position:relative; box-sizing:border-box;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:30px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="background:rgb(38, 165, 65) none repeat scroll 0% 0% / auto padding-box border-box;left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:hidden;height:0px;opacity:0;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#008C00" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg></div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <circle cx="10" cy="10" r="7" fill="white" stroke="#B8BBBF" stroke-width="2" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="float:left;width: 100%;font-size:14px;color:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                Out for delivery
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Delivery -->
+                                                <div class="delivery-update" style="padding:4px 0; margin:0; min-height:45px; display:<%= order.status === 'Cancelled' ? 'none' : 'flex' %>; width:100%; position:relative; box-sizing:border-box;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:100%;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="background:rgb(38, 165, 65) none repeat scroll 0% 0% / auto padding-box border-box;left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:hidden;height:0px;opacity:0;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#008C00" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg></div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <circle cx="10" cy="10" r="7" fill="white" stroke="#B8BBBF" stroke-width="2" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="float:left;width: 100%;font-size:14px;color:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        Delivery expected on
+                                                                    </span>, 
+                                                                    <span style="box-sizing:border-box; margin:0; padding:0;">
+                                                                        <%= moment(order.createdOn).add(7, 'days').format('MMM D') %> by 11 PM
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <button type="button" style="cursor: pointer;height:32px;float:right;margin-left:8px;width: max-content;padding:8px;border:1px solid rgb(219, 219, 219);border-radius:2px;background-color:rgb(255, 255, 255);min-width:64px;color:rgb(42, 85, 229);text-align:center;font-size:12px;line-height:12px;font-family:inter_regular, 'sans-serif';font-weight:500;display:block;box-sizing:border-box;margin:0px 0px 0px 8px;">
+                                                            Change Date
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- Cancelled -->
+                                                <div class="cancelled-update" style="padding:4px 0; margin:0; min-height:45px; width:100%; position:relative; box-sizing:border-box; display:<%= order.status === 'Cancelled' ? 'flex' : 'none' %>;">
+                                                    <div style="top:20px;left:9px;border-width:0px 1px 0px 0px;border-style:hidden dashed hidden hidden;border-color:rgb(184, 187, 191);border-image:none;height:100%;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="width: 2px;top:20px;left:9px;background:rgb(224, 224, 224) none repeat scroll 0% 0% / auto padding-box border-box;border-radius:10px;height:100%;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="background:rgb(255, 67, 67) none repeat scroll 0% 0% / auto padding-box border-box;background-color:rgb(255, 67, 67);left:9px;top:19px;border-radius:10px;width: 2px;position:absolute;display:none;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                                    <div style="padding:0px 16px 0px 0px;min-height:20px;float:left;box-sizing:border-box;margin:0px;">
+                                                        <div style="visibility:visible;opacity:1;height:37px;transition:visibility, opacity 0.4s ease-in;box-sizing:border-box;margin:0px;padding:0px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <g filter="url(#filter0_d)" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <circle cx="10" cy="9" r="8" fill="#E32727" style="box-sizing:border-box;margin:0px;padding:0px;"></circle>
+                                                                    <path d="M7 8.93957L9.05882 11.4396L13.5 7" stroke="white" stroke-width="1.5" stroke-linecap="round" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                </g>
+                                                                <defs style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <filter x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" style="box-sizing:border-box;margin:0px;padding:0px;"></feFlood>
+                                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feOffset dy="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feOffset>
+                                                                        <feGaussianBlur stdDeviation="1" style="box-sizing:border-box;margin:0px;padding:0px;"></feGaussianBlur>
+                                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" style="box-sizing:border-box;margin:0px;padding:0px;"></feColorMatrix>
+                                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" style="box-sizing:border-box;margin:0px;padding:0px;"></feBlend>
+                                                                    </filter>
+                                                                </defs>
+                                                            </svg></div>
+                                                    </div>
+                                                    <div style="display:flex;justify-content:space-between;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="color:rgb(0, 0, 0);float:left;width: 100%;font-size:14px;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            <div style="text-transform:capitalize;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                <span style="box-sizing:border-box;margin:0;padding:0;">
+                                                                    <span style="box-sizing:border-box;margin:0;padding:0;">Cancelled</span>, 
+                                                                    <span style="box-sizing:border-box;margin:0;padding:0;">
+                                                                        <%= order.cancellationDate ? moment(order.cancellationDate).format('ddd, MMM Do YYYY') : 'N/A' %>
+                                                                    </span>
+                                                                </span>                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="cursor: pointer;font-size:14px;font-weight:500;margin-top:12px;align-items:center;display:flex;color:rgb(42, 85, 229);box-sizing:border-box;margin:12px 0px 0px;padding:0px;">
+                                                See All Updates  >>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%; border-bottom: none;border-bottom:0px none rgb(33, 33, 33);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                </div>
+                                <!-- cancel and chat with us -->
+                                <div data-id="od-actions" style="cursor: pointer;box-sizing:border-box;margin:0px;padding:0px;">
+                                    <div style="justify-content:center;align-items:center;display:flex;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <%
+                                            let totalSavings = 0;
+                                            order.products.forEach(product => {
+                                                totalSavings += (product.regularPrice - product.salePrice) * product.quantity;
+                                            });
+                                        %>
+                                        
+                                        
+                                        
+                                        <div id="cancel-order-btn" style="align-self:stretch; flex:1 1 0%; border-right:1px solid rgb(240, 240, 240); font-size:14px; font-weight:500; text-align:center; align-items:center; display:<%= order.status === 'Cancelled' ? 'none' : 'flex' %>; width:100%; position:relative; overflow:hidden;  color:rgb(33, 33, 33); box-sizing:border-box; margin:0; padding:0;">
+                                            <button type="button" 
+                                            onclick="handleOrderCancellation('<%= order.orderId %>')"
+                                             style="background: none; border: none;padding: 0px 150px; color: rgb(58, 15, 15); cursor: pointer;">
+                                            Cancel
+                                            </button>                                           
+                                            
+                                        </div>
+
+                                        <div style="align-self:stretch;flex:1 1 0%;border-right:1px solid rgb(240, 240, 240);font-size:14px;font-weight:500;text-align:center;align-items:center;position:relative;overflow:hidden;display:flex;color:rgb(33, 33, 33);box-sizing:border-box;margin:0px;padding:0px; border-radius: 12px;">
+                                            <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240);padding:15px 16px;border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;">
+                                                <div title="" style="border-bottom:0px none rgb(33, 33, 33);box-sizing:border-box;margin:0px;padding:0px;">
+                                                    <div style="border-bottom:0px none rgb(33, 33, 33);box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <img src="https://rukminim2.flixcart.com/www/96/96/promos/20/02/2024/40c8eed7-5aba-4089-b24e-f484934baa71.png?q=80" 
+                                                          style="height:24px;width: 24px;vertical-align:bottom;margin-right:2px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px 2px 0px 0px;padding:0px;"/>
+                                                        Chat with us
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(241, 243, 246); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <!-- 3rd div -->
+                            <div style="width: 100%; background-color: rgb(255, 255, 255); box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;background-color:rgb(255, 255, 255);display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;box-sizing:border-box;margin:0px;padding:0px; border-radius: 12px;">
+                                <div style="display: flex; flex-direction: column; width: 100%;flex-direction:column;width: 100%;box-sizing:border-box;margin:0px;padding:0px;">
+                                    <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240); line-height: 12px; font-size: 12px; font-weight: 500; color: rgb(135, 135, 135);padding:15px 16px;border-bottom:1px solid rgb(240, 240, 240);line-height:12px;font-size:12px;font-weight:500;color:rgb(135, 135, 135);box-sizing:border-box;margin:0px;"><span style="font-size: 12px; font-weight: 500; line-height: 12px; color: rgb(135, 135, 135); cursor: auto;font-weight:500;line-height:12px;color:rgb(135, 135, 135);cursor: auto;box-sizing:border-box;margin:0px;padding:0px;">Rate your experience</span></div>
+                                </div>
+                                <div title="" style="padding: 15px 16px; cursor: pointer; position: relative; font-size: 14px; width: 100%; align-items: center; display: flex;cursor:pointer;position:relative;font-size:14px;width: 100%;align-items:center;display:flex;box-sizing:border-box;margin:0px;"><img src="https://rukminim1.flixcart.com/www/100/100/promos/27/03/2024/8f033b23-8833-41a6-9ecf-ee1a6ca8142d.png?q=80" style="height: 20px; width: 20px; margin-right: 12px;width: 20px;margin-right:12px;opacity:1;transition:opacity 0.3s linear;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px 12px 0px 0px;padding:0px;" />
+                                    <div style="margin-right: 16px;box-sizing:border-box;padding:0px;">
+                                        <div style="box-sizing:border-box;margin:0px;padding:0px;">Did you find this page helpful?</div>
+                                        <div style="box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                    </div><img src="https://sa-web-h1a.flixcart.com/mosaic/ss/RightChevron.svg?q=80" style="margin-left: auto; height: 20px;height:20px;opacity:1;transition:opacity 0.3s linear;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;padding:0px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(241, 243, 246); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <!-- 4th div -->
+                            <div style="width: 100%; background-color: rgb(255, 255, 255); display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;background-color:rgb(255, 255, 255);box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.6);display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;box-sizing:border-box;margin:0px;padding:0px; border-radius: 12px;">
+                                <div title="" style="padding: 15px 16px; cursor: pointer; position: relative; font-size: 14px; width: 100%; align-items: center; display: flex;cursor:pointer;position:relative;font-size:14px;width: 100%;align-items:center;display:flex;box-sizing:border-box;margin:0px;"><img src="https://sa-web-h1a.flixcart.com/mosaic/ss/share_blue-4ad006a8.svg?q=80" style="height: 20px; width: 14px; margin-right: 12px;width: 14px;margin-right:12px;opacity:1;transition:opacity 0.3s linear;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px 12px 0px 0px;padding:0px;" />
+                                    <div style="margin-right: 16px;box-sizing:border-box;padding:0px;">
+                                        <div style="font-size: 17px;box-sizing:border-box;margin:0px;padding:0px;">Send Order Details</div>
+                                        <div style="box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                    </div><img src="https://sa-web-h1a.flixcart.com/mosaic/ss/RightChevron.svg?q=80" style="margin-left: auto; height: 20px;height:20px;opacity:1;transition:opacity 0.3s linear;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;padding:0px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shipping and price details -->
+            <div style="display: flex; flex-basis: 25%; width: 25%; flex-direction: row; background-color: transparent; margin: 10px; justify-content: center; gap: 10px;flex-basis:25%;width: 25%;flex-direction:row;background-color:rgba(0, 0, 0, 0);margin:10px;justify-content:center;gap:10px;box-sizing:border-box;padding:0px;">
+                <div style="flex-direction:column;width: 100%;display:flex;box-sizing:border-box;margin:0px;padding:0px;">
+                    <!-- Shipping -->
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(241, 243, 246); padding-bottom: 8px;padding-bottom:8px;font-size:14px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <div style="width: 100%; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px -1px;background-color:rgb(255, 255, 255);box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.6);box-sizing:border-box;margin:0px;padding:0px;">
+                                <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240); display: flex; font-size: 12px; font-weight: 500; line-height: 12px; color: rgb(135, 135, 135); background-color: rgb(255, 255, 255);padding:15px 16px;border-bottom:1px solid rgb(240, 240, 240);display:flex;font-size:12px;font-weight:500;line-height:12px;color:rgb(135, 135, 135);background-color:rgb(255, 255, 255);box-sizing:border-box;margin:0px;border-radius: 12px;">Shipping details</div>
+                                <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240);padding:15px 16px;border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;">
+                                    <div style="justify-content:flex-start;display:flex;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="flex-basis:80%;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <p style="font-size:17px;font-weight:500;margin-bottom:8px;box-sizing:border-box;margin:0px 0px 8px;padding:0px;">Noora Hussain </p>
+                                            <p style="box-sizing:border-box;margin:0px;padding:0px;">Third Floor, Kinfra techno park, </p>
+                                            <p style="box-sizing:border-box;margin:0px;padding:0px;">Kakkanchery </p>
+                                            <p style="box-sizing:border-box;margin:0px;padding:0px;">Calicut - <span style="box-sizing:border-box;margin:0px;padding:0px;">673635</span></p>
+                                        </div>
+                                        <div style="flex-basis:20%;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div title="" style="border: 1px solid rgb(219, 219, 219); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 8px; font-size: 12px; font-weight: 500; border-radius: 4px; color: rgb(42, 85, 229); background-color: rgb(255, 255, 255); line-height: 12px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:8px;font-size:12px;font-weight:500;border-radius:4px;color:rgb(42, 85, 229);background-color:rgb(255, 255, 255);line-height:12px;box-sizing:border-box;margin:0px;">Change</div>
+                                        </div>
+                                    </div>
+                                    <div style="justify-content:flex-start;display:flex;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="flex-basis:80%;box-sizing:border-box;margin:0px;padding:0px;"><span style="line-height:24px;font-weight:500;box-sizing:border-box;margin:0px;padding:0px;">Phone number: </span><span style="box-sizing:border-box;margin:0px;padding:0px;">7034929567</span></div>
+                                        <div style="flex-basis:20%;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div title="" style="border: 1px solid rgb(219, 219, 219); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 8px; font-size: 12px; font-weight: 500; border-radius: 4px; color: rgb(42, 85, 229); background-color: rgb(255, 255, 255); line-height: 12px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:8px;font-size:12px;font-weight:500;border-radius:4px;color:rgb(42, 85, 229);background-color:rgb(255, 255, 255);line-height:12px;box-sizing:border-box;margin:0px;">Change</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Price -->
+                    <div style="z-index: 5; position: relative;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="background-color: rgb(241, 243, 246); padding-bottom: 8px;padding-bottom:8px;box-sizing:border-box;margin:0px;padding:0px 0px 8px;">
+                            <div style="width: 100%; background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px -1px;background-color:rgb(255, 255, 255);box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.6);box-sizing:border-box;margin:0px;padding:0px;border-radius: 12px;">
+                                <div style="width: 100%; padding: 15px 16px; border-bottom: 1px solid rgb(240, 240, 240); display: flex; font-size: 12px; font-weight: 500; line-height: 12px; color: rgb(135, 135, 135); background-color: rgb(255, 255, 255);padding:15px 16px;border-bottom:1px solid rgb(240, 240, 240);display:flex;font-size:12px;font-weight:500;line-height:12px;color:rgb(135, 135, 135);background-color:rgb(255, 255, 255);box-sizing:border-box;margin:0px; border-radius: 12px;">Price Details</div>
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="width: 100%; padding: 8px 16px 0; border-bottom: 1px solid rgb(240, 240, 240); font-size: 14px; box-sizing:border-box; margin:0;">
+                                            <!-- Listing Price -->
+                                            <% if (order.products && order.products.length > 0) { %>
+                                              <% order.products.forEach(function(product) { %>
+                                                <p style="margin: 20px 0;"><strong><%= product.name %></strong></p>
+                                                <div style="padding:2px 0; display:inline-block; width:100%; box-sizing:border-box; margin:0;">
+                                                  <div style="display:block; float:left; max-width:70%; padding-bottom:4px; box-sizing:border-box; margin:0; padding:0 0 4px;">
+                                                    Listing price
+                                                  </div>
+                                                  <div style="float:right; text-decoration:line-through solid rgb(33, 33, 33); box-sizing:border-box; margin:0; padding:0;">
+                                                    ₹<%= product.regularPrice * product.quantity %>
+                                                  </div>
+                                                </div>
+                                                <!-- Selling Price -->
+                                                <div style="padding:2px 0; display:inline-block; width:100%; box-sizing:border-box; margin:0;">
+                                                  <div style="display:block; float:left; max-width:70%; padding-bottom:4px; box-sizing:border-box; margin:0; padding:0 0 4px;">
+                                                    Selling price
+                                                  </div>
+                                                  <div style="float:right; box-sizing:border-box; margin:0; padding:0;">
+                                                    ₹<%= product.salePrice * product.quantity %>
+                                                  </div>
+                                                </div>
+                                                <!-- Handling Fee -->
+                                                <div style="padding:2px 0; display:inline-block; width:100%; box-sizing:border-box; margin:0;">
+                                                  <div style="display:block; float:left; max-width:70%; padding-bottom:4px; box-sizing:border-box; margin:0; padding:0 0 4px;">
+                                                    <span style="box-sizing:border-box; margin:0; padding:0;">Handling Fee</span>
+                                                  </div>
+                                                  <div style="float:right; box-sizing:border-box; margin:0; padding:0;">
+                                                    Free
+                                                  </div>
+                                                </div>
+                                                <!-- Total Amount -->
+                                                <div style="padding:12px 0 4px; border-top:1px dashed rgb(240, 240, 240); font-weight:500; display:inline-block; width:100%; box-sizing:border-box; margin:0;">
+                                                  <div style="width: 60%; display:block; float:left; max-width:70%; padding-bottom:4px; box-sizing:border-box; margin:0; padding:0 0 4px;">
+                                                    Total Amount
+                                                  </div>
+                                                  <div style="float:right; box-sizing:border-box; margin:0; padding:0;">
+                                                    ₹<%= product.price * product.quantity %>
+                                                  </div>
+                                                </div>
+                                              <% }); %>
+                                            <% } %>
+                                          </div>
+                                          
+                                        
+                                    </div>
+                                    <ul style="line-height:20px;list-style:outside none disc;padding-left:32px;font-size:14px;padding:16px 16px 16px 32px;color:rgb(33, 33, 33);box-sizing:border-box;margin:0px;">
+                                        <li style="list-style: initial;box-sizing:border-box;margin:0px;padding:0px;"><%= order.paymentMethod || "Cash On Delivery" %>: ₹<%= order.finalAmount %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function handleOrderCancellation(orderId) {
+        Swal.fire({
+            title: 'Cancel entire order?',
+            text: "This will cancel all items in your order. Would you like to provide a reason?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, provide reason',
+            cancelButtonText: 'No, just cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to cancellation reason page
+                window.location.href = `/orders/${orderId}/cancel?type=order`;
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // User chose to cancel without reason
+                fetch(`/orderCancel/${orderId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Check if refund was processed
+                        if (data.refund && data.refund.processed) {
+                            Swal.fire({
+                                title: 'Order Cancelled!',
+                                html: `Your order has been cancelled successfully.<br><br>
+                                      <strong>Refund Information:</strong><br>
+                                      Amount: ₹${data.refund.amount.toFixed(2)}<br>
+                                      Credited to your wallet<br>
+                                      New wallet balance: ₹${data.refund.newBalance.toFixed(2)}`,
+                                icon: 'success'
+                            }).then(() => {
+                                // Reload the page to show updated status
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Order Cancelled!',
+                                text: 'Your order has been cancelled successfully.',
+                                icon: 'success'
+                            }).then(() => {
+                                // Reload the page to show updated status
+                                window.location.reload();
+                            });
+                        }
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: data.message || 'Failed to cancel order.',
+                            icon: 'error'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again.',
+                        icon: 'error'
+                    });
+                });
+            }
+        });
+    }
+    
+    function handleProductCancellation(orderId, itemId, productName) {
+        Swal.fire({
+            title: `Cancel "${productName}"?`,
+            text: "Would you like to provide a reason for cancellation?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, provide reason',
+            cancelButtonText: 'No, just cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to cancellation reason page
+                window.location.href = `/orders/${orderId}/cancel?type=item&itemId=${itemId}`;
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // User chose to cancel without reason
+                fetch(`/cancel-item/${orderId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId,
+                        cancelType: 'item',
+                        reason: 'No reason provided'
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Check if refund was processed
+                        if (data.refund && data.refund.processed) {
+                            Swal.fire({
+                                title: 'Item Cancelled!',
+                                html: `The item has been cancelled successfully.<br><br>
+                                      <strong>Refund Information:</strong><br>
+                                      Amount: ₹${data.refund.amount.toFixed(2)}<br>
+                                      Credited to your wallet<br>
+                                      New wallet balance: ₹${data.refund.newBalance.toFixed(2)}`,
+                                icon: 'success'
+                            }).then(() => {
+                                // Reload the page to show updated status
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Item Cancelled!',
+                                text: 'The item has been cancelled successfully.',
+                                icon: 'success'
+                            }).then(() => {
+                                // Reload the page to show updated status
+                                window.location.reload();
+                            });
+                        }
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: data.message || 'Failed to cancel item.',
+                            icon: 'error'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again.',
+                        icon: 'error'
+                    });
+                });
+            }
+        });
+    }
+</script>
+
+<script>
+    function handleReturnRequest(orderId, itemId, productName) {
+        Swal.fire({
+            title: `Return "${productName}"?`,
+            text: "Please provide a reason for your return request",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#ff9800',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Submit Return Request',
+            input: 'select',
+            inputOptions: {
+                'defective': 'Item is defective',
+                'damaged': 'Item arrived damaged',
+                'wrong_item': 'Wrong item received',
+                'not_as_described': 'Item not as described',
+                'other': 'Other reason'
+            },
+            inputPlaceholder: 'Select a reason',
+            showLoaderOnConfirm: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value) {
+                        resolve()
+                    } else {
+                        resolve('Please select a return reason')
+                    }
+                })
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the return request
+                fetch(`/return-item/${orderId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId,
+                        reason: result.value
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'Return Requested!',
+                            text: 'Your return request has been submitted successfully. You will receive a refund after admin approval.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Reload the page to show updated status
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: data.message || 'Failed to submit return request.',
+                            icon: 'error'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again.',
+                        icon: 'error'
+                    });
+                });
+            }
+        });
+    }
+</script>
+
+<script>
+    // Function to handle cancellation response with refund notification
+    function handleCancellationResponse(response) {
+        if (response.success) {
+            if (response.refund && response.refund.processed) {
+                // Show success message with refund details
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cancellation Successful',
+                    html: `
+                        <p>Your cancellation has been processed successfully.</p>
+                        <p>A refund of ₹${response.refund.amount.toFixed(2)} has been credited to your wallet.</p>
+                        <p>New wallet balance: ₹${response.refund.newBalance.toFixed(2)}</p>
+                    `,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Redirect to order details page
+                    if (response.redirectUrl) {
+                        window.location.href = response.redirectUrl;
+                    } else {
+                        window.location.reload();
+                    }
+                });
+            } else {
+                // Show regular success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cancellation Successful',
+                    text: response.message || 'Your cancellation has been processed successfully.',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Redirect to order details page
+                    if (response.redirectUrl) {
+                        window.location.href = response.redirectUrl;
+                    } else {
+                        window.location.reload();
+                    }
+                });
+            }
+        } else {
+            // Show error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Cancellation Failed',
+                text: response.message || 'Something went wrong',
+                confirmButtonText: 'OK'
+            });
+        }
+    }
+
+    // For admin panel - handle return approval and refund
+    function handleReturnApproval(orderId, itemId) {
+        Swal.fire({
+            title: 'Approve Return?',
+            text: 'This will process a refund to the customer\'s wallet',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, approve',
+            cancelButtonText: 'No, cancel'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch('/admin/process-return-refund', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            orderId: orderId,
+                            itemId: itemId
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Return Approved',
+                            html: data.refund ? 
+                                `Refund of ₹${data.refund.amount.toFixed(2)} has been processed to customer's wallet.` :
+                                'Return has been approved successfully.',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            // Reload page to show updated status
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'Failed to process return',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Something went wrong. Please try again.',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    async function processReturnRefund(orderId, itemId) {
+        const button = document.getElementById(`refundBtn-${itemId}`);
+        if (button) {
+    button.style.display = "none";
+}
+
+
+        Swal.fire({
+            title: 'Process Refund?',
+            text: 'This will process a refund to the customer\'s wallet',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, process refund',
+            cancelButtonText: 'Cancel'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch('/process-return-refund', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ orderId, itemId })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        // ✅ Update button only on successful refund
+                        if (button) {
+                            button.textContent = "Refunded";
+                            button.disabled = true;
+                            button.style.backgroundColor = "#e0e0e0";
+                            button.style.color = "#777";
+                            button.style.border = "1px solid #ccc";
+                            button.style.cursor = "not-allowed";
+                            button.style.opacity = "1";
+                        }
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Refund Processed',
+                            html: data.refund ? 
+                                `Refund of ₹${data.refund.amount.toFixed(2)} has been processed to wallet.` :
+                                'Refund has been processed successfully.',
+                            confirmButtonText: 'OK'
+                        }).then(() => window.location.reload());
+                    } else {
+                        throw new Error(data.message || 'Failed to process refund');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: error.message || 'Something went wrong. Please try again.',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Re-enable button if failed
+                    if (button) {
+                        button.disabled = false;
+                        button.innerText = 'Process Refund';
+                        button.style.opacity = '1';
+                        button.style.cursor = 'pointer';
+                    }
+                }
+            } else {
+                // Re-enable button if user cancels
+                if (button) {
+                    button.disabled = false;
+                    button.innerText = 'Process Refund';
+                    button.style.opacity = '1';
+                    button.style.cursor = 'pointer';
+                }
+            }
+        });
+    }
+</script>
+
+    
+
+<%- include('../partials/user/footer') %>
+

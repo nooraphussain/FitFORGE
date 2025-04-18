@@ -1,0 +1,342 @@
+<%- include('../partials/admin/header') %>
+
+		<!-- MAIN -->
+		<main style="background-color: var(--grey);">
+            <div class="head-title">
+                <div class="left">
+                    <h1>Categories</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/admin">Dashboard</a></li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li><a class="active" href="/admin/category">Category</a></li>
+                    </ul>
+                </div>
+
+                                
+
+                <div class="right flex items-center gap-4 w-full">
+                    <div class="flex items-center gap-4">
+                        <!-- New Category Button -->
+                        <button class="new-category-btn flex" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory">
+                            <i class="bx bx-plus text-lg"></i>
+                            <span class="text font-medium">New Category</span>
+                        </button> 
+                
+                        <!-- Filter Button -->
+                        <button class="filter-btn flex">
+                            <i class="bx bx-search text-lg"></i>
+                            <span class="text font-medium">Filter</span>
+                        </button>  
+                    </div>
+                </div>
+                
+                <!-- Offcanvas for New Category -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCategory" aria-labelledby="NewCategoryLabel">
+                    <div class="offcanvas-header justify-content-between">
+                        <h5 id="NewCategoryLabel" class="text-dark">Add New Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <form method="post" action="/admin/addCategory" onsubmit="return handleFormSubmit(event)">
+                            <!-- Category Name Input -->
+                            <div class="mb-3">
+                                <label for="categoryName" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
+                            </div>
+                
+                            <!-- Description Input -->
+                            <div class="mb-3">
+                                <label for="categoryDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="categoryDescription" rows="3" placeholder="Enter category description"></textarea>
+                            </div>
+                
+                            <!-- Save Button -->
+                            <button class="w-100 btn btn-primary btn-lg" type="submit">Save Category</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="table-data">
+                    <div class="order">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">No.</th>
+                                    <th style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Category Name</th>
+                                    <th style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Description</th>
+                                    <th style="padding-left: 20px;">Offer Status</th>
+                                    <th>Offer</th>
+                                    <th>Offer Option</th>
+                                    <th>Action</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+
+                
+                            <tbody>
+                                <% for(let i = 0; i < categories.length; i++) { %>
+                                    <tr>
+                                        <td><%= (currentPage - 1) * 5 + i + 1 %></td>
+                                        <td><%= categories[i].name %></td>
+                                        <td><%= categories[i].description %></td>
+                                        <td  style="padding-left: 20px;">
+                                            <% if (categories[i].isAvailable === true) { %>
+                                                <span class="badge bg-success">Active</span>
+                                            <% } else { %>
+                                                <span class="badge bg-danger">Inactive</span>
+                                            <% } %>
+                                        </td>
+                                        <td><%= categories[i].categoryOffer + '%' %></td>
+                                        <td>
+                                            <% if (categories[i].isAdded === true) { %>
+                                                <a href="/admin/removeOffer?id=<%= categories[i]._id %>" class="custom-btn custom-btn-warning">Remove</a>
+                                            <% } else { %>
+                                                <a href="/admin/addOffer?id=<%= categories[i]._id %>" class="custom-btn custom-btn-primary">Add</a>
+                                            <% } %>
+                                        </td>                                        
+                                        <td>
+                                            <% if (categories[i].isListed) { %>
+                                                <a href="/admin/unlistCategory?id=<%= categories[i]._id %>" class="custom-btn custom-btn-danger">Unlist</a>
+                                            <% } else { %>
+                                                <a href="/admin/listCategory?id=<%= categories[i]._id %>" class="custom-btn custom-btn-success">List</a>
+                                            <% } %>
+                                        </td>                                        
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="dots-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" class="dropdown-item">Show</a></li>
+                                                    <li><a href="/admin/editCategory?id=<%= categories[i]._id %>" class="dropdown-item">Edit</a></li>
+                                                    <li><a href="/admin/deleteCategory?id=<%= categories[i]._id %>" class="dropdown-item">Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>                                                                                 
+                                        
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>    
+
+
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation" class="pagination-container">
+                            <ul class="pagination justify-content-center">
+                                <% if (currentPage > 1) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                <% } %>
+
+                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                                        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                                    </li>
+                                <% } %>
+
+                                <% if (currentPage < totalPages) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+                
+            </div>
+          
+        </main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+    <!-- JavaScript to Show/Hide Modal -->
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("categoryModal");
+        const openModal = document.getElementById("openModal");
+        const closeModal = document.getElementById("closeModal");
+        const form = document.getElementById("categoryForm");
+
+        // Open Modal
+        openModal.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+        // Close Modal
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Form Submit Handler
+        form.addEventListener("submit", handleFormSubmit);
+    });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+       
+        async function handleFormSubmit(event) {
+        event.preventDefault(); 
+
+        const offcanvasElement = document.getElementById('offcanvasCategory');
+        if (offcanvasElement) {
+            let offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+            if (!offcanvasInstance) {
+                offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
+            }
+            offcanvasInstance.hide();
+            console.log("Offcanvas closed."); 
+        }
+
+        const categoryName = document.getElementById('categoryName').value.trim();
+        const categoryDescription = document.getElementById('categoryDescription').value.trim();
+
+
+        if (!categoryName || !categoryDescription) {
+            Swal.fire({
+                icon: 'error',  
+                title: 'Oops!',
+                text: 'Category name or description cannot be empty!',
+                confirmButtonColor: 'var(--blue)'
+            });
+            return; 
+        }
+
+        const newCategory = {
+            name: categoryName,
+            description: categoryDescription,
+            isAvailable: true, 
+            isListed: true, 
+            isAdded: false, 
+            offerPrice: 'N/A'
+        };
+
+        try {
+            const response = await fetch('/admin/addCategory', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newCategory),
+            });
+
+            const result = await response.json();
+            console.log("Server Response:", result);
+
+            if (response.status === 201) {  
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: result.message || 'Category added successfully',
+                    showConfirmButton: true,
+                    toast: true,
+                    position: 'top',
+                    target: document.body,
+                    customClass: { container: 'my-swal-container' },
+                    confirmButtonColor: 'var(--blue)',
+                });
+
+                const form = document.getElementById("categoryForm"); 
+                if (form) {
+                    form.reset();  
+                } else {
+                    console.warn("Form with ID 'categoryForm' not found.");
+                }
+
+            } else {  
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: result.message || 'Failed to add category',
+                    showConfirmButton: true,
+                    toast: true,
+                    position: 'top',
+                    target: document.body,
+                    customClass: { container: 'my-swal-container' },
+                    confirmButtonColor: 'var(--blue)',
+                });
+            }
+
+        } catch (error) {
+            console.error("Fetch Error:", error); 
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: 'Something went wrong! Try again.',
+                showConfirmButton: true,
+                timer: 3000,
+                position: 'top',
+                target: document.body,
+                customClass: { container: 'my-swal-container' },
+                confirmButtonColor: 'var(--blue)',
+            });
+        }
+
+    }
+
+
+
+
+        function addCategoryToTable(category) {
+            const tbody = document.querySelector('tbody');
+            const newRow = document.createElement('tr');
+
+            const serialNumber = tbody.children.length + 1;
+
+            const statusBadge = category.isAvailable ? 
+                '<span class="badge bg-success">Active</span>' : 
+                '<span class="badge bg-danger">Inactive</span>';
+
+            const offerButton = category.isAdded ?
+                `<a href="/admin/removeOffer?id=${category._id}" class="custom-btn custom-btn-warning">Remove</a>` :
+                `<a href="/admin/addOffer?id=${category._id}" class="custom-btn custom-btn-primary">Add</a>`;
+
+            const listButton = category.isListed ?
+                `<a href="/admin/unlistCategory?id=${category._id}" class="custom-btn custom-btn-danger">Unlist</a>` :
+                `<a href="/admin/listCategory?id=${category._id}" class="custom-btn custom-btn-success">List</a>`;
+
+            const dropdownMenu = `
+                <div class="dropdown">
+                    <button class="dots-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item">Show</a></li>
+                        <li><a href="/admin/editCategory?id=${category._id}" class="dropdown-item">Edit</a></li>
+                        <li><a href="/admin/deleteCategory?id=${category._id}" class="dropdown-item">Delete</a></li>
+                    </ul>
+                </div>
+            `;
+
+            newRow.innerHTML = `
+                <td>${serialNumber}</td>
+                <td>${category.name}</td>
+                <td>${category.description}</td>
+                <td style="padding-left: 20px;">${statusBadge}</td>
+                <td>${category.offerPrice || 'N/A'}</td>
+                <td>${offerButton}</td>
+                <td>${listButton}</td>
+                <td>${dropdownMenu}</td>
+            `;
+
+            tbody.appendChild(newRow);
+        }
+
+
+    </script>
+
+	<script src="/js/admin.js"></script>
+</body>
+</html>

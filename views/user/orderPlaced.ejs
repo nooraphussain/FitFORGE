@@ -1,0 +1,406 @@
+<%- include('../partials/user/header') %>
+
+
+            <div style="background-color:#f5f4f4; margin-top:120px; box-sizing:border-box;padding:0px;">
+                <div style="opacity:0;position:fixed;top:0px;left:0px;width: 100%;height:3px;z-index:12;pointer-events:none;background:rgba(255, 255, 255, 0.3) none repeat scroll 0% 0% / auto padding-box border-box;transition:opacity 0.3s ease-out 0.6s;box-sizing:border-box;margin:0px;padding:0px;">
+                    <div style="transform: scaleX(1);animation:20s ease-in-out 0s 1 normal forwards running Ryvqcn;height:3px;width: 100%;background:rgb(255, 225, 27) none repeat scroll 0% 0% / auto padding-box border-box;transition:transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;transform-origin:0px 1.5px;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                </div>
+                <div style="max-width:1680px;min-width:978px;margin: 0px auto;overflow:hidden;box-sizing:border-box;padding:0px;">
+                    <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="margin: 0px auto;position:relative;padding:14px 80px 0px;box-sizing:border-box;">
+                            
+                            <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                <!-- first div -->
+                                <div style="display:flex;justify-content:space-between;margin-bottom:16px;padding:0px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;width: 100%;flex-flow:row wrap;box-sizing:border-box;margin:0px 0px 16px;background-color:rgb(255, 255, 255);border-radius:12px;">
+                                    <div style="display:flex;align-items:center;padding:10px 24px;width: 66.66%;box-sizing:border-box;margin:0px;">
+                                        <img src="img/orderPlaced.png" style="height:80px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;" />
+                                        <div style="margin-left:25px;box-sizing:border-box;padding:0px;">
+                                            <div style="color:rgb(0, 0, 0);font-size:24px;font-weight:500;box-sizing:border-box;margin:0;padding:0;">
+                                                <div style="box-sizing:border-box;margin:0;padding:0;">
+                                                  <span style="box-sizing:border-box;margin:0;padding:0;">Order placed for </span>₹<%= total.toFixed(2) %>!
+                                                </div>
+                                              </div>                                                                                        
+                                              <div style="color: rgb(172, 26, 1);">
+                                                <span>
+                                                  Your <span><%= products.length %></span> item<%= products.length > 1 ? 's' : '' %> will be delivered by 
+                                                </span>
+                                                <span style="font-weight:500;">
+                                                  <%= deliveryDate %>
+                                                </span>.
+                                              </div>                                                                                                                                                                                                                           
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0px 0px 20px;border-left:1px solid rgb(240, 240, 240);width: 33.33%;box-sizing:border-box;margin:0px;">
+                                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div style="font-size:18px;font-weight:500;margin-bottom:2px;box-sizing:border-box;margin:0px 0px 2px;padding:0px;">
+                                                Why call? Just click!
+                                            </div>
+                                            <div style="font-size:14px;box-sizing:border-box;margin:0px;padding:0px;">
+                                                Easily track all your Flipkart orders!
+                                            </div>
+                                            <a href="/account/orders" style="display:inline-block;border-radius:3px;background-color:rgb(0, 0, 0);color:rgb(255, 255, 255);min-width:120px;text-align:center;margin:16px 0px;padding:8px 12px;text-decoration:none solid rgb(255, 255, 255);border:0px none rgb(255, 255, 255);outline:rgb(255, 255, 255) none 0px;box-sizing:border-box;">
+                                                Go to My Orders
+                                            </a>
+                                        </div>
+                                        <img src="https://img1a.flixcart.com/www/helpcenter/assets/images/1529927950114/group-2%403x.png" style="color:black height: auto;width: 70px;margin-right:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px 20px 0px 0px;padding:0px;" />
+                                    </div>
+                                </div>
+
+                                <!-- second div -->
+                                <div style="box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;margin:16px 0px;padding:0px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;background-color:rgb(255, 255, 255);border-radius:12px;">
+                                    <div style="padding:24px;width: 33.33%;box-sizing:border-box;margin:0px;">
+                                        <div style="display:inline-block;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div style="padding-bottom:8px;box-sizing:border-box;margin:0px;">
+                                                <span style="font-size:16px;font-weight:500;box-sizing:border-box;margin:0px;padding:0px;">
+                                                    Delivery Address
+                                                </span>
+                                            </div>
+                                            <div style="position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                    <div style="font-weight:500; white-space: nowrap;">
+                                                      <%= shippingAddress.name %>
+                                                    </div>
+                                                    <!-- <button style="border:0 none rgb(40,116,240); margin-left:220px; border-radius:2px; color:rgb(40,116,240); padding:10px 20px; font-size:13px; font-weight:500; cursor:pointer;">
+                                                      Change
+                                                    </button> -->
+                                                  </div>
+                                                  <div>
+                                                    <%= shippingAddress.email || user.email %>
+                                                  </div>
+                                                  <div style="padding-top:10px;width:75%;">
+                                                    <%= shippingAddress.address || 'No address available' %>
+                                                  </div>
+                                                  <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;">
+                                                    <div>
+                                                      <span style="font-weight:500;">Phone number</span>
+                                                      <div style="padding-left:10px;display:inline;">
+                                                        <%= shippingAddress.phone || user.phoneNumber || 'N/A' %>
+                                                      </div>
+                                                    </div>
+                                                  </div>                                                                                                   
+                                                <!-- <div style="margin-top:4px;box-sizing:border-box;padding:0px;"><span style="cursor:pointer;font-size:13px;color:rgb(40, 116, 240);font-weight:500;box-sizing:border-box;margin:0px;padding:0px;">Change or Add Number</span></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- your rewards -->
+                                    <div style="display:block;position:relative;border-left:1px solid rgb(240, 240, 240);padding:24px;width: 25%;box-sizing:border-box;margin:0px;"><span style="font-weight:500;font-size:16px;box-sizing:border-box;margin:0px;padding:0px;">Your Rewards</span><a style="cursor:pointer;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div style="display:flex;margin:20px 0px;align-items:center;box-sizing:border-box;padding:0px;"><img src="https://rukminim1.flixcart.com/www/80/80/promos/15/07/2022/b24f2613-b89e-4e0a-8140-1316ad11f394.png?q=100" style="height:22px;width: 22px;padding-top:2px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:2px 0px 0px;" />
+                                                <div style="margin-left:15px;box-sizing:border-box;padding:0px;">
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;">2 SuperCoins Cashback</div>
+                                                    <div style="color:rgb(135, 135, 135);font-size:12px;box-sizing:border-box;margin:0px;padding:0px;">Use it to save on your next order</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!-- more actions -->
+                                    <div style="border-left:1px solid rgb(240, 240, 240);padding:24px;width: 33.33%;box-sizing:border-box;margin:0px;"><span style="display:inline-block;font-size:16px;font-weight:500;box-sizing:border-box;margin:0px;padding:0px;">More actions</span>
+                                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div style="display:flex;align-items:center;justify-content:space-between;border-left:0px none rgb(33, 33, 33);margin:12px 0px;width: 100%;flex-flow:row wrap;box-sizing:border-box;padding:0px;">
+                                                <div style="max-width:65%;display:flex;align-items:center;box-sizing:border-box;margin:0px;padding:0px;"><img src="/img/delivery.png" style="width: 25px;height:25px;margin-right:8px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px 8px 0px 0px;padding:0px;" />
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;"><span style="font-size:14px;white-space:nowrap;overflow:hidden;box-sizing:border-box;margin:0px;padding:0px;">Prefer contactless delivery ?</span></div>
+                                                </div>
+                                                <% if (order.paymentMethod === 'COD') { %>
+                                                  <button style="border:0px none rgb(40, 116, 240);border-radius:1px;padding:6px 16px;width: auto;min-width:140px;color:rgb(40, 116, 240);text-align:center;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px;display:block;font-size:13px;font-weight:500;transition:box-shadow 0.2s;vertical-align:super;background:rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;cursor:pointer;outline:rgb(40, 116, 240) none 0px;box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;">
+                                                    <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                      Pay Now
+                                                    </span>
+                                                  </button>
+                                                <% } else { %>
+                                                  <!-- If already paid, you can either hide the button completely or show a "Paid" label -->
+                                                  <div style="border:0px none rgb(40, 116, 240);border-radius:1px;padding:6px 16px;width: auto;min-width:140px;color:#4CAF50;text-align:center;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px;display:block;font-size:13px;font-weight:500;">
+                                                    <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                      Paid ✓
+                                                    </span>
+                                                  </div>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div style="display:flex;align-items:center;justify-content:space-between;border-left:0px none rgb(33, 33, 33);margin:12px 0px;width: 100%;flex-flow:row wrap;box-sizing:border-box;padding:0px;">
+                                            <div style="max-width:65%;display:flex;align-items:center;box-sizing:border-box;margin:0px;padding:0px;">
+                                              <img src="https://www.shutterstock.com/image-vector/shopping-cart-check-mark-icon-600nw-1708233319.jpg"
+                                               style="width: 25px;height:25px;margin-right:8px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px 8px 0px 0px;padding:0px;" />
+                                               <span style="font-size:14px;white-space:nowrap;overflow:hidden;box-sizing:border-box;margin:0px;padding:0px;">
+                                                Show order details
+                                              </span>
+                                            </div>
+                                            <div style="box-sizing:border-box;margin:0px;padding:0px;display:block;position:relative;">
+                                              <a href="/account/orderDetails/<%= order.orderId %>" style="text-decoration:none;">
+                                                <span style="height:35px;width: auto;min-width:140px;border-radius:1px;border:0px none rgb(40, 116, 240);text-align:center;display:inline-block;padding:10px 20px;position:relative;font-size:13px;vertical-align:super;background:rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;outline:rgb(40, 116, 240) none 0px;box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;transition:0.2s;font-weight:500;color:rgb(40, 116, 240);cursor:pointer;box-sizing:border-box;margin:0px;">
+                                                  Show order
+                                                </span>
+                                              </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- third div -->
+                                <div style="margin:16px 0px;padding:0px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;box-sizing:border-box;background-color:rgb(255, 255, 255);border-radius:12px;">
+                                    <div style="padding:24px;border-top:1px solid rgb(240, 240, 240);width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                        <div style="width: 33.33%;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <% products.forEach(function(product) { %>
+                                                <div style="width: 100%; box-sizing: border-box; margin: 0 0 20px; padding: 0;">
+                                                  <div style="display: flex; flex-direction: row; align-items: center; box-sizing: border-box; width: 100%;">
+                                                    <div style="text-align: center; max-width: 120px; margin-right: 16px; flex-shrink: 0;">
+                                                      <a href="/product-listing?productId=<%= product._id %>" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: rgb(33,33,33);">
+                                                        <div style="height: 75px; width: 75px; margin: 0 auto; position: relative;">
+                                                          <img loading="lazy" alt="<%= product.productName %>" 
+                                                               src="/uploads/product-images/<%= product.productImage %>" 
+                                                               style="display: block; width: 100%; height: 100%; object-fit: contain;" />
+                                                        </div>
+                                                      </a>
+                                                    </div>
+                                                    <div style="flex-grow: 1;">
+                                                        <a href="/product-listing?productId=<%= product._id %>" target="_blank" style="cursor: pointer; padding: 0; font-size: 14px; text-decoration: none; color: rgb(33,33,33); margin-bottom: 10px; font-weight: 400; display: block; border-radius: 2px; transition: box-shadow 0.2s; background: rgb(255,255,255);">
+                                                          <%= product.productName %>
+                                                        </a>
+                                                        <div style="color: rgb(135,135,135); font-size: 12px; margin-bottom: 5px;">
+                                                            <span style="margin-right: 3px; color: rgb(135,135,135); font-size: 12px;">Category:</span>
+                                                            <span style="font-weight: 400;"><%= product.categoryName %></span>
+                                                          </div>                                                          
+                                                    </div>                                                      
+                                                  </div>
+                                                </div>
+                                              <% }); %>                                              
+                                        </div>
+                                        <div style="margin-top:-10px;width: 33.33%;box-sizing:border-box;padding:0px;">
+                                            <div style="width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;padding:0px;">
+                                                <span style="padding:0px 10px 10px;width: 45px;box-sizing:border-box;margin:0px;">
+                                                    <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMjg3NEYxIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0yMCA4aC0zVjRIM2MtMS4xIDAtMiAuOS0yIDJ2MTFoMmMwIDEuNjYgMS4zNCAzIDMgM3MzLTEuMzQgMy0zaDZjMCAxLjY2IDEuMzQgMyAzIDNzMy0xLjM0IDMtM2gydi01bC0zLTR6TTYgMTguNWMtLjgzIDAtMS41LS42Ny0xLjUtMS41cy42Ny0xLjUgMS41LTEuNSAxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTEzLjUtOWwxLjk2IDIuNUgxN1Y5LjVoMi41em0tMS41IDljLS44MyAwLTEuNS0uNjctMS41LTEuNXMuNjctMS41IDEuNS0xLjUgMS41LjY3IDEuNSAxLjUtLjY3IDEuNS0xLjUgMS41eiIvPgo8L3N2Zz4=" style="transform:matrix(1, 0, 0, 1, 0, 7);text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;" />
+                                                </span>
+                                                <span style="margin-top:10px; padding-right:10px; width:75%; box-sizing:border-box; padding:0px 10px 0px 0px;">
+                                                    <span style="box-sizing:border-box; margin:0; padding:0;">
+                                                      Delivery expected by <%= deliveryDate %>
+                                                    </span>
+                                                </span>                                                  
+                                            </div>
+                                        </div>
+                                        <div style="padding-left:30px;width: 33.33%;box-sizing:border-box;margin:0px;">
+                                            <div style="position:relative;font-weight:500;font-size:16px;display:flex;justify-content:start;flex-wrap:wrap;box-sizing:border-box;margin:0px;padding:0px;">
+                                                <div style="box-sizing:border-box;margin:0px;padding:0px;">₹<%= total.toFixed(2) %>!</div>
+                                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;display:inline-block;position:relative;">
+                                                        <span style="border-radius:50%;background-color:rgb(255, 255, 255);color:rgb(135, 135, 135);font-weight:500;width: 16px;height:16px;font-size:11px;line-height:16px;text-align:center;display:inline-block;box-shadow:rgba(0, 0, 0, 0.2) 0px 0px 1px 0px;vertical-align:middle;margin:0px 2px 0px 8px;cursor:pointer;box-sizing:border-box;padding:0px;">
+                                                            ?
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-top:17px;box-sizing:border-box;margin:0px;">
+                                                <div style="padding-bottom:10px; font-weight:500; margin-left:-10px; width:auto; color:rgb(40,116,240); display:flex; flex-wrap:nowrap; box-sizing:border-box;">
+                                                    <span style="display:inline-flex; align-items:center; box-sizing:border-box; margin:0; padding:0;">
+                                                      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iMyIgZmlsbD0iIzI4NzRGMCIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTYuMzQ3IDE3LjY1M0M3LjgyODk1IDE5LjE3ODYgOS44NzMyNyAyMC4wMjc0IDEyIDIwQzE0LjEyNjcgMjAuMDI3NCAxNi4xNzEgMTkuMTc4NiAxNy42NTMgMTcuNjUzQzE5LjE3ODYgMTYuMTcxMSAyMC4wMjc0IDE0LjEyNjcgMjAgMTJDMjAuMDI3NCA5Ljg3MzI4IDE5LjE3ODYgNy44Mjg5NSAxNy42NTMgNi4zNDdDMTYuMTcxMyA0LjgyMTA4IDE0LjEyNjggMy45NzIyNyAxMiA0QzkuODczMjEgMy45NzIyNyA3LjgyODc1IDQuODIxMDggNi4zNDcgNi4zNDdDNC44MjEwOCA3LjgyODc1IDMuOTcyMjYgOS44NzMyMSA0IDEyQzMuOTcyMjYgMTQuMTI2OCA0LjgyMTA4IDE2LjE3MTMgNi4zNDcgMTcuNjUzWk0xNC44OTEgMTYuMDE4TDEyIDEzLjEyN1YxMy4xMjhMOS4xMDkgMTYuMDE5TDcuOTgyIDE0Ljg5MkwxMC44NzMgMTJMNy45ODIgOS4xMDhMOS4xMDggNy45ODJMMTIgMTAuODczTDE0Ljg5MiA3Ljk4MkwxNi4wMTkgOS4xMDhMMTMuMTI3IDEyTDE2LjAxOCAxNC44OTFMMTQuODkxIDE2LjAxOFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" 
+                                                           style="width:18px; margin:0 8px 0 12px; cursor:pointer; box-sizing:border-box; padding:0;" />
+                                                      <span style="cursor:pointer; vertical-align:middle; box-sizing:border-box; margin:0; padding:0;">
+                                                        Cancel
+                                                      </span>
+                                                    </span>
+                                                  </div>                                                  
+                                                  <div style="padding-bottom:10px; font-weight:500; margin-left:-10px; width:auto; color:rgb(40,116,240); display:flex; flex-wrap:nowrap; box-sizing:border-box; margin:0;">
+                                                    <span style="cursor:pointer; display:inline-flex; align-items:center; box-sizing:border-box; margin:0; padding:0;">
+                                                      <img src="/img/chat-vector-icon_676179-133-removebg-preview.png" 
+                                                           style="width:25px; margin:0px 8px 0px 0px; cursor:pointer; vertical-align:middle; box-sizing:border-box; padding:0;" />
+                                                      <span style="cursor:pointer; vertical-align:middle; box-sizing:border-box; margin:0; padding:0;">
+                                                        Chat with us
+                                                      </span>
+                                                    </span>
+                                                  </div>                                                  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 4th div -->
+                                <div style="margin-top:20px;padding-top:24px;box-sizing:border-box;padding:24px 0px 0px;background-color:rgb(255, 255, 255);border-radius:12px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                                    <div style="min-height:408px;margin-bottom:10px;position:relative;box-sizing:border-box;margin:0px 0px 10px;padding:0px;">
+                                        <div style="font-weight:500;padding-left:20px;color:rgb(38, 38, 38);font-size:22px;text-transform:lowercase;box-sizing:border-box;margin:0px;padding:0px 0px 0px 20px;"><span style="box-sizing:border-box;margin:0px;padding:0px;">Suggestions Based on Your Order</span></div>
+                                        <div style="margin-top:20px;min-height:350px;box-sizing:border-box;padding:0px;">
+                                            <div style="overflow:hidden;width: 100%;display:flex;flex-direction:row;flex: 0 0 auto;position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                                                <div style="overflow-x:hidden;padding-bottom:64px;margin-bottom:-64px;width: 100%;display:flex;flex-direction:row;flex: 0 0 auto;box-sizing:border-box;margin:0px 0px -64px;padding:0px 0px 64px;">
+                                                    <div style="width: 2650px;overflow:hidden;flex: 0 0 auto;box-sizing:border-box;margin:0px;padding:0px;">
+                                                   <!-- Slider Container: Fixed width for 6 items (220px each) -->
+                                                    <div id="sliderContainer" data-suggestions="<%= suggestions.length %>" style="position: relative; width: 1320px; overflow-x: auto; overflow-y: hidden; margin-left: 50px; margin-right: 150px !important; scroll-behavior: smooth;">
+                                                        <!-- Slider Wrapper: Contains all suggestion items, aligned to the left -->
+                                                        <div class="slider-wrapper" style="display: flex; justify-content: flex-start; transition: transform 0.4s ease-in-out; flex-direction: row; align-items: stretch; box-sizing: border-box; margin-right: 100px; padding: 0; transform: translateX(0px); min-width: <%= suggestions.length * 220 %>px;">
+                                                        <% suggestions.forEach(function(product) { %>
+                                                            <div class="suggestion-item" style="width: 220px; display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 0; margin-bottom: 20px;">
+                                                            <div class="suggestion-content" style="padding: 16px; position: relative; transition: box-shadow 0.2s ease-in-out; box-sizing: border-box; margin: 0;">
+                                                                <a class="suggestion-link" target="_blank" rel="noopener noreferrer" href="/product-listing?productId=<%= product._id %>" style="display: block; margin-bottom: 5px; text-decoration: none; color: rgb(33,33,33); box-sizing: border-box; padding: 0;">
+                                                                    <div class="image-wrapper" style="padding-bottom: 16px; user-select: none; transition: opacity 0.3s; opacity: 1; box-sizing: border-box; margin: 0;">
+                                                                    <div class="inner-wrapper" style="box-sizing: border-box; margin: 0; padding: 0;">
+                                                                    <div class="image-container" style="height: 200px; width: 200px; position: relative; margin: 0 auto; box-sizing: border-box; padding: 0;">
+                                                                        <img class="product-image" loading="eager" alt="<%= product.productName %>" src="/uploads/product-images/<%= Array.isArray(product.productImage) ? product.productImage[0] : product.productImage %>" style="position: absolute; inset: 0; margin: auto; opacity: 1; max-width: 200px; height: 200px; border: 0; box-sizing: border-box; padding: 0;" />
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                                </a>
+                                                                <div class="product-details" style="box-sizing: border-box; margin: 0; padding: 0;">
+                                                                    <div class="product-title" style="box-sizing: border-box; margin: 0; padding: 0; white-space: normal; word-wrap: break-word;">
+                                                                        <a class="product-link" title="<%= product.productName %>" target="_blank" rel="noopener noreferrer" href="/product-listing?productId=<%= product._id %>" style="display: block; margin-bottom: 5px; text-decoration: none; color: rgb(33,33,33); box-sizing: border-box; padding: 0;">
+                                                                            <%= product.productName %>
+                                                                          </a>                                                                          
+                                                                    </div>
+                                                                    <div class="product-rating" style="display: inline-block; vertical-align: middle; font-size: 0; box-sizing: border-box; margin: 0; padding: 0;">
+                                                                        <img src="./img/Frame 10.svg" alt="rating" style="display: inline-block; vertical-align: middle;" />
+                                                                        <span class="f2-m">4.5/5</span>
+                                                                    </div>
+                                                                    <div class="price-info" style="display: block; padding: 0 10px 0 0; margin: 3px 0; box-sizing: border-box;">
+                                                                        <div class="sale-price" style="display: inline-block; font-size: 16px; font-weight: 500; color: rgb(33,33,33);">
+                                                                        ₹<%= product.salePrice.toFixed(2) %>
+                                                                        </div>
+                                                                        <div class="regular-price" style="display: inline-block; margin-left: 8px; text-decoration: line-through; font-size: 14px; color: rgb(135,135,135);">
+                                                                        ₹<%= product.regularPrice.toFixed(2) %>
+                                                                        </div>
+                                                                        <div class="discount-info" style="display: inline-block; margin-left: 8px; color: rgb(56,142,60); font-size: 13px; letter-spacing: -0.2px; font-weight: 500;">
+                                                                        <span>
+                                                                            <% 
+                                                                            let discountPercentage = 0;
+                                                                            if(product.regularPrice > product.salePrice){
+                                                                                discountPercentage = Math.round(((product.regularPrice - product.salePrice) / product.regularPrice) * 100);
+                                                                            }
+                                                                            %>
+                                                                            <%= discountPercentage %>% off
+                                                                        </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            </div>
+                                                        <% }); %>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Left Arrow -->
+                                                    <div id="leftArrow" class="slider-arrow left-arrow" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); cursor: pointer; z-index: 999;">
+                                                        <div class="arrow-content" style="border-radius: 0 4px 4px 0; display: flex; align-items: center; pointer-events: auto; padding: 40px 15px; box-shadow: rgba(0,0,0,0.3) 1px 2px 10px -1px; background-color: rgba(255,255,255,0.98);">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14.6" height="24" viewBox="0 0 16 27">
+                                                            <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#212121" stroke="#FFF" fill-rule="evenodd" opacity=".9"></path>
+                                                        </svg>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Right Arrow -->
+                                                    <div id="rightArrow" class="slider-arrow right-arrow" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); cursor: pointer; z-index: 999;">
+                                                        <div class="arrow-content" style="border-radius: 4px 0 0 4px; display: flex; align-items: center; pointer-events: auto; padding: 40px 15px; box-shadow: rgba(0,0,0,0.3) 1px 2px 10px -1px; background-color: rgba(255,255,255,0.98);">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14.6" height="24" viewBox="0 0 16 27" style="transform: matrix(-1, 0, 0, -1, 0, 0);">
+                                                            <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#212121" stroke="#FFF" fill-rule="evenodd" opacity=".9"></path>
+                                                        </svg>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  const sliderContainer = document.getElementById("sliderContainer");
+                  const leftArrow = document.getElementById("leftArrow");
+                  const rightArrow = document.getElementById("rightArrow");
+                
+                  function updateArrows() {
+                    const scrollLeft = sliderContainer.scrollLeft;
+                    const clientWidth = sliderContainer.clientWidth;
+                    const scrollWidth = sliderContainer.scrollWidth;
+                    const maxScrollLeft = scrollWidth - clientWidth;
+                    console.log("scrollLeft:", scrollLeft, "clientWidth:", clientWidth, "scrollWidth:", scrollWidth, "maxScrollLeft:", maxScrollLeft);
+                    
+                    leftArrow.style.display = scrollLeft <= 0 ? "none" : "block";
+                    rightArrow.style.display = maxScrollLeft > 0 && scrollLeft < maxScrollLeft ? "block" : "none";
+                  }
+                
+                  sliderContainer.addEventListener("scroll", updateArrows);
+                
+                  leftArrow.addEventListener("click", function() {
+                    sliderContainer.scrollBy({ left: -220, behavior: "smooth" });
+                  });
+                
+                  rightArrow.addEventListener("click", function() {
+                    sliderContainer.scrollBy({ left: 220, behavior: "smooth" });
+                  });
+                
+                  // Delay update to ensure content is rendered
+                  setTimeout(updateArrows, 500);
+                });
+                </script>
+                <script>
+
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Get the payment method from the order data
+                  const paymentMethod = "<%= order.paymentMethod %>"; // This assumes you have order data in your template
+                  const orderId = "<%= order.orderId %>"; // Get the order ID from your template
+                  
+                  // Get the Pay Now button
+                  const payNowButton = document.querySelector('button span:contains("Pay Now")').closest('button');
+                  
+                  // Hide Pay Now button if payment method is Razorpay (already paid)
+                  if (paymentMethod === 'Razorpay') {
+                    payNowButton.style.display = 'none';
+                  }
+                  
+                  // Add click event to "Show order" button to navigate to order details
+                  const showOrderButton = document.querySelector('span:contains("Show order")');
+                  if (showOrderButton) {
+                    showOrderButton.closest('div').onclick = function() {
+                      window.location.href = `/account/orderDetails/₹{orderId}`;
+                    };
+                    // Add cursor pointer style to make it clear it's clickable
+                    showOrderButton.closest('div').style.cursor = 'pointer';
+                  }
+                });
+                </script>
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {\
+                    console.log('Order placed page loaded\');
+                    
+                    // Check if products data exists
+                    const productsData = <%= JSON.stringify(products || []) %>;
+                    console.log('Products data:', productsData);
+                    
+                    if (productsData.length === 0) {
+                      console.log('No products found in the data');
+                      document.querySelector('.products-container').innerHTML = '<p style="text-align: center; padding: 20px;">No products found for this order.</p>';
+                    }
+                    
+                    // Check if suggestions data exists
+                    const suggestionsData = <%= JSON.stringify(suggestions || []) %>;
+                    console.log('Suggestions data:', suggestionsData);
+                    
+                    // Check if order data exists
+                    const orderData = <%= JSON.stringify(order || {}) %>;
+                    console.log('Order data:', orderData);
+                    console.log('Order items:', orderData.orderedItems || []);
+                  });
+                </script>
+                
+                <style>
+                    /* Slider container remains a flex container with nowrap */
+                    #sliderContainer {
+                      overflow-x: auto;
+                      display: flex;
+                      flex-wrap: nowrap;
+                    }
+                    
+                    /* Each slider item has a fixed width */
+                    .slider-item {
+                      flex: 0 0 auto;
+                      width: 220px;
+                      box-sizing: border-box;
+                    }
+                    
+                    /* Allow the product title text to wrap normally */
+                    .product-title {
+                      white-space: normal;      /* allow wrapping */
+                      word-wrap: break-word;    /* break long words if needed */
+                    }
+                  </style>                  
+
+            <%- include('../partials/user/footer') %>

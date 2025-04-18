@@ -1,0 +1,244 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-cart">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/wishlist">Wishlist</a> 
+        </div>
+    </nav>
+
+    <div class="wishlist-items-div">
+        <h2 class="your-wishlist">your wishlist</h2>
+        <% if (products.length > 0) { %>
+          <% products.forEach(product => { %>
+            <div class="wishlist-item" data-id="<%= product.productId %>">
+              <div class="wishlist-block">
+                <div class="wishlist-item-card">
+                  <div class="wishlist-item-datas">
+                    <a class="wishlist-img" href="/product-listing?productId=<%= product.productId %>">
+                      <img alt="<%= product.productName %>" fetchpriority="high" width="124" height="124" decoding="async" data-nimg="1" class="style-55" src="/uploads/product-images/<%= product.productImage %>" />
+                    </a>
+                    <div class="style-56">
+                      <div class="style-57">
+                        <a class="style-58" href="/product-listing?productId=<%= product.productId %>">
+                          <%= product.productName %>
+                        </a>
+                        <button class="dlt-wish-product" onclick="removeFromWishlist(this, '<%= product.productId %>')">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" class="style-60" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM112,168a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm0-120H96V40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8Z" class="style-61"></path>
+                          </svg>
+                        </button>
+                      </div>
+                      <p class="f2-m cor-p4"><strong>Brand:</strong> <%= product.brand %></p>
+                      <div class="avaliacao">
+                        <img src="/img/Frame 10.svg" alt="Rating" />
+                        <span class="f2-m">4.5/5</span>
+                      </div>
+                      <div class="precos" style="display: flex; align-items: center;">
+                        <span class="preco-novo">$<%= product.salePrice %></span>
+                        <span class="preco-ant">$<%= product.regularPrice %></span>
+                        <span class="preco-desc"><%= product.offer %></span>
+                        <a class="style-128 add-to-cart" 
+                           data-product-id="<%= product.productId %>" 
+                           data-quantity="<%= product.quantity %>" 
+                           data-sale-price="<%= (Number(product.salePrice) || 0) %>"
+                           onclick="handleAddToCart(this)"
+                           style="margin-left: auto; width: 150px;">  
+                          <button type="button" 
+                                  class="style-128 add-to-cart <%= product.quantity === 0 ? 'disabled' : '' %>" 
+                                  title="<%= product.quantity === 0 ? 'Out of stock!' : '' %>"
+                                  style="width: 150px;">  
+                              Add to Cart
+                          </button>
+                        </a>                         
+                      </div>
+                      <div class="wishlist-product-color">
+                        <p class="f2-m cor-p4">Color: </p>
+                        <div class="color-selector per-product">
+                          <button class="roupa-cor1" style="background-color: <%= product.color %>"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div class="empty-cart-container">
+            <svg class="empty-cart-icon" stroke="currentColor" fill="none" stroke-width="1" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 10l-2 -6"></path>
+              <path d="M7 10l2 -6"></path>
+              <path d="M15 20h-7.756a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h13.999a2 2 0 0 1 1.977 2.304l-.36 2.055"></path>
+              <path d="M10 14a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+              <path d="M19 16v3"></path>
+              <path d="M19 22v.01"></path>
+            </svg>
+            <span class="empty-cart-text">Your wishlist is empty.</span>
+            <a class="continue-shopping-btn" href="/shop">Shop</a>
+          </div>
+        <% } %>                
+      </div>
+      
+</main>
+<script>
+    function handleAddToCart(anchor) {
+    const productId = anchor.getAttribute("data-product-id");
+    const quantityAvailable = parseInt(anchor.getAttribute("data-quantity"), 10);
+    const salePrice = anchor.getAttribute("data-sale-price");
+
+    if (!productId) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Product ID is required'
+        });
+        return;
+    }
+
+    if (quantityAvailable === 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Out of stock!'
+        });
+        return;
+    }
+  
+    addToCart(productId, salePrice, anchor);
+}
+
+function addToCart(productId, salePrice, anchor) {
+    console.log("Original salePrice:", salePrice);
+
+    let cleanPrice = salePrice.toString().replace(/[^0-9.]/g, '');
+    if (!cleanPrice) {
+        cleanPrice = "0";
+    }
+
+    const numericSalePrice = parseFloat(cleanPrice);
+    console.log("Numeric salePrice:", numericSalePrice);
+
+    if (isNaN(numericSalePrice)) {
+        Swal.fire({
+            title: 'Error',
+            text: 'Invalid product price',
+            icon: 'error',
+            timer: 2000
+        });
+        return;
+    }
+
+    fetch('/addToCart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+            productId: productId, 
+            productPrice: numericSalePrice,  
+            quantity: 1 
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message.includes("Limit") || data.message.includes("Stock Out")) {
+            throw new Error(data.message);
+        }
+
+        Swal.fire({
+            title: 'Added to Cart',
+            text: 'The product has been added to your cart',
+            icon: 'success',
+            timer: 2000
+        });
+
+        // Dynamically remove the product from the wishlist without refreshing
+        const wishlistItem = anchor.closest(".wishlist-item");
+        if (wishlistItem) {
+            wishlistItem.remove();
+        }
+    })
+    .catch(error => {
+        console.error("Error adding to cart:", error);
+        Swal.fire({
+            title: 'Error',
+            text: error.message || 'There was an error adding the product to your cart',
+            icon: 'error',
+            timer: 2000
+        });
+    });
+}
+
+</script>
+<script>
+    function removeFromWishlist(button, productId) {
+      if (!productId) {
+        console.error("Product ID not found!");
+        return;
+      }
+      
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "This product will be removed from your wishlist. Are you sure you want to continue?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, remove it!',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch('/wishlist/remove', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productId: productId })
+          })
+          .then(response => response.json())
+          .then(response => {
+            if (response.success) {
+              Swal.fire({
+                title: 'Removed from wishlist',
+                text: 'The product has been removed from your wishlist.',
+                icon: 'success',
+                timer: 2000
+              });
+              const wishlistItem = button.closest('.wishlist-item');
+              if (wishlistItem) {
+                wishlistItem.remove();
+              }
+            } else {
+              Swal.fire({
+                title: 'Error',
+                text: response.message,
+                icon: 'info',
+                timer: 2000
+              });
+            }
+          })
+          .catch(error => {
+            console.error("Error removing from wishlist:", error);
+            Swal.fire({
+              title: 'Error',
+              text: 'There was an error while removing the product from your wishlist.',
+              icon: 'error',
+              timer: 2000
+            });
+          });
+        } else {
+          Swal.fire({
+            title: 'Cancelled',
+            text: 'Product removal cancelled.',
+            icon: 'info',
+            timer: 2000
+          });
+        }
+      });
+    }
+  </script>
+  
+   
+
+  <%- include('../partials/user/footer') %>

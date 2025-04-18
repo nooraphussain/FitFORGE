@@ -1,0 +1,714 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-cart">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/cart">My Account</a> 
+        </div>
+    </nav>
+    <h2 class="your-profile" style="margin-left: 150px;">Your Profile</h2>
+    <div style="margin: 0px auto;max-width:1366px;min-width:1128px;box-sizing:border-box;padding:0px;">
+        <div style="margin: 0px auto;position:relative;padding:14px 64px 0px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;">
+            <!-- navbar -->
+            <div style="width: 25%;box-sizing:border-box;margin:0px;padding:0px;">
+                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+
+                    <!-- FitFORGE Customer -->
+                    <div style="box-sizing:border-box;margin:0px;padding:0px;background-color:#d9d9d9;border-radius:20px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                        <div style="padding:12px;margin-bottom:16px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px 0px 16px;"><img height="50px" width="50px" src="//static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg" style="vertical-align:middle;width: 50px;height:50px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;" />
+                            <div style="padding:5px 0px 0px 16px;width: calc(100% - 50px);box-sizing:border-box;margin:0px;">
+                                <div style="font-size:12px;box-sizing:border-box;margin:0px;padding:0px;">Hello,</div>
+                                <div style="padding-top:3px;font-size:16px;font-weight:500;display:flex;align-items:center;text-transform:capitalize;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;box-sizing:border-box;margin:0px;"><%= user.name%></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- the next div -->
+                    <div style="margin-bottom:16px;box-sizing:border-box;padding:0px;background-color:#d9d9d9;border-radius:20px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDE4Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04LjY5NCAtMTEpIj48ZWxsaXBzZSBjeD0iMjAuNTU3IiBjeT0iMjAiIHJ4PSIyMC41NTciIHJ5PSIyMCIvPjxwYXRoIGZpbGw9IiMyODc0RjEiIGQ9Ik05IDExdjE3LjEwOGMwIC40OTMuNDEuODkyLjkxOC44OTJoNC45M3YtNS4yNTdoLTMuMDMzbDQuOTEyLTQuNzcgNC45NzIgNC44M2gtMy4wMzVWMjloMTIuNDE3Yy41MDcgMCAuOTE4LS40LjkxOC0uODkyVjExSDl6Ii8+PC9nPjwvc3ZnPg==" 
+                                     style="width: 20px; height: 20px; filter: brightness(0) saturate(100%);"/>
+                                     <a href="/account/orders" style="width: calc(100% - 26px);padding-left:20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);cursor:pointer;text-decoration:none solid rgb(135, 135, 135);border:0px none rgb(135, 135, 135);outline:rgb(135, 135, 135) none 0px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 20px;">
+                                        MY ORDERS
+                                        <span style="margin-top:1px;float:right;box-sizing:border-box;padding:0px;">
+                                            <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" style="width: 14px;height:14px;transform:matrix(-1, 0, 0, -1, 0, 0);box-sizing:border-box;margin:0px;padding:0px;">
+                                                <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="grey" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                            </svg>
+                                        </span>
+                                     </a>
+                                </div>
+                            </div>
+                            <!-- Account settings -->
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMSIgdmlld0JveD0iMCAwIDIyIDIxIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05LjY5NCAtMTApIj48cGF0aCBmaWxsPSIjMjg3NEYwIiBkPSJNMTQuMjc1IDIyLjcwNGMyLjI3Mi0uNDEyIDQuMzQ3LS42MTggNi4yMjUtLjYxOCAxLjg3OCAwIDMuOTUzLjIwNiA2LjIyNS42MThhNS4xNSA1LjE1IDAgMCAxIDQuMjMgNS4wNjhWMzFoLTIwLjkxdi0zLjIyOGE1LjE1IDUuMTUgMCAwIDEgNC4yMy01LjA2OHptMS4yNzQtNy43MjRjMC0yLjU4IDIuMTYzLTQuNjczIDQuODMyLTQuNjczIDIuNjY3IDAgNC44MyAyLjA5MiA0LjgzIDQuNjczIDAgMi41OC0yLjE2MyA0LjY3My00LjgzIDQuNjczLTIuNjcgMC00LjgzMy0yLjA5Mi00LjgzMy00LjY3M3oiLz48ZWxsaXBzZSBjeD0iMjAuNTU3IiBjeT0iMjAiIHJ4PSIyMC41NTciIHJ5PSIyMCIvPjwvZz48L3N2Zz4=" 
+                                    style="width: 20px;height:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);" />
+                                    <div style="padding:0px 0px 12px 20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);box-sizing:border-box;margin:0px;">ACCOUNT SETTINGS</div>
+                                </div>
+                                <!-- Account infos -->
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <a href="/account" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Profile Information
+                                        </div>
+                                    </a>
+                                    <a href="/account/addresses" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;font-weight:500;color:rgb(40, 116, 240);background-color:rgb(245, 250, 255);box-sizing:border-box;margin:0px;">
+                                            Manage Addresses
+                                        </div>
+                                    </a>
+                                    <!-- <a href="/account/pancard" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            PAN Card Information
+                                        </div>
+                                    </a> -->
+                                </div>
+                            </div>
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <!-- PAYMENTS -->
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMyIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIzIDIyIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05LjY5NCAtOSkiPjxlbGxpcHNlIGN4PSIyMC41NTciIGN5PSIyMCIgcng9IjIwLjU1NyIgcnk9IjIwIi8+PHBhdGggZD0iTTcgNmgyOHYyOEg3eiIvPjxwYXRoIGZpbGw9IiMyODc0RjAiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTMxLjUgMjd2MS4xNjdhMi4zNCAyLjM0IDAgMCAxLTIuMzMzIDIuMzMzSDEyLjgzM2EyLjMzMyAyLjMzMyAwIDAgMS0yLjMzMy0yLjMzM1YxMS44MzNBMi4zMzMgMi4zMzMgMCAwIDEgMTIuODMzIDkuNWgxNi4zMzRhMi4zNCAyLjM0IDAgMCAxIDIuMzMzIDIuMzMzVjEzSDIxYTIuMzMzIDIuMzMzIDAgMCAwLTIuMzMzIDIuMzMzdjkuMzM0QTIuMzMzIDIuMzMzIDAgMCAwIDIxIDI3aDEwLjV6TTIxIDI0LjY2N2gxMS42Njd2LTkuMzM0SDIxdjkuMzM0em00LjY2Ny0yLjkxN2MtLjk3IDAtMS43NS0uNzgyLTEuNzUtMS43NXMuNzgtMS43NSAxLjc1LTEuNzVjLjk2OCAwIDEuNzUuNzgyIDEuNzUgMS43NXMtLjc4MiAxLjc1LTEuNzUgMS43NXoiLz48L2c+PC9zdmc+" 
+                                    style="width: 20px;height:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);" />
+                                    <div style="padding:0px 0px 12px 20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);box-sizing:border-box;margin:0px;">
+                                        PAYMENTS
+                                    </div>
+                                </div>
+                                <!-- payment infos -->
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <a href="/account/wallet" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Wallet
+                                        </div>
+                                      </a>
+                                    <!-- <a href="/account/giftcard" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Gift Cards
+                                            <span style="float:right;padding:0px 20px 0px 5px;color:rgb(56, 142, 60);font-weight:500;box-sizing:border-box;margin:0px;">₹0</span>
+                                        </div>
+                                    </a>
+                                    <a href="/account/vpadetails" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Saved UPI
+                                        </div>
+                                    </a>
+                                    <a href="/account/carddetails" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            Saved Cards
+                                        </div>
+                                    </a> -->
+                                </div>
+                            </div>
+
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <!-- My STUFF -->
+                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                                <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMyIgaGVpZ2h0PSIxOSIgdmlld0JveD0iMCAwIDIzIDE5Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMyODc0RjAiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTIwLjUgMi43NWgtOUw5LjI1LjVIMi41QTIuMjQ3IDIuMjQ3IDAgMCAwIC4yNiAyLjc1bC0uMDEgMTMuNUEyLjI1NyAyLjI1NyAwIDAgMCAyLjUgMTguNWgxOGEyLjI1NyAyLjI1NyAwIDAgMCAyLjI1LTIuMjVWNWEyLjI1NyAyLjI1NyAwIDAgMC0yLjI1LTIuMjV6bS01LjYyNSAzLjM3NWEyLjI1NyAyLjI1NyAwIDAgMSAyLjI1IDIuMjUgMi4yNTcgMi4yNTcgMCAwIDEtMi4yNSAyLjI1IDIuMjU3IDIuMjU3IDAgMCAxLTIuMjUtMi4yNSAyLjI1NyAyLjI1NyAwIDAgMSAyLjI1LTIuMjV6bTQuNSA5aC05VjE0YzAtMS40OTYgMy4wMDQtMi4yNSA0LjUtMi4yNXM0LjUuNzU0IDQuNSAyLjI1djEuMTI1eiIvPjxwYXRoIGQ9Ik0tMi00aDI3djI3SC0yeiIvPjwvZz48L3N2Zz4=" 
+                                    style="width: 20px;height:20px;text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);" />
+                                    <div style="padding:0px 0px 12px 20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);box-sizing:border-box;margin:0px;">
+                                        MY STUFF
+                                    </div>
+                                </div>
+                                <!-- My stuff infos -->
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <a href="/account/referrals" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Referrals
+                                        </div>
+                                    </a>
+                                    <!-- <a href="/account/rewards" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Coupons
+                                        </div>
+                                    </a>
+                                    <a href="/account/reviews" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Reviews &amp; Ratings
+                                        </div>
+                                    </a>
+                                    <a href="/notifications" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            All Notifications
+                                        </div>
+                                    </a> -->
+                                    <a href="/wishlist" style="text-decoration:none solid rgb(33, 33, 33);color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);outline:rgb(33, 33, 33) none 0px;box-sizing:border-box;margin:0px;padding:0px;">
+                                        <div style="font-size:14px;padding:12px 5px 12px 66px;cursor:pointer;box-sizing:border-box;margin:0px;">
+                                            My Wishlist
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        </div>
+
+                        <div style="border-bottom:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px;padding:0px;"></div>
+                        <!-- Logout -->
+                        <div style="padding-bottom:12px;box-sizing:border-box;margin:0px;">
+                            <div style="padding:20px 12px 5px 24px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                                <!-- svg power button -->
+                                <a href="/logout" style="text-decoration: none;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="box-sizing:border-box;margin:0px;padding:0px; filter: brightness(0) saturate(100%);">
+                                        <path fill="#2874F0" stroke-width="0.3" stroke="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                    </svg>
+                                </a>
+                                <span style="width: calc(100% - 26px);padding-left:20px;font-size:16px;font-weight:500;color:rgb(0, 0, 0);cursor:pointer;box-sizing:border-box;margin:0px;padding:0px 0px 0px 20px;">Logout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 75%;padding-left:16px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 16px;">
+                <div style="min-height:300px;box-sizing:border-box;margin:0px;padding:0px;">
+                    <!-- Manage Address card -->
+                    <div style="width: 75%;padding-left:16px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 16px;">
+                        <div style="min-height:300px;box-sizing:border-box;margin:0px;padding:0px;">
+                            <div style="background-color:#eeeeee;min-height:600px;padding:24px 32px;position:relative;box-sizing:border-box;margin:0px;border-radius:20px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                                <span style="font-size:18px;font-weight:500;display:block;padding-bottom:20px;box-sizing:border-box;margin:0px;padding:0px 0px 20px;">
+                                    Manage Addresses
+                                </span>
+                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                    <div style="border:1px solid rgb(224, 224, 224);background:rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;border-radius:2px;margin-bottom:30px;box-sizing:border-box;margin:0px 0px 30px;padding:0px;">
+                                        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div class="add-address-btn" style="font-size:14px;color:rgb(40, 116, 240);font-weight:500;padding:16px 0px;cursor:pointer;box-sizing:border-box;margin:0px; display: flex; align-items: center">
+                                                <img height="14" width="14" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMyMTc1RkYiIGQ9Ik0xMS4yNSA2Ljc1aC00LjV2NC41aC0xLjV2LTQuNUguNzV2LTEuNWg0LjVWLjc1aDEuNXY0LjVoNC41Ii8+PHBhdGggZD0iTS0zLTNoMTh2MThILTMiLz48L2c+PC9zdmc+" 
+                                                style="margin:0px 16px;vertical-align:middle;text-decoration:none solid rgb(40, 116, 240);color:rgb(40, 116, 240);border:0px none rgb(40, 116, 240);outline:rgb(40, 116, 240) none 0px;box-sizing:border-box;padding:0px;" />
+                                                ADD A NEW ADDRESS
+                                            </div>
+
+                                            <!-- pops up when clicked  ADD A NEW ADDRESS -->
+                                                <div class="address-form-container" style="background-color:rgb(255, 255, 255);padding:20px;position:relative;box-sizing:border-box;margin:0px;border-radius: 12px;">
+                                                    <form action="/account/addresses" method="POST" style="box-sizing:border-box;margin:0;padding:0;">
+                                                        <input type="hidden" name="action" value="add">
+                                                        <span style="color:rgb(135, 0, 0);font-weight:500;box-sizing:border-box;margin:0px;padding:0px;">
+                                                            ADD A NEW ADDRESS
+                                                        </span>
+                                                        <div style="margin-top:16px;width: 570px;box-sizing:border-box;padding:0px;">
+                                                            <div style="margin-bottom:16px;box-sizing:border-box;padding:0px;">
+                                                                <button type="button" style="padding:14px 24px;font-size:14px;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px;background:rgb(0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;border:0px none rgb(255, 255, 255);display:inline-block;border-radius:2px;font-weight:500;transition:box-shadow 0.2s;vertical-align:super;cursor:pointer;outline:rgb(255, 255, 255) none 0px;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-right:6px;vertical-align:text-bottom;box-sizing:border-box;padding:0px;">
+                                                                        <g fill="none" fill-rule="evenodd" style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                            <path d="M0 0h16v16H0z" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                            <path fill="#fff" d="M8 5.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 1 0 0-5.4zm6 2A6 6 0 0 0 8.7 2V.7H7.3V2A6 6 0 0 0 2 7.3H.7v1.4H2A6 6 0 0 0 7.3 14v1.3h1.4V14A6 6 0 0 0 14 8.7h1.3V7.3H14zm-6 5.4A4.7 4.7 0 0 1 3.3 8 4.7 4.7 0 0 1 8 3.3 4.7 4.7 0 0 1 12.7 8 4.7 4.7 0 0 1 8 12.7z" style="box-sizing:border-box;margin:0px;padding:0px;"></path>
+                                                                        </g>
+                                                                    </svg>Use my current location
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Name and Phone number -->
+                                                            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; width: 100%; box-sizing: border-box; margin: 0px; padding: 0px;">
+                                                                <div style="width: 100%; max-width: 400px; position: relative; margin-bottom: 10px; box-sizing: border-box; padding: 0;">
+                                                                    <input type="text" name="name" required autocomplete="name" tabindex="1" value=""
+                                                                      style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                      onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                      onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                    <label for="name"
+                                                                      style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                      Name
+                                                                    </label>
+                                                                </div>                                                                      
+                                                                
+                                                                <div style="width: 100%; max-width: 400px; position: relative; margin-bottom: 10px; box-sizing: border-box; padding: 0;">
+                                                                    <input type="text" name="phone" required maxlength="10" autocomplete="tel" tabindex="2" value=""
+                                                                      inputmode="numeric" pattern="[0-9]*"
+                                                                      onkeypress="if(event.charCode < 48 || event.charCode > 57){ event.preventDefault(); }"
+                                                                      style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                      onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                      onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                    <label for="phone"
+                                                                      style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                      10-digit mobile number
+                                                                    </label>
+                                                                </div>                                                                                                                                    
+                                                            </div>
+
+                                                            <!-- Pincode and Locality -->
+                                                            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; width: 100%; box-sizing: border-box; margin: 0px; padding: 0px;">
+                                                                <div style="width: 100%; max-width: 400px; position: relative; margin-bottom: 10px; box-sizing: border-box; padding: 0;">
+                                                                    <input type="text" name="pincode" required maxlength="6" autocomplete="postal-code" tabindex="3" value=""
+                                                                      inputmode="numeric" pattern="[0-9]*"
+                                                                      onkeypress="if(event.charCode < 48 || event.charCode > 57){ event.preventDefault(); }"
+                                                                      style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                      onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                      onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                    <label for="pincode"
+                                                                      style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                      Pincode
+                                                                    </label>
+                                                                </div>                                                                  
+                                                                
+                                                                <div style="width: 100%; max-width: 400px; position: relative; margin-bottom: 10px; box-sizing: border-box; padding: 0;">
+                                                                    <input type="text" name="addressLine2" required tabindex="4" value=""
+                                                                      style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                      onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                      onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                    <label for="addressLine2"
+                                                                      style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                      Locality
+                                                                    </label>
+                                                                </div>                                                                  
+                                                            </div>
+
+                                                            <!-- Address (Area and Street) -->
+                                                            <div style="width: 100%; max-width: 500px; margin-bottom: 10px; display: flex; align-items: flex-start; justify-content: space-between; box-sizing: border-box; padding: 0px;">
+                                                                <div style="width: 100%; position: relative; box-sizing: border-box; padding: 0;">
+                                                                    <div style="position: relative; box-sizing: border-box; padding: 0;">
+                                                                      <textarea name="addressLine1" rows="4" cols="10" tabindex="5" required autocomplete="street-address"
+                                                                        style="width: 100%; max-width: 500px; resize: none; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 25px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                        onfocus="this.style.fontSize='18px'; this.style.paddingTop='20px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                        onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='25px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }">
+                                                                      </textarea>
+                                                                      <label for="addressLine1"
+                                                                        style="position: absolute; left: 8px; top: 15px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                        Address (Area and Street)
+                                                                      </label>
+                                                                    </div>
+                                                                    <div style="position: absolute; background-color: #fff; width: 100%; max-width: 500px; bottom: 0; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; box-shadow: 0 0 4px rgba(224,224,224,0.5); z-index: 1; display: none; box-sizing: border-box;">
+                                                                    </div>
+                                                                </div>                                                                  
+                                                            </div>                                                            
+
+                                                            <!-- City/District/Town and States -->
+                                                            <div style="display:flex;align-items:flex-start;justify-content:space-between;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                
+                                                                <!-- City/District/Town -->
+                                                                <div style="width: 280px; margin-bottom: 10px; position: relative; box-sizing: border-box; padding-right: 10px;">
+                                                                    <div style="margin-bottom: 0; position: relative; box-sizing: border-box; padding: 0;">
+                                                                        <input type="text" name="city" required autocomplete="city" tabindex="6" value=""
+                                                                          style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                          onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                          onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                        <label for="city"
+                                                                          style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                          City/District/Town
+                                                                        </label>
+                                                                    </div>
+                                                                    <div style="position: absolute; background-color: #fff; width: 100%; bottom: 0; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; box-shadow: 0 0 4px rgba(224,224,224,0.5); z-index: 1; display: none; box-sizing: border-box; margin: 0; padding: 0;">
+                                                                    </div>                                                                      
+                                                                </div>
+                                                         
+                                                                <!-- States -->
+                                                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                                    <div style="border:1px solid rgb(224, 224, 224);background-color:rgb(255, 255, 255);box-sizing:border-box;margin:0px;padding:0px;">
+                                                                        <div style="font-size:12px;padding-top:6px;padding-left:13px;cursor:default;color:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:6px 0px 0px 13px;">
+                                                                            State
+                                                                        </div>
+                                                                        <div style="width: 280px;position:relative;display:block;box-sizing:border-box;margin:0px;padding:0px;">
+                                                                            <select name="state" required="" tabindex="7" style="padding:2px 16px 7px 13px;font-size:14px;color:rgb(33, 33, 33);border:0px none rgb(33, 33, 33);width: 280px;appearance:none;border-radius:0px;background:rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px;">
+                                                                                <option value="" disabled="" style="box-sizing:border-box;margin:0px;padding:0px;">--Select State--</option>
+                                                                                <option value="Andaman &amp; Nicobar Islands" style="box-sizing:border-box;margin:0px;padding:0px;">Andaman &amp; Nicobar Islands</option>
+                                                                                <option value="Andhra Pradesh" style="box-sizing:border-box;margin:0px;padding:0px;">Andhra Pradesh</option>
+                                                                                <option value="Arunachal Pradesh" style="box-sizing:border-box;margin:0px;padding:0px;">Arunachal Pradesh</option>
+                                                                                <option value="Assam" style="box-sizing:border-box;margin:0px;padding:0px;">Assam</option>
+                                                                                <option value="Bihar" style="box-sizing:border-box;margin:0px;padding:0px;">Bihar</option>
+                                                                                <option value="Chandigarh" style="box-sizing:border-box;margin:0px;padding:0px;">Chandigarh</option>
+                                                                                <option value="Chhattisgarh" style="box-sizing:border-box;margin:0px;padding:0px;">Chhattisgarh</option>
+                                                                                <option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu" style="box-sizing:border-box;margin:0px;padding:0px;">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option>
+                                                                                <option value="Delhi" style="box-sizing:border-box;margin:0px;padding:0px;">Delhi</option>
+                                                                                <option value="Goa" style="box-sizing:border-box;margin:0px;padding:0px;">Goa</option>
+                                                                                <option value="Gujarat" style="box-sizing:border-box;margin:0px;padding:0px;">Gujarat</option>
+                                                                                <option value="Haryana" style="box-sizing:border-box;margin:0px;padding:0px;">Haryana</option>
+                                                                                <option value="Himachal Pradesh" style="box-sizing:border-box;margin:0px;padding:0px;">Himachal Pradesh</option>
+                                                                                <option value="Jammu &amp; Kashmir" style="box-sizing:border-box;margin:0px;padding:0px;">Jammu &amp; Kashmir</option>
+                                                                                <option value="Jharkhand" style="box-sizing:border-box;margin:0px;padding:0px;">Jharkhand</option>
+                                                                                <option value="Karnataka" style="box-sizing:border-box;margin:0px;padding:0px;">Karnataka</option>
+                                                                                <option value="Kerala" style="box-sizing:border-box;margin:0px;padding:0px;">Kerala</option>
+                                                                                <option value="Ladakh" style="box-sizing:border-box;margin:0px;padding:0px;">Ladakh</option>
+                                                                                <option value="Lakshadweep" style="box-sizing:border-box;margin:0px;padding:0px;">Lakshadweep</option>
+                                                                                <option value="Madhya Pradesh" style="box-sizing:border-box;margin:0px;padding:0px;">Madhya Pradesh</option>
+                                                                                <option value="Maharashtra" style="box-sizing:border-box;margin:0px;padding:0px;">Maharashtra</option>
+                                                                                <option value="Manipur" style="box-sizing:border-box;margin:0px;padding:0px;">Manipur</option>
+                                                                                <option value="Meghalaya" style="box-sizing:border-box;margin:0px;padding:0px;">Meghalaya</option>
+                                                                                <option value="Mizoram" style="box-sizing:border-box;margin:0px;padding:0px;">Mizoram</option>
+                                                                                <option value="Nagaland" style="box-sizing:border-box;margin:0px;padding:0px;">Nagaland</option>
+                                                                                <option value="Odisha" style="box-sizing:border-box;margin:0px;padding:0px;">Odisha</option>
+                                                                                <option value="Puducherry" style="box-sizing:border-box;margin:0px;padding:0px;">Puducherry</option>
+                                                                                <option value="Punjab" style="box-sizing:border-box;margin:0px;padding:0px;">Punjab</option>
+                                                                                <option value="Rajasthan" style="box-sizing:border-box;margin:0px;padding:0px;">Rajasthan</option>
+                                                                                <option value="Sikkim" style="box-sizing:border-box;margin:0px;padding:0px;">Sikkim</option>
+                                                                                <option value="Tamil Nadu" style="box-sizing:border-box;margin:0px;padding:0px;">Tamil Nadu</option>
+                                                                                <option value="Telangana" style="box-sizing:border-box;margin:0px;padding:0px;">Telangana</option>
+                                                                                <option value="Tripura" style="box-sizing:border-box;margin:0px;padding:0px;">Tripura</option>
+                                                                                <option value="Uttarakhand" style="box-sizing:border-box;margin:0px;padding:0px;">Uttarakhand</option>
+                                                                                <option value="Uttar Pradesh" style="box-sizing:border-box;margin:0px;padding:0px;">Uttar Pradesh</option>
+                                                                                <option value="West Bengal" style="box-sizing:border-box;margin:0px;padding:0px;">West Bengal</option>
+                                                                            </select><span style="display:none;position:relative;width: 100%;background-color:rgb(224, 224, 224);height:2px;box-sizing:border-box;margin:0px;padding:0px;"></span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Landmark and Alternate Phone Number -->
+                                                            <div style="display: flex; align-items: flex-start; justify-content: space-between; box-sizing: border-box; margin: 0px; padding: 0px;">
+                                                                <div style="width: 320px; position: relative; margin-bottom: 10px; box-sizing: border-box; padding-right: 10px;">
+                                                                    <input type="text" name="landmark" autocomplete="off" tabindex="8" maxlength="200" value=""
+                                                                           style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                           onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                           onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                    <label for="landmark"
+                                                                           style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                      Landmark (Optional)
+                                                                    </label>
+                                                                </div>                                                                  
+                                                                <div style="width: 320px; position: relative; margin-bottom: 10px; box-sizing: border-box; padding-left: 10px;">
+                                                                    <input type="text" name="alternatePhone" autocomplete="off" tabindex="9" maxlength="10" value=""
+                                                                           inputmode="numeric" pattern="[0-9]*"
+                                                                           onkeypress="if(event.charCode < 48 || event.charCode > 57){ event.preventDefault(); }"
+                                                                           style="width: 100%; height: 48px; margin: 0; border: 1px solid #e0e0e0; font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; box-sizing: border-box; padding: 18px 16px 0 13px; font-size: 16px; line-height: 1.2;"
+                                                                           onfocus="this.style.fontSize='18px'; this.style.paddingTop='16px'; this.nextElementSibling.style.transform='translateY(-20px)'; this.nextElementSibling.style.color='#2874F0';"
+                                                                           onblur="if(this.value===''){ this.style.fontSize='16px'; this.style.paddingTop='18px'; this.nextElementSibling.style.transform='none'; this.nextElementSibling.style.color='rgb(135, 135, 135)'; }" />
+                                                                    <label for="alternatePhone"
+                                                                           style="position: absolute; left: 8px; top: 10px; transform-origin: 0 0; padding: 0 5px; font-size: 16px; color: rgb(135, 135, 135); transition: transform 0.2s, color 0.2s; pointer-events: none; background: #fff;">
+                                                                      Alternate Phone (Optional)
+                                                                    </label>
+                                                                </div>                                                                  
+                                                            </div>
+
+
+                                                            <!-- address type -->
+                                                            <div style="padding-left:13px; width: 100%; margin:8px 0; box-sizing:border-box;">
+                                                                <p style="font-size:12px; color:rgb(135,135,135); margin-bottom:10px;">Address Type</p>
+                                                                <div style="margin-bottom:16px; width: 100%; box-sizing:border-box;">
+                                                                  <label for="radioHome" style="cursor:pointer; margin-right:32px; display:inline-flex; align-items:center;">
+                                                                    <input type="radio" id="radioHome" name="locationTypeTag" value="Home" 
+                                                                           style="opacity:0; position:absolute;" onchange="updateRadioStyles();" />
+                                                                    <div id="customRadioHome" 
+                                                                         style="border:2px solid rgb(151,151,151); border-radius:100%; height:16px; width:16px; margin-right:12px; display:inline-block;"></div>
+                                                                    <span style="font-size:14px; color:rgb(33,33,33);">Home</span>
+                                                                  </label>
+                                                                  <label for="radioWork" style="cursor:pointer; margin-right:32px; display:inline-flex; align-items:center;">
+                                                                    <input type="radio" id="radioWork" name="locationTypeTag" value="Work" 
+                                                                           style="opacity:0; position:absolute;" onchange="updateRadioStyles();" />
+                                                                    <div id="customRadioWork" 
+                                                                         style="border:2px solid rgb(151,151,151); border-radius:100%; height:16px; width:16px; margin-right:12px; display:inline-block;"></div>
+                                                                    <span style="font-size:14px; color:rgb(33,33,33);">Work</span>
+                                                                  </label>
+                                                                </div>
+                                                            </div>
+                                                            <div style="justify-content:flex-start;align-items:center;margin-top:30px;display:flex;box-sizing:border-box;margin:30px 0px 0px;padding:0px;">
+                                                                <button type="submit" tabindex="10" style="background:rgb(0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;font-size:14px;text-transform:uppercase;height:48px;width: 230px;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px;padding:10px 20px;box-shadow:rgba(0, 69, 130, 0.2) 0px 1px 2px 0px;border:0px none rgb(255, 255, 255);color:rgb(255, 255, 255);display:block;border-radius:12px;font-weight:500;transition:box-shadow 0.2s;vertical-align:super;cursor:pointer;outline:rgb(255, 255, 255) none 0px;">
+                                                                    Save
+                                                                </button>
+                                                                <button  class="cancel-btn" type="button" tabindex="11" style="box-shadow:none;font-weight:500;color:rgb(197, 0, 0);background-color:rgba(0, 0, 0, 0);border:0px none rgb(40, 116, 240);margin-left:20px;padding-right:0px;font-size:14px;text-transform:uppercase;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px 0px 0px 20px;padding:10px 0px 10px 20px;display:block;border-radius:2px;transition:box-shadow 0.2s;vertical-align:super;background:rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;cursor:pointer;outline:rgb(40, 116, 240) none 0px;">
+                                                                    Cancel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                
+                                        </div>
+                                    </div>
+
+                                        <div style="min-height:300px;box-sizing:border-box;margin:0px;padding:0px;">
+                                            <div style="background-color:rgb(255, 255, 255);min-height:600px;padding:24px 32px;position:relative;box-sizing:border-box;margin:0px;border-radius:2px;box-shadow:rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;">
+                                                <div style="box-sizing:border-box;margin:0px;padding:0px;">
+  
+                                                    <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                                                        <div style="border-top:1px solid rgb(224, 224, 224);margin-top:20px;border-radius:2px 0px;border-width:1px;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-right-color:rgb(224, 224, 224);border-bottom-color:rgb(224, 224, 224);border-left-color:rgb(224, 224, 224);border-image:none;border-top-style:solid;border-top-color:rgb(224, 224, 224);position:relative;box-sizing:border-box;margin:20px 0px 0px;padding:0px;">
+                                                            <% if (addressData && addressData.address && addressData.address.length > 0) { %>
+                                                                <% addressData.address.forEach(function(addr) { %>
+                                                                  <div id="address-block-<%= addr._id %>" style="position: relative; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; box-sizing:border-box;">
+                                                                    
+                                                                    <!-- Dropdown for Edit/Delete -->
+                                                                    <div id="dropdownMenu-<%= addr._id %>" style="max-width:35px; float:right; position:relative; box-sizing:border-box; padding:0; overflow:visible;">
+                                                                      <div style="cursor:pointer; padding:0 8px;">
+                                                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNCAxNiI+CiAgICA8ZyBmaWxsPSIjODc4Nzg3IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIyIi8+CiAgICAgICAgPGNpcmNsZSBjeD0iMiIgY3k9IjgiIHI9IjIiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMTQiIHI9IjIiLz4KICAgIDwvZz4KPC9zdmc+Cg==" 
+                                                                             style="display:block; border:0; margin:0; padding:0;" />
+                                                                        <div class="dropdown-options" style="display:none; position:absolute; top:15px; left:10px; z-index:9999; white-space:nowrap; font-size:14px; color:#878787; background:#fff; border:1px solid rgba(0,0,0,0.05); box-shadow:0 6px 6px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.18); padding:5px; border-radius:3px; box-sizing:border-box;">
+                                                                          <div style="padding:7px 12px; color:#212121; cursor:pointer;" onclick="toggleEditForm('<%= addr._id %>');">Edit</div>
+                                                                          <div style="padding:7px 12px; color:#212121; cursor:pointer;" onclick="deleteAddress('<%= addr._id %>');">Delete</div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                              
+                                                                    <!-- Display Address Details -->
+                                                                    <div>
+                                                                      <div style="margin-bottom:5px;">
+                                                                        <span style="text-transform:uppercase; font-size:11px; color:#878787; padding:4px 7px; border-radius:2px; background-color:#f0f0f0; font-weight:500; margin-right:15px;">
+                                                                          <%= addr.addressType %>
+                                                                        </span>
+                                                                      </div>
+                                                                      <p style="margin:0; line-height:21px;">
+                                                                        <strong style="font-weight:500;"><%= addr.name %></strong>
+                                                                        <span style="margin-left:15px; font-weight:500;"><%= addr.phone %></span>
+                                                                      </p>
+                                                                      <span style="display:block; margin-top:10px; max-width:523px; line-height:21px;">
+                                                                        <%= addr.addressLine %>, <%= addr.city %>, <%= addr.state %> - <strong><%= addr.pincode %></strong>
+                                                                      </span>
+                                                                      <% if (addr.landmark) { %>
+                                                                        <span style="display:block; margin-top:5px; font-size:12px; color:#878787;">
+                                                                          Landmark: <%= addr.landmark %>
+                                                                        </span>
+                                                                      <% } %>
+                                                                    </div>
+                                                                    
+                                                                  <!-- Hidden Edit Form with Updated UI -->
+                                                                    <div id="edit-form-<%= addr._id %>" style="display:none; margin-top:15px; background:#f9f9f9; border:1px solid #ccc; border-radius:8px; padding:20px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                                                                        <form action="/account/addresses" method="POST" style="margin:0; padding:0;">
+                                                                        <input type="hidden" name="action" value="edit">
+                                                                        <input type="hidden" name="addressId" value="<%= addr._id %>">
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Address Type</label>
+                                                                            <input type="text" name="locationTypeTag" value="<%= addr.addressType %>" required style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Name</label>
+                                                                            <input type="text" name="name" value="<%= addr.name %>" required style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">City</label>
+                                                                            <input type="text" name="city" value="<%= addr.city %>" required style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Address (Area and Street)</label>
+                                                                            <input type="text" name="addressLine1" value="<%= addr.addressLine %>" required style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Landmark (Optional)</label>
+                                                                            <input type="text" name="landmark" value="<%= addr.landmark %>" style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">State</label>
+                                                                            <div style="border:1px solid rgb(224,224,224); background-color:#fff; padding:6px 0 0 13px; box-sizing:border-box;">
+                                                                              <select name="state" required style="width:100%; padding:10px 0px; font-size:16px; color:rgb(33,33,33); border:none; background:#fff; appearance:none; outline:none; box-shadow:none;">
+                                                                                <option value="" disabled>--Select State--</option>
+                                                                                <option value="Andaman &amp; Nicobar Islands" <%= addr.state === 'Andaman & Nicobar Islands' ? 'selected' : '' %>>Andaman &amp; Nicobar Islands</option>
+                                                                                <option value="Andhra Pradesh" <%= addr.state === 'Andhra Pradesh' ? 'selected' : '' %>>Andhra Pradesh</option>
+                                                                                <option value="Arunachal Pradesh" <%= addr.state === 'Arunachal Pradesh' ? 'selected' : '' %>>Arunachal Pradesh</option>
+                                                                                <option value="Assam" <%= addr.state === 'Assam' ? 'selected' : '' %>>Assam</option>
+                                                                                <option value="Bihar" <%= addr.state === 'Bihar' ? 'selected' : '' %>>Bihar</option>
+                                                                                <option value="Chandigarh" <%= addr.state === 'Chandigarh' ? 'selected' : '' %>>Chandigarh</option>
+                                                                                <option value="Chhattisgarh" <%= addr.state === 'Chhattisgarh' ? 'selected' : '' %>>Chhattisgarh</option>
+                                                                                <option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu" <%= addr.state === 'Dadra & Nagar Haveli & Daman & Diu' ? 'selected' : '' %>>Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option>
+                                                                                <option value="Delhi" <%= addr.state === 'Delhi' ? 'selected' : '' %>>Delhi</option>
+                                                                                <option value="Goa" <%= addr.state === 'Goa' ? 'selected' : '' %>>Goa</option>
+                                                                                <option value="Gujarat" <%= addr.state === 'Gujarat' ? 'selected' : '' %>>Gujarat</option>
+                                                                                <option value="Haryana" <%= addr.state === 'Haryana' ? 'selected' : '' %>>Haryana</option>
+                                                                                <option value="Himachal Pradesh" <%= addr.state === 'Himachal Pradesh' ? 'selected' : '' %>>Himachal Pradesh</option>
+                                                                                <option value="Jammu &amp; Kashmir" <%= addr.state === 'Jammu & Kashmir' ? 'selected' : '' %>>Jammu &amp; Kashmir</option>
+                                                                                <option value="Jharkhand" <%= addr.state === 'Jharkhand' ? 'selected' : '' %>>Jharkhand</option>
+                                                                                <option value="Karnataka" <%= addr.state === 'Karnataka' ? 'selected' : '' %>>Karnataka</option>
+                                                                                <option value="Kerala" <%= addr.state === 'Kerala' ? 'selected' : '' %>>Kerala</option>
+                                                                                <option value="Ladakh" <%= addr.state === 'Ladakh' ? 'selected' : '' %>>Ladakh</option>
+                                                                                <option value="Lakshadweep" <%= addr.state === 'Lakshadweep' ? 'selected' : '' %>>Lakshadweep</option>
+                                                                                <option value="Madhya Pradesh" <%= addr.state === 'Madhya Pradesh' ? 'selected' : '' %>>Madhya Pradesh</option>
+                                                                                <option value="Maharashtra" <%= addr.state === 'Maharashtra' ? 'selected' : '' %>>Maharashtra</option>
+                                                                                <option value="Manipur" <%= addr.state === 'Manipur' ? 'selected' : '' %>>Manipur</option>
+                                                                                <option value="Meghalaya" <%= addr.state === 'Meghalaya' ? 'selected' : '' %>>Meghalaya</option>
+                                                                                <option value="Mizoram" <%= addr.state === 'Mizoram' ? 'selected' : '' %>>Mizoram</option>
+                                                                                <option value="Nagaland" <%= addr.state === 'Nagaland' ? 'selected' : '' %>>Nagaland</option>
+                                                                                <option value="Odisha" <%= addr.state === 'Odisha' ? 'selected' : '' %>>Odisha</option>
+                                                                                <option value="Puducherry" <%= addr.state === 'Puducherry' ? 'selected' : '' %>>Puducherry</option>
+                                                                                <option value="Punjab" <%= addr.state === 'Punjab' ? 'selected' : '' %>>Punjab</option>
+                                                                                <option value="Rajasthan" <%= addr.state === 'Rajasthan' ? 'selected' : '' %>>Rajasthan</option>
+                                                                                <option value="Sikkim" <%= addr.state === 'Sikkim' ? 'selected' : '' %>>Sikkim</option>
+                                                                                <option value="Tamil Nadu" <%= addr.state === 'Tamil Nadu' ? 'selected' : '' %>>Tamil Nadu</option>
+                                                                                <option value="Telangana" <%= addr.state === 'Telangana' ? 'selected' : '' %>>Telangana</option>
+                                                                                <option value="Tripura" <%= addr.state === 'Tripura' ? 'selected' : '' %>>Tripura</option>
+                                                                                <option value="Uttarakhand" <%= addr.state === 'Uttarakhand' ? 'selected' : '' %>>Uttarakhand</option>
+                                                                                <option value="Uttar Pradesh" <%= addr.state === 'Uttar Pradesh' ? 'selected' : '' %>>Uttar Pradesh</option>
+                                                                                <option value="West Bengal" <%= addr.state === 'West Bengal' ? 'selected' : '' %>>West Bengal</option>
+                                                                              </select>
+                                                                            </div>
+                                                                          </div>
+                                                                          
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Pincode</label>
+                                                                            <input type="text" name="pincode" value="<%= addr.pincode %>" required style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Phone</label>
+                                                                            <input type="text" name="phone" value="<%= addr.phone %>" required style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="margin-bottom:15px;">
+                                                                            <label style="font-size:16px; font-weight:bold; display:block; margin-bottom:5px;">Alternate Phone (Optional)</label>
+                                                                            <input type="text" name="alternatePhone" value="<%= addr.altPhone %>" style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px;">
+                                                                        </div>
+                                                                        
+                                                                        <div style="text-align:right;">
+                                                                            <button type="submit" style="padding:10px 20px; background:#000; color:#fff; border:none; border-radius:4px; cursor:pointer;">Save</button>
+                                                                            <button type="button" onclick="toggleEditForm('<%= addr._id %>');" style="padding:10px 20px; margin-left:10px; background:#ccc; color:#000; border:none; border-radius:4px; cursor:pointer;">Cancel</button>
+                                                                        </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                  </div>
+                                                                <% }); %>
+                                                              <% } else { %>
+                                                                <p>No addresses found.</p>
+                                                              <% } %>
+                                                              
+                                                              <script>
+                                                              function toggleEditForm(addrId) {
+                                                                var form = document.getElementById("edit-form-" + addrId);
+                                                                if (form.style.display === "none" || form.style.display === "") {
+                                                                  form.style.display = "block";
+                                                                } else {
+                                                                  form.style.display = "none";
+                                                                }
+                                                              }
+                                                              
+                                                              function deleteAddress(addrId) {
+                                                                Swal.fire({
+                                                                    title: 'Are you sure?',
+                                                                    text: "Do you really want to delete this address?",
+                                                                    icon: 'warning',
+                                                                    showCancelButton: true,
+                                                                    confirmButtonColor: '#3085d6',
+                                                                    cancelButtonColor: '#d33',
+                                                                    confirmButtonText: 'Yes, delete it!',
+                                                                    cancelButtonText: 'Cancel'
+                                                                }).then((result) => {
+                                                                    if (result.isConfirmed) {
+                                                                    // Create a temporary form and submit it to delete the address
+                                                                    var form = document.createElement("form");
+                                                                    form.method = "POST";
+                                                                    form.action = "/account/addresses";
+                                                                    
+                                                                    var actionInput = document.createElement("input");
+                                                                    actionInput.type = "hidden";
+                                                                    actionInput.name = "action";
+                                                                    actionInput.value = "delete";
+                                                                    form.appendChild(actionInput);
+                                                                    
+                                                                    var idInput = document.createElement("input");
+                                                                    idInput.type = "hidden";
+                                                                    idInput.name = "addressId";
+                                                                    idInput.value = addrId;
+                                                                    form.appendChild(idInput);
+                                                                    
+                                                                    document.body.appendChild(form);
+                                                                    form.submit();
+                                                                    }
+                                                                });
+                                                                }
+
+                                                              
+                                                              // Dropdown toggle for each address block
+                                                              document.addEventListener("DOMContentLoaded", function() {
+                                                                var dropdowns = document.querySelectorAll("[id^='dropdownMenu-']");
+                                                                dropdowns.forEach(function(dropdown) {
+                                                                  dropdown.addEventListener("mouseenter", function() {
+                                                                    var options = this.querySelector(".dropdown-options");
+                                                                    if (options) options.style.display = "block";
+                                                                  });
+                                                                  dropdown.addEventListener("mouseleave", function() {
+                                                                    var options = this.querySelector(".dropdown-options");
+                                                                    if (options) options.style.display = "none";
+                                                                  });
+                                                                });
+                                                              });
+                                                              </script>                                                              
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<!-- Dropdown Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var dropdownContainer = document.getElementById("dropdownMenu");
+      var dropdown = dropdownContainer.querySelector(".dropdown-options");
+      
+      dropdownContainer.addEventListener("mouseenter", function() {
+        dropdown.style.display = "block";
+      });
+      dropdownContainer.addEventListener("mouseleave", function() {
+        dropdown.style.display = "none";
+      });
+    });
+</script>
+
+<script>
+    function updateRadioStyles() {
+      var homeRadio = document.getElementById('radioHome');
+      var workRadio = document.getElementById('radioWork');
+      var customHome = document.getElementById('customRadioHome');
+      var customWork = document.getElementById('customRadioWork');
+      
+      // Update custom radio indicators based on selection
+      if(homeRadio.checked) {
+        customHome.style.backgroundColor = '#000000';
+      } else {
+        customHome.style.backgroundColor = 'transparent';
+      }
+      
+      if(workRadio.checked) {
+        customWork.style.backgroundColor = '#000000';
+      } else {
+        customWork.style.backgroundColor = 'transparent';
+      }
+    }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const addAddressBtn = document.querySelector(".add-address-btn");
+    const addressFormContainer = document.querySelector(".address-form-container");
+    const cancelButton = document.querySelector(".cancel-btn");
+
+    // Initially hide the address form
+    addressFormContainer.style.display = "none";
+
+    addAddressBtn.addEventListener("click", function () {
+        addressFormContainer.style.display = "block";
+        addAddressBtn.style.display = "none"; // Hide the button
+    });
+
+    cancelButton.addEventListener("click", function () {
+        addressFormContainer.style.display = "none";
+        addAddressBtn.style.display = "flex"; // Show the button back
+    });
+});
+
+
+
+</script>
+
+    
+    
+<%- include('../partials/user/footer') %>

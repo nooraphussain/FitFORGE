@@ -1,0 +1,246 @@
+<%- include('../partials/user/header') %>
+
+<body style="margin-top: 150px;">
+    <!-- Breadcrumps -->
+    <div style="max-width:1240px;min-width:1024px;margin: 5px auto;box-sizing:border-box;padding:0px;">
+        <div style="font-size:12px;color:rgb(135, 135, 135);display:inline-block;box-sizing:border-box;margin:0px;padding:0px;"><a href="/" style="max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle;text-decoration:none solid rgb(135, 135, 135);color:rgb(135, 135, 135);border:0px none rgb(135, 135, 135);outline:rgb(135, 135, 135) none 0px;box-sizing:border-box;margin:0px;padding:0px;">Home</a><svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" style="height:7px;width: 20px;transform:matrix(-1, 0, 0, -1, 0, 0);vertical-align:middle;box-sizing:border-box;margin:0px;padding:0px;">
+                <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" style="fill:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;"></path>
+            </svg></div>
+        <div style="font-size:12px;color:rgb(135, 135, 135);display:inline-block;box-sizing:border-box;margin:0px;padding:0px;"><a href="/account/orders/?link=home_orders" style="max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle;text-decoration:none solid rgb(135, 135, 135);color:rgb(135, 135, 135);border:0px none rgb(135, 135, 135);outline:rgb(135, 135, 135) none 0px;box-sizing:border-box;margin:0px;padding:0px;">My Orders</a><svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" style="height:7px;width: 20px;transform:matrix(-1, 0, 0, -1, 0, 0);vertical-align:middle;box-sizing:border-box;margin:0px;padding:0px;">
+                <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" style="fill:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;"></path>
+            </svg></div>
+        <div style="font-size:12px;color:rgb(135, 135, 135);display:inline-block;box-sizing:border-box;margin:0px;padding:0px;"><a href="/order_details?order_id=OD434050784863209100&amp;item_id=434050784863209100&amp;unit_id=434050784863209100000" style="max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle;text-decoration:none solid rgb(135, 135, 135);color:rgb(135, 135, 135);border:0px none rgb(135, 135, 135);outline:rgb(135, 135, 135) none 0px;box-sizing:border-box;margin:0px;padding:0px;">OD434050784863209100</a><svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" style="height:7px;width: 20px;transform:matrix(-1, 0, 0, -1, 0, 0);vertical-align:middle;box-sizing:border-box;margin:0px;padding:0px;">
+                <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" style="fill:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;"></path>
+            </svg></div>
+        <div style="font-size:12px;color:rgb(135, 135, 135);display:inline-block;box-sizing:border-box;margin:0px;padding:0px;">
+            <div style="background-color:rgba(0, 0, 0, 0);color:rgb(135, 135, 135);max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle;box-sizing:border-box;margin:0px;padding:0px;font-size:12px;">
+                <div style="box-sizing:border-box;margin:0px;padding:0px;margin-bottom:0px;line-height:normal;">
+                    <p style="margin-bottom:0px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;padding:20px 0px;line-height:18px;">Cancel</p>
+                </div>
+            </div><svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" style="display:none;height:7px;width: 20px;transform:none;vertical-align:middle;box-sizing:border-box;margin:0px;padding:0px;">
+                <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" style="fill:rgb(135, 135, 135);box-sizing:border-box;margin:0px;padding:0px;"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin:0px 15px;min-width:1128px;min-height:300px;align-items:flex-start;box-sizing:border-box;padding:0px;">
+        <div style="box-sizing:border-box;margin:0px;padding:0px;">
+            <div style="box-sizing:border-box;margin:0px;padding:0px;">
+                <div style="width: 848px;margin-bottom:16px;position:relative;display:inline-block;box-shadow:rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;box-sizing:border-box;margin:0px 0px 16px;padding:0px;background-color:rgb(255, 255, 255);border-radius:2px;">
+                    <h3 style="color:rgb(255, 255, 255);background-color:rgb(1, 1, 1);height:48px;text-transform:uppercase;font-size:16px;font-weight:500;padding:14px 24px;border-radius:12px 12px 0px 0px;box-sizing:border-box;margin:0px;">
+                        <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                            Easy Cancellation
+                        </span>
+                    </h3>
+                    <div style="position:relative;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="max-height:500px;overflow: auto;padding:10px 55px;box-sizing:border-box;margin:0px;">
+                            <div style="margin:10px 0px;display:flex;justify-content:space-between;box-sizing:border-box;padding:0px;">
+                                <div style="line-height:40px;box-sizing:border-box;margin:0px;padding:0px;"><span style="box-sizing:border-box;margin:0px;padding:0px;">Reason for Cancellation</span><span style="color:rgb(255, 97, 97);box-sizing:border-box;margin:0px;padding:0px;"> *</span></div>
+                                <div style="width: 75%;min-width:75%;padding-left:50px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 50px;">
+                                    <div style="position:relative;display:block;box-sizing:border-box;margin:0px;padding:0px;"><select name="reasonList" style="font-size:14px;appearance:none;border-radius:0px;background:rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;border:1px solid rgba(0, 0, 0, 0);padding:8.4px 11.2px 7px 0px;width: 100%;color:rgb(77, 69, 69);font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px 10px;">
+                                            <option value="" disabled="" style="box-sizing:border-box;margin:0px;padding:0px;">Select Reason</option>
+                                            <option value="change_ship_address" style="box-sizing:border-box;margin:0px;padding:0px;">I want to change the delivery address</option>
+                                            <option value="quality_issues" style="box-sizing:border-box;margin:0px;padding:0px;">I'm worried about the ratings/reviews</option>
+                                            <option value="change_contact_number" style="box-sizing:border-box;margin:0px;padding:0px;">I want to change the contact details</option>
+                                            <option value="delivery_time_long" style="box-sizing:border-box;margin:0px;padding:0px;">I was hoping for a shorter delivery time</option>
+                                            <option value="not_available_at_home" style="box-sizing:border-box;margin:0px;padding:0px;">I want to change the delivery date</option>
+                                            <option value="expensive_now" style="box-sizing:border-box;margin:0px;padding:0px;">Price of the product has now decreased</option>
+                                            <option value="change_payment" style="box-sizing:border-box;margin:0px;padding:0px;">I want to change the payment option</option>
+                                            <option value="mind_changed" style="box-sizing:border-box;margin:0px;padding:0px;">My reasons are not listed here</option>
+                                        </select><span style="position:relative;display:block;width: 100%;background-color:rgb(224, 224, 224);height:2px;box-sizing:border-box;margin:0px;padding:0px;"></span></div>
+                                </div>
+                            </div>
+                            <div style="margin:10px 0px;display:flex;justify-content:space-between;box-sizing:border-box;padding:0px;">
+                                <div style="line-height:40px;box-sizing:border-box;margin:0px;padding:0px;"></div>
+                                <div style="width: 75%;min-width:75%;padding-left:50px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 50px;"></div>
+                            </div>
+                            <div style="margin:10px 0px;display:flex;justify-content:space-between;box-sizing:border-box;padding:0px;">
+                                <div style="line-height:40px;box-sizing:border-box;margin:0px;padding:0px;"><span style="box-sizing:border-box;margin:0px;padding:0px;">Comments</span><span style="color:rgb(255, 97, 97);box-sizing:border-box;margin:0px;padding:0px;"> *</span></div>
+                                <div style="width: 75%;min-width:75%;padding-left:50px;box-sizing:border-box;margin:0px;padding:0px 0px 0px 50px;"><textarea required="" maxlength="1000" placeholder="eg: Item not required anymore." style="width: 100%;height:100px;overflow-x: auto;resize:none;font-size:12px;padding:5px 6px;outline:rgb(0, 0, 0) none 0px;margin-top:5px;border:1px solid rgb(194, 194, 194);border-radius:4px;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:5px 0px 0px;"></textarea></div>
+                            </div>
+                            <div style="text-align:right;box-sizing:border-box;margin:0px;padding:0px;">
+                                <button type="button" 
+                                        style="border:1px solid rgb(224, 224, 224);border-radius:2px;font-family:Inter, -apple-system, Helvetica, Arial, sans-serif;box-sizing:border-box;margin:0px;padding:10px 20px;color:rgb(135, 135, 135);cursor:pointer;display:inline-block;font-size:13px;font-weight:500;transition:box-shadow 0.2s;vertical-align:super;background:rgb(255, 255, 255);"
+                                        id="continueBtn">
+                                    <span style="box-sizing:border-box;margin:0px;padding:0px;">CONTINUE</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Replace the static product section with this dynamic block -->
+        <div style="width: 376px;margin-left:15px;vertical-align:top;border:1px solid rgb(240, 240, 240);box-sizing:border-box;margin:0px 0px 0px 15px;padding:0px;">
+            <div style="background-color:rgb(255, 255, 255);box-sizing:border-box;margin:0px;padding:0px;">
+                <div style="font-size:16px;color:rgb(135, 135, 135);border-bottom:1px solid rgb(240, 240, 240);padding:12px 16px;box-sizing:border-box;margin:0px;">
+                    <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                        <%= type === 'item' ? 'ITEM BEING CANCELLED' : 'ALL ITEMS IN ORDER' %>
+                    </span>
+                </div>
+                
+                <% products.forEach((product, index) => { %>
+                <div style="padding:12px 16px;width: 100%;display:flex;flex-flow:row wrap;box-sizing:border-box;margin:0px;">
+                    <div style="width: 66.66%;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="font-size:16px;box-sizing:border-box;margin:0px;padding:0px;">
+                            <span style="box-sizing:border-box;margin:0px;padding:0px;">
+                                <%= product.name %>
+                            </span>
+                        </div>
+                        <div style="font-size:20px;margin-top:8px;box-sizing:border-box;margin:8px 0px 0px;padding:0px;">
+                            ₹<%= product.price %>
+                        </div>
+                    </div>
+                    <div style="width: 33.33%;box-sizing:border-box;margin:0px;padding:0px;">
+                        <div style="height: 100px; width: 100px;position:relative;margin: 0px auto;box-sizing:border-box;padding:0px;">
+                            <img loading="lazy" alt="<%= product.name %>" 
+                                src="/uploads/product-images/<%= product.image %>" 
+                                style="position:absolute;inset:0px;margin: auto;opacity:1;max-width:100%;max-height:100%;">
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+
+    </div>
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function toggleOtherReason() {
+    const otherReasonContainer = document.getElementById('otherReasonContainer');
+    const reasonRadios = document.getElementsByName('reason');
+    
+    for (let i = 0; i < reasonRadios.length; i++) {
+        if (reasonRadios[i].value === 'Other' && reasonRadios[i].checked) {
+        otherReasonContainer.style.display = 'block';
+        } else if (reasonRadios[i].value === 'Other' && !reasonRadios[i].checked) {
+        otherReasonContainer.style.display = 'none';
+        }
+    }
+    }
+
+    document.querySelectorAll('input[name="reason"]').forEach(radio => {
+    radio.addEventListener('change', toggleOtherReason);
+    });
+
+    document.getElementById('cancellationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const formData = new FormData(form);
+    const reason = formData.get('reason');
+    
+    // Validate other reason if "Other" is selected
+    if (reason === 'Other' && !formData.get('otherReason').trim()) {
+        Swal.fire({
+        title: 'Error',
+        text: 'Please specify your reason for cancellation',
+        icon: 'error'
+        });
+        return;
+    }
+    
+    // Submit the form via AJAX
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+        Swal.fire({
+            title: 'Cancellation Successful',
+            text: formData.get('type') === 'order' 
+            ? 'Your order has been cancelled and items have been restocked.' 
+            : 'The item has been cancelled and restocked.',
+            icon: 'success'
+        }).then(() => {
+            window.location.href = formData.get('type') === 'order' 
+            ? '/orders' 
+            : `/orders/${formData.get('orderId')}`;
+        });
+        } else {
+        throw new Error(data.message || 'Cancellation failed');
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+        title: 'Cancellation Failed',
+        text: error.message || 'There was an error processing your cancellation. Please try again.',
+        icon: 'error'
+        });
+    });
+    });
+</script>
+
+<!-- to disable/enable the "Continue" button  -->
+<!-- Update the form submission script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const reasonSelect = document.querySelector('select[name="reasonList"]');
+        const commentTextarea = document.querySelector('textarea');
+        const continueButton = document.querySelector('button[type="button"]');
+        
+        // Get order ID from EJS template
+        const orderId = '<%= orderId %>';
+        const cancelType = '<%= type %>'; // 'order' or 'item'
+        const itemId = '<%= itemId %>'; // Only for product cancellation
+    
+        function validateForm() {
+            const reasonValid = reasonSelect.value && reasonSelect.value !== '';
+            const commentValid = commentTextarea.value.trim() !== '';
+            continueButton.disabled = !(reasonValid && commentValid);
+        }
+    
+        reasonSelect.addEventListener('change', validateForm);
+        commentTextarea.addEventListener('input', validateForm);
+    
+        continueButton.addEventListener('click', async function() {
+            const formData = {
+                cancelType: cancelType,
+                itemId: itemId || null,
+                reason: reasonSelect.value,
+                comment: commentTextarea.value.trim()
+            };
+
+            try {
+                // Make sure this URL matches your route definition
+                const response = await fetch(`/orders/${orderId}/cancel`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Cancellation Successful!',
+                        text: 'Your order/item has been cancelled successfully',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = `/account/orderDetails/${orderId}`; // Redirect to order details
+                    });
+                } else {
+                    Swal.fire('Error!', result.message || 'Cancellation failed', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                Swal.fire('Error!', 'Failed to process cancellation', 'error');
+            }
+        });
+    });
+</script>
+    
+</body>
+<%- include('../partials/user/footer') %>

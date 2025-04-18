@@ -1,0 +1,305 @@
+<%- include('../partials/user/header') %>
+
+    <main>
+      <section class="cor-bg-p3" id="loja" data-scroll="animado">
+        <div class="container">
+          <div class="container-main">
+            <div class="lado-esquerdo">
+              <h1 class="f1-g cor-p1 titulo"> FORGE YOUR STYLE<br>PERFECT FIT<br> EVERY TIME</h1>
+              <p class="f2-m cor-p4 texto">
+                Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
+              </p>
+              <button class="botao">Shop Now</button>
+              <div class="numeros">
+                <div class="numeros-item f2-num barra">
+                  <p class="n">200+</p>
+                  <p class="f2-m cor-p4">International Brands</p>
+                </div>
+                <div class="numeros-item f2-num barra">
+                  <p class="n">2000+</p>
+                  <p class="f2-m cor-p4">High-Quality Products</p>
+                </div>
+                <div class="numeros-item f2-num">
+                  <p class="n">3000+</p>
+                  <p class="f2-m cor-p4">Happy Customers</p>
+                </div>
+              </div>
+            </div>
+            <div class="lado-direito">
+              <img class="banner" src="./img/casal 2.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRANDS -->
+      <section>
+        <div class="marcas-bg cor-bg-p1">
+          <section class="container">
+            <ul class="marcas-itens">
+              <li><img src="./img/prada-logo-1 1.svg" alt="" /></li>
+              <li><img src="./img/versace.svg" alt="" /></li>
+              <li><img src="./img/gucci-logo-1 1.svg" alt="" /></li>
+              <li><img src="./img/png-transparent-abercrombie-fitch-logo-vertical-icons-logos-emojis-iconic-brands.png" alt="" /></li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+    </main>
+
+  <!-- NEW ARRIVALS -->
+<section>
+  <div class="promocao-bg" id="promocao" data-scroll="animado">
+    <div class="container">
+      <h2 class="f1-m">NEW ARRIVALS</h2>
+      <section class="promocao">
+        <% for(let i = 0; i < data.length; i++) { 
+          if (data[i].isBlocked) continue; 
+        %>
+          <div class="promocao-item">
+            <a href="/product-listing?productId=<%= data[i]._id %>">
+              <img src="/uploads/product-images/<%= data[i].productImage[0] %>" alt="<%= data[i].productName %>" class="product-imagee">
+            </a>              
+            <p class="f2-mg"><%= data[i].productName %></p>
+            <div class="avaliacao">
+              <img src="./img/Frame 10.svg" alt="rating" />
+              <span class="f2-m">4.5/5</span>
+            </div>
+            <div class="price-wishlist" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 10px; position: relative;">
+              <% 
+                let effectivePrice = data[i].salePrice;
+                let appliedOffer = 0;
+                
+                // Check for product offer
+                if (data[i].offer) {
+                    appliedOffer = Math.max(appliedOffer, parseInt(data[i].offer));
+                }
+                
+                // Check for category offer
+                if (data[i].category && data[i].category.categoryOffer) {
+                    if (data[i].category.categoryOffer > appliedOffer) {
+                        appliedOffer = data[i].category.categoryOffer;
+                    }
+                }
+                
+                // Apply the highest offer
+                if (appliedOffer > 0) {
+                    effectivePrice = data[i].salePrice - (data[i].salePrice * appliedOffer / 100);
+                }
+              %>
+              
+              <div>
+                <% if (appliedOffer > 0) { %>
+                  <span class="f2-mg" style="text-decoration: line-through; color: #878787; margin-right: 5px;">₹<%= data[i].salePrice %></span>
+                  <span class="f2-mg" style="color: #E53935;">₹<%= Math.round(effectivePrice) %></span>
+                  <span style="font-size: 12px; color: #4CAF50; display: block;">(<%= appliedOffer %>% off)</span>
+                <% } else { %>
+                  <span class="f2-mg">₹<%= data[i].salePrice %></span>
+                <% } %>
+              </div>
+              
+              <i class="fa fa-heart wishlist-icon" onclick="AddToWishList(this)" data-id="<%= data[i]._id %>" 
+                 style="font-size: 20px; color: <%= wishlist.includes(data[i]._id.toString()) ? 'red' : '#878787' %>; cursor: pointer; margin-left: auto; transition: transform 0.3s ease, color 0.3s ease;">
+              </i>                                      
+            </div>                            
+            <% if(data[i].quantity === 0) { %>
+              <p style="color: red; font-size: 14px;">Out of stock!</p>
+            <% } else if(data[i].quantity <= 5) { %>
+              <p style="color: red; font-size: 14px;">Only <%= data[i].quantity %> left!</p>
+            <% } %>             
+          </div>
+        <% } %>                        
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- TOP SELLING -->
+<section>
+  <div class="mais-vendido-bg" id="vendido" data-scroll="animado">
+    <div class="container">
+      <h3 class="f1-m">TOP SELLING</h3>
+      <section class="mais-vendido">
+        <% for(let i = 4; i < data.length; i++) { 
+             if (data[i].isBlocked) continue;  
+        %>
+          <div class="promocao-item">
+            <a href="/product-listing?productId=<%= data[i]._id %>">
+              <img src="/uploads/product-images/<%= data[i].productImage[0] %>" alt="<%= data[i].productName %>" class="product-imagee">
+            </a> 
+            <p class="f2-mg"><%= data[i].productName %></p>
+            <div class="avaliacao">
+              <img src="./img/Frame 10.svg" alt="rating" />
+              <span class="f2-m">4.5/5</span>
+            </div>
+            <div class="price-wishlist" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 10px; position: relative;">
+              <% 
+                let effectivePrice = data[i].salePrice;
+                let appliedOffer = 0;
+                
+                // Check for product offer
+                if (data[i].offer) {
+                    appliedOffer = Math.max(appliedOffer, parseInt(data[i].offer));
+                }
+                
+                // Check for category offer
+                if (data[i].category && data[i].category.categoryOffer) {
+                    if (data[i].category.categoryOffer > appliedOffer) {
+                        appliedOffer = data[i].category.categoryOffer;
+                    }
+                }
+                
+                // Apply the highest offer
+                if (appliedOffer > 0) {
+                    effectivePrice = data[i].salePrice - (data[i].salePrice * appliedOffer / 100);
+                }
+              %>
+              
+              <div>
+                <% if (appliedOffer > 0) { %>
+                  <span class="f2-mg" style="text-decoration: line-through; color: #878787; margin-right: 5px;">₹<%= data[i].salePrice %></span>
+                  <span class="f2-mg" style="color: #E53935;">₹<%= Math.round(effectivePrice) %></span>
+                  <span style="font-size: 12px; color: #4CAF50; display: block;">(<%= appliedOffer %>% off)</span>
+                <% } else { %>
+                  <span class="f2-mg">₹<%= data[i].salePrice %></span>
+                <% } %>
+              </div>
+              
+              <i class="fa fa-heart wishlist-icon" onclick="AddToWishList(this)" data-id="<%= data[i]._id %>" 
+                 style="font-size: 20px; color: <%= wishlist.includes(data[i]._id.toString()) ? 'red' : '#878787' %>; cursor: pointer; margin-left: auto; transition: transform 0.3s ease, color 0.3s ease;">
+              </i>                                      
+            </div>            
+            <% if(data[i].quantity === 0) { %>
+              <p style="color: red; font-size: 14px;">Out of stock!</p>
+            <% } else if(data[i].quantity <= 5) { %>
+              <p style="color: red; font-size: 14px;">Only <%= data[i].quantity %> left!</p>
+            <% } %>                             
+          </div>
+        <% } %>            
+      </section>          
+    </div>
+  </div>
+</section>
+
+<script>
+  function AddToWishList(elem) {
+    var productId = elem.getAttribute('data-id');
+    if (!productId) {
+      console.error("Product ID not found, babe!");
+      return;
+    }
+    fetch('/addToWishlist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ productId: productId })
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (response.success) {
+        // If added successfully, change heart color to red
+        elem.style.color = 'red';
+        Swal.fire({
+          title: 'Added to wishlist',
+          text: 'The product has been added to your wishlist',
+          icon: 'success',
+          timer: 2000
+        });
+      } else {
+        if(response.message === "Product already in wishlist"){
+          // If already in wishlist, just update the heart color to red
+          elem.style.color = 'red';
+          Swal.fire({
+            title: 'Already in wishlist',
+            text: response.message,
+            icon: 'info',
+            timer: 2000
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: response.message || 'There was an error while adding the product to your wishlist',
+            icon: 'error',
+            timer: 2000
+          });
+        }
+      }
+    })
+    .catch(error => {
+      console.error("Error adding to wishlist:", error);
+      Swal.fire({
+        title: 'Error',
+        text: 'There was an error while adding the product to your wishlist',
+        icon: 'error',
+        timer: 2000
+      });
+    });
+  }
+</script>
+
+    <!-- BROWSE BY DRESS STYLE -->
+    <section>
+      <div class="estilo-bg" id="categoria" data-scroll="animado">
+        <div class="container">
+          <div class="container-estilo cor-bg-p3">
+            <h4 class="f1-m">BROWSE BY DRESS STYLE</h4>
+            <div class="estilo">
+              <section class="estilo-item1">
+                <p>CASUAL</p>
+              </section>
+              <section class="estilo-item2">
+                <p>FORMAL</p>
+              </section>
+              <section class="estilo-item3">
+                <p>PARTY</p>
+              </section>
+              <section class="estilo-item4">
+                <p>GYM</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="comentarios-bg" data-scroll="animado">
+        <div class="container">
+          <h5 class="f1-m">OUR HAPPY CUSTOMERS</h5>
+          <div class="comentarios">
+            <div class="comentarios-item">
+              <img src="./img/Frame 10.svg" alt="" />
+              <p class="f2-mg">Sarah M.</p>
+              <p class="f2-m cor-p4">
+                "I'm blown away by the quality and style of the clothes I
+                received from Shop.co. From casual wear to elegant dresses,
+                every piece I've bought has exceeded my expectations.”
+              </p>
+            </div>
+            <div class="comentarios-item">
+              <img src="./img/Frame 10.svg" alt="" />
+              <p class="f2-mg">Sarah M.</p>
+              <p class="f2-m cor-p4">
+                "I'm blown away by the quality and style of the clothes I
+                received from Shop.co. From casual wear to elegant dresses,
+                every piece I've bought has exceeded my expectations.”
+              </p>
+            </div>
+            <div class="comentarios-item">
+              <img src="./img/Frame 10.svg" alt="" />
+              <p class="f2-mg">Sarah M.</p>
+              <p class="f2-m cor-p4">
+                "I'm blown away by the quality and style of the clothes I
+                received from Shop.co. From casual wear to elegant dresses,
+                every piece I've bought has exceeded my expectations.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<%- include('../partials/user/footer') %>
+

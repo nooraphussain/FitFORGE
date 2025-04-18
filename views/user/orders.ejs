@@ -1,0 +1,109 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-orders">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/account">Account</a> >
+            <a href="/account/orders">Orders</a> 
+        </div>
+    </nav>
+
+    <div class="orders-items-div">
+        <h2 class="your-orders">Your Orders</h2>
+        
+        <% if (orders && orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+                <div class="order-block">
+                    <div class="order-summary">
+                        <!-- You can add additional order summary details here if needed -->
+                    </div>
+                    <div class="order-products">
+                        <% if (order.products && order.products.length > 0) { %>
+                            <% order.products.forEach(product => { %>
+                                <div class="wishlist-block">
+                                    <div class="wishlist-item-card">
+                                        <div class="wishlist-item-datas" style="display: flex; justify-content: space-between; align-items: center;">
+                                            
+                                           <!-- Left Side -->
+                                            <div class="left-side" style="display: flex; align-items: center; width: 500px;">
+                                                <a class="wishlist-img" href="/product-listing?productId=<%= product.id %>" target="_blank">
+                                                    <img alt="<%= product.name %>" fetchpriority="high" width="124" height="124" decoding="async" data-nimg="1" class="style-55" src="/uploads/product-images/<%= product.image %>" />
+                                                </a>
+                                                <div class="style-56" style="margin-left: 10px;">
+                                                    <h3 style="color: brown; margin: 0;">Order #<%= order.orderNumber %></h3>
+                                                    <div class="style-57">
+                                                        <a class="style-58" href="/product-listing?productId=<%= product.id %>" target="_blank">
+                                                            <%= product.name %>
+                                                        </a>
+                                                    </div>
+                                                    <div class="wishlist-product-color">
+                                                        <p class="f2-m cor-p4" style="margin: 0; font-size: 14px;">Color:</p>
+                                                        <div class="color-selector per-product">
+                                                            <button class="roupa-cor1" style="background-color: <%= product.color %>"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="margin-top: 10px;">
+                                                <a class="view-order-btn" style="text-decoration: none; color: rgb(146, 0, 95);" href="/account/orderDetails/<%= order.orderId %>">View Order Details</a>
+                                            </div>
+                           
+                                            <!-- Middle Side -->
+                                            <div class="middle-side" style="text-align: center;">
+                                                <div>
+                                                    <span class="preco-novo" style="font-size: 16px;"><strong>₹<%= product.price * product.quantity %></strong></span>
+                                                </div>
+                                                <div>
+                                                    <span class="preco-qty"><strong>Qty: <%= product.quantity %></strong></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Right Side -->
+                                            <div class="right-side" style="text-align: right;">
+                                                <p style="margin: 0; font-size: 16px;">
+                                                    <% if (product.status === 'Delivered' || product.status === 'Return Denied' ) { %>
+                                                        <strong style="color: darkgreen;">Delivered</strong>
+                                                    <% } else if (product.status === 'Cancelled') { %>
+                                                        <strong style="color: darkred;">Cancelled</strong>
+                                                    <% } else if (product.status === 'Return Processing') { %>
+                                                        <strong style="color: rgb(4, 60, 213);">Return Processing</strong>
+                                                    <% } else if (product.status === 'Returned') { %>
+                                                        <strong style="color: rgb(213, 119, 4);">Product Returned</strong>
+                                                    <% } else { %>
+                                                        <strong>Delivery Expected By:</strong> <%= order.deliveryDate %>
+                                                    <% } %>
+                                                </p>                                                  
+                                                <p style="margin: 0; font-size: 14px; color: rgb(2, 143, 0);">
+                                                    <% if (product.status !== 'Cancelled' && product.status !== 'Delivered' && product.status !== 'Return Processing' && product.status !== 'Returned') { %>
+                                                        Status: <%= product.status || 'Processing' %>
+                                                    <% } %>
+                                                </p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="empty-cart-container">
+                <svg class="empty-cart-icon" stroke="currentColor" fill="none" stroke-width="1" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 10l-2 -6"></path>
+                    <path d="M7 10l2 -6"></path>
+                    <path d="M15 20h-7.756a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h13.999a2 2 0 0 1 1.977 2.304l-.36 2.055"></path>
+                    <path d="M10 14a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                    <path d="M19 16v3"></path>
+                    <path d="M19 22v.01"></path>
+                </svg>
+                <span class="empty-cart-text">No previous order history.</span>
+                <a class="continue-shopping-btn" href="/shop">Shop</a>
+            </div>
+        <% } %>
+    </div>
+</main>
+
+<%- include('../partials/user/footer') %>

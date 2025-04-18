@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitFORGE.CO</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" /> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.0/sweetalert2.all.min.js"></script>
+    <script type="module" src="/public/js/script.js"></script>
+  </head>
+  <body>
+    <div class="cor-bg-p1 top-fixo">
+      <div class="header-top">
+        <p class="cor-p2">Sign up and get 20% off to your first order. <span><a style="color: white;" href="/signup">Sign Up Now</a></span></p>
+      </div>
+    </div>
+    <header>
+      <div class="header-fixo cor-bg-p2" data-scroll="animado">
+        <div class="container cor-bg-p2">
+          <div class="container-header cor-bg-p2">
+            <div>
+              <a class="logo cor-p1" href="">FitFORGE</a>
+            </div>
+            <nav class="nav">
+              <ul class="nav-itens f2-m" data-menu="nav">
+                <li><a href="#loja">Shop</a></li>
+                <li><a href="#promocao">New Arrival</a></li>
+                <li><a href="#vendido">Top Selling</a></li>
+                <li><a href="#categoria">Categories</a></li>
+              </ul>
+            </nav>
+
+            <!-- search bar -->
+            <div class="barra-pesquisa">
+              <span class="material-symbols-outlined">search</span>
+              <input class="pesquisa" type="text" placeholder="Search for products..." />
+            </div>   
+
+            <div class="contamenu">
+              <a href="/cart-logout">
+                <span class="material-symbols-outlined cart">
+                  shopping_cart</span>
+              </a>
+              <span class="material-symbols-outlined conta" data-modal="conta">
+                account_circle
+              </span>
+              <button class="menu-mobile" data-menu="btn-mobile">
+                <span class="hamburger"></span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="cor-bg-p3" id="loja" data-scroll="animado">
+        <div class="container">
+          <div class="container-main">
+            <div class="lado-esquerdo">
+              <h1 class="f1-g cor-p1 titulo"> FORGE YOUR STYLE<br>PERFECT FIT<br> EVERY TIME</h1>
+              <p class="f2-m cor-p4 texto">
+                Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
+              </p>
+              <button class="botao">Shop Now</button>
+              <div class="numeros">
+                <div class="numeros-item f2-num barra">
+                  <p class="n">200+</p>
+                  <p class="f2-m cor-p4">International Brands</p>
+                </div>
+                <div class="numeros-item f2-num barra">
+                  <p class="n">2000+</p>
+                  <p class="f2-m cor-p4">High-Quality Products</p>
+                </div>
+                <div class="numeros-item f2-num">
+                  <p class="n">3000+</p>
+                  <p class="f2-m cor-p4">Happy Customers</p>
+                </div>
+              </div>
+            </div>
+            <div class="lado-direito">
+              <img class="banner" src="./img/casal 2.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRANDS -->
+      <section>
+        <div class="marcas-bg cor-bg-p1">
+          <section class="container">
+            <ul class="marcas-itens">
+              <li><img src="./img/prada-logo-1 1.svg" alt="" /></li>
+              <li><img src="./img/versace.svg" alt="" /></li>
+              <li><img src="./img/gucci-logo-1 1.svg" alt="" /></li>
+              <li><img src="./img/png-transparent-abercrombie-fitch-logo-vertical-icons-logos-emojis-iconic-brands.png" alt="" /></li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+    </main>
+
+     <!-- NEW ARRIVALS -->
+     <section>
+      <div class="promocao-bg" id="promocao" data-scroll="animado">
+        <div class="container">
+          <h2 class="f1-m">NEW ARRIVALS</h2>
+          <section class="promocao">
+            <% for(let i = 0; i < data.length; i++) { 
+              if (data[i].isBlocked) continue; 
+            %>
+              <div class="promocao-item">
+                <a href="/product-listing?productId=<%= data[i]._id %>">
+                  <img src="/uploads/product-images/<%= data[i].productImage[0] %>" alt="<%= data[i].productName %>" class="product-imagee">
+              </a>              
+                <p class="f2-mg"><%= data[i].productName %></p>
+                <div class="avaliacao">
+                  <img src="./img/Frame 10.svg" alt="rating" />
+                  <span class="f2-m">4.5/5</span>
+                </div>
+                <span class="f2-mg">₹<%= data[i].salePrice %></span>
+              </div>
+            <% } %>                        
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP SELLING -->
+    <section>
+      <div class="mais-vendido-bg" id="vendido" data-scroll="animado">
+        <div class="container">
+          <h3 class="f1-m">TOP SELLING</h3>
+          <section class="mais-vendido">
+            <% for(let i = 4; i < data.length; i++) { 
+              if (data[i].isBlocked) continue;  
+            %>
+              <div class="promocao-item">
+                <a href="/product-listing?productId=<%= data[i]._id %>">
+                  <img src="/uploads/product-images/<%= data[i].productImage[0] %>" alt="<%= data[i].productName %>" class="product-imagee">
+              </a> 
+                <p class="f2-mg"><%= data[i].productName %></p>
+                <div class="avaliacao">
+                  <img src="./img/Frame 10.svg" alt="rating" />
+                  <span class="f2-m">4.5/5</span>
+                </div>
+                <span class="f2-mg">₹<%= data[i].salePrice %></span>
+              </div>
+            <% } %>            
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- BROWSE BY DRESS STYLE -->
+    <section>
+      <div class="estilo-bg" id="categoria" data-scroll="animado">
+        <div class="container">
+          <div class="container-estilo cor-bg-p3">
+            <h4 class="f1-m">BROWSE BY DRESS STYLE</h4>
+            <div class="estilo">
+              <section class="estilo-item1">
+                <p>CASUAL</p>
+              </section>
+              <section class="estilo-item2">
+                <p>FORMAL</p>
+              </section>
+              <section class="estilo-item3">
+                <p>PARTY</p>
+              </section>
+              <section class="estilo-item4">
+                <p>GYM</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="comentarios-bg" data-scroll="animado">
+        <div class="container">
+          <h5 class="f1-m">OUR HAPPY CUSTOMERS</h5>
+          <div class="comentarios">
+            <div class="comentarios-item">
+              <img src="./img/Frame 10.svg" alt="" />
+              <p class="f2-mg">Sarah M.</p>
+              <p class="f2-m cor-p4">
+                "I'm blown away by the quality and style of the clothes I
+                received from Shop.co. From casual wear to elegant dresses,
+                every piece I've bought has exceeded my expectations.”
+              </p>
+            </div>
+            <div class="comentarios-item">
+              <img src="./img/Frame 10.svg" alt="" />
+              <p class="f2-mg">Sarah M.</p>
+              <p class="f2-m cor-p4">
+                "I'm blown away by the quality and style of the clothes I
+                received from Shop.co. From casual wear to elegant dresses,
+                every piece I've bought has exceeded my expectations.”
+              </p>
+            </div>
+            <div class="comentarios-item">
+              <img src="./img/Frame 10.svg" alt="" />
+              <p class="f2-mg">Sarah M.</p>
+              <p class="f2-m cor-p4">
+                "I'm blown away by the quality and style of the clothes I
+                received from Shop.co. From casual wear to elegant dresses,
+                every piece I've bought has exceeded my expectations.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-bg cor-bg-p3" data-scroll="animado">
+        <div class="container">
+          <div class="inscricao cor-bg-p1">
+            <div>
+              <h1 class="f1-m cor-p2">
+                STAY UP TO DATE ABOUT OUR LATEST OFFERS
+              </h1>
+            </div>
+            <div class="email-botao">
+              <input
+                class="input-email material-symbols-outlined"
+                type="text"
+                placeholder="email"
+              />
+              <p class="enviar-email">Subscribe to Newsletter</p>
+            </div>
+          </div>
+          <div class="footer">
+            <section class="footer-itens">
+              <a class="logo cor-p1" href="">SHOP.CO</a>
+              <p class="f2-m cor-p4 txt-footer">
+                We have clothes that suits your style and which you re proud to
+                wear. From women to men.
+              </p>
+              <div class="icones-footer">
+                <a href="https://www.facebook.com" target="_blank">
+                  <i class="fab fa-facebook icone-tam"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                  <i class="fab fa-linkedin icone-tam"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                  <i class="fab fa-instagram icone-tam"></i>
+                </a>
+              </div>
+            </section>
+            <section>
+              <h1>COMPANY</h1>
+              <ul class="lista-footer">
+                <li class="f2-m cor-p4">About</li>
+                <li class="f2-m cor-p4">Features</li>
+                <li class="f2-m cor-p4">Works</li>
+                <li class="f2-m cor-p4">Career</li>
+              </ul>
+            </section>
+            <section>
+              <h1>HELP</h1>
+              <ul class="lista-footer">
+                <li class="f2-m cor-p4">Customer Support</li>
+                <li class="f2-m cor-p4">Delivery Details</li>
+                <li class="f2-m cor-p4">Terms & Conditions</li>
+                <li class="f2-m cor-p4">Privacy Policy</li>
+              </ul>
+            </section>
+            <section>
+              <h1>FAQ</h1>
+              <ul class="lista-footer">
+                <li class="f2-m cor-p4">Account</li>
+                <li class="f2-m cor-p4">Manage Deliveries</li>
+                <li class="f2-m cor-p4">Orders</li>
+                <li class="f2-m cor-p4">Payments</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+      
+    </footer>
+
+    <section class="container-modal" data-modal="modal">
+      <div class="modal">
+        <button class="fechar" data-modal="fechar">X</button>
+        <form action="" class="login">
+          <div class="login-input">
+            <label for="email" class="f2-m">Email</label>
+            <input type="text" for="email" id="email" />
+          </div>
+          <div class="login-input">
+            <label for="senha" class="f2-m">password</label>
+            <input type="password" for="senha" id="senha" />
+            <a class="recuperar-senha" href="">Esqueceu sua senha?</a>
+          </div>
+          <button type="submit" class="btn-enviar f2-m">Entrar</button>
+          <span>É Novo? <a class="cadastro" href="">Cadastre-se Aqui!</a></span>
+        </form>
+      </div>
+    </section>
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

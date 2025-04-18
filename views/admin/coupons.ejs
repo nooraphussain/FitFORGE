@@ -1,0 +1,581 @@
+<%- include('../partials/admin/header') %>
+<style>
+  .coupon-table {
+    border-collapse: separate;
+    border-spacing: 0 55px !important; 
+  }
+  .coupon-row {
+    transition: background-color 0.3s;
+  }
+  .coupon-row:hover {
+    background-color: #f0f0f0;
+  }
+  .coupon-row td {
+    padding: 15px 10px;
+  }
+  .dropdown-toggle::after {
+    display: none !important;
+  }
+</style>
+
+
+<!-- MAIN -->
+<main style="background-color: var(--grey);">
+  <div class="head-title">
+    <div class="left">
+      <h1>Coupons</h1>
+      <ul class="breadcrumb">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><i class='bx bx-chevron-right'></i></li>
+        <li><a class="active" href="/admin/coupons">Coupons</a></li>
+      </ul>
+    </div>
+
+    <div class="right flex items-center gap-4 w-full">
+      <div class="flex items-center gap-4">
+        <!-- New Coupon Button -->
+        <button class="new-category-btn flex" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCoupon">
+          <i class="bx bx-plus text-lg"></i>
+          <span class="text font-medium">New Coupon</span>
+        </button> 
+
+        <!-- Filter Button -->
+        <button class="filter-btn flex">
+          <i class="bx bx-search text-lg"></i>
+          <span class="text font-medium">Filter</span>
+        </button>  
+      </div>
+    </div>
+
+    <!-- Offcanvas for New Coupon -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCoupon" aria-labelledby="NewCouponLabel">
+      <div class="offcanvas-header justify-content-between">
+        <h5 id="NewCouponLabel" class="text-dark">Add New Coupon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <form method="post" action="/admin/addCoupon" onsubmit="return handleCouponFormSubmit(event)">
+          <!-- Coupon Name -->
+          <div class="mb-3">
+            <label for="couponName" class="form-label">Coupon Name</label>
+            <input type="text" class="form-control" id="couponName" placeholder="Enter coupon name">
+          </div>
+
+          <!-- Start Date -->
+          <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate" min="" onchange="validateStartDate()">
+          </div>
+
+          <!-- Expiry Date -->
+          <div class="mb-3">
+            <label for="expiryDate" class="form-label">Expiry Date</label>
+            <input type="date" class="form-control" id="expiryDate">
+          </div>
+
+          <!-- Offer Price -->
+          <div class="mb-3">
+            <label for="offerPrice" class="form-label">Offer Price</label>
+            <input type="number" class="form-control" id="offerPrice" placeholder="Enter offer price">
+          </div>
+
+          <!-- Minimum Price -->
+          <div class="mb-3">
+            <label for="minPrice" class="form-label">Minimum Price</label>
+            <input type="number" class="form-control" id="minPrice" placeholder="Enter minimum price">
+          </div>
+
+          <!-- Save Button -->
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Save Coupon</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-data">
+      <div class="coupon" style="width: 100%;">
+        <table class="coupon-table" style="border-collapse: separate; border-spacing: 0 15px !important;">
+          <thead style="font-size: 13px;">
+            <tr>
+              <th style="width: 50px;">No.</th>
+              <th style="width: 150px;">Name-Code</th>
+              <th style="width: 180px;">Created On</th>
+              <th style="width: 180px;">Expires On</th>
+              <th style="width: 180px;">Offer Price</th>
+              <th style="width: 180px;">Minimum Price</th>
+              <th style="width: 150px;">Status</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tr>
+            <td colspan="8" style="padding: 0; margin: 0;">
+              <hr style="margin: 10px 0; border: none; border-top: 1px solid grey;">
+            </td>
+          </tr>
+          <tbody>
+            <% for(let i = 0; i < coupons.length; i++) { %>
+              <tr class="coupon-row" style="border-radius: 5px;">
+                <td><%= (currentPage - 1) * 5 + i + 1 %></td>
+                <td><%= coupons[i].name %><%= coupons[i].code %></td>
+                <td><%= moment(coupons[i].createdOn).format('ddd MMM DD, YYYY') %></td>
+                <td><%= moment(coupons[i].expireOn).format('ddd MMM DD, YYYY') %></td>
+                <td>₹<%= coupons[i].offerPrice %></td>
+                <td>₹<%= coupons[i].minimumPrice %></td>
+                <td>
+                  <% if (coupons[i].isList) { %>
+                    <span class="badge bg-success">Active</span>
+                  <% } else { %>
+                    <span class="badge bg-danger">Inactive</span>
+                  <% } %>
+                </td>
+                <td>
+                    <div class="dropdown">
+                      <button class="dots-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" class="dropdown-item edit-coupon-link"
+                               data-id="<%= coupons[i]._id %>"
+                               data-name="<%= coupons[i].name %>"
+                               data-start-date="<%= coupons[i].startDate ? coupons[i].startDate.toISOString().split('T')[0] : '' %>"
+                               data-expiry-date="<%= coupons[i].expireOn ? coupons[i].expireOn.toISOString().split('T')[0] : '' %>"
+                               data-offer-price="<%= coupons[i].offerPrice %>"
+                               data-minimum-price="<%= coupons[i].minimumPrice %>">
+                              Edit
+                            </a>
+                        </li>                          
+                        <li>
+                            <a href="#" class="dropdown-item delete-coupon-link" data-id="<%= coupons[i]._id %>">Delete</a>
+                          </li>                          
+                      </ul>
+                    </div>
+                  </td>                                                                                                 
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+
+        <!-- Offcanvas for Edit Coupon -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditCoupon" aria-labelledby="EditCouponLabel">
+          <div class="offcanvas-header justify-content-between">
+            <h5 id="EditCouponLabel" class="text-dark">Edit Coupon</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <form id="editCouponForm" onsubmit="return handleEditCouponFormSubmit(event)">
+              <input type="hidden" id="editCouponId">
+              <!-- Coupon Name -->
+              <div class="mb-3">
+                <label for="editCouponName" class="form-label">Coupon Name</label>
+                <input type="text" class="form-control" id="editCouponName" placeholder="Enter coupon name">
+              </div>
+              <!-- Start Date -->
+              <div class="mb-3">
+                <label for="editStartDate" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="editStartDate">
+              </div>
+              <!-- Expiry Date -->
+              <div class="mb-3">
+                <label for="editExpiryDate" class="form-label">Expiry Date</label>
+                <input type="date" class="form-control" id="editExpiryDate">
+              </div>
+              <!-- Offer Price -->
+              <div class="mb-3">
+                <label for="editOfferPrice" class="form-label">Offer Price</label>
+                <input type="number" class="form-control" id="editOfferPrice" placeholder="Enter offer price">
+              </div>
+              <!-- Minimum Price -->
+              <div class="mb-3">
+                <label for="editMinPrice" class="form-label">Minimum Price</label>
+                <input type="number" class="form-control" id="editMinPrice" placeholder="Enter minimum price">
+              </div>
+              <!-- Save Button -->
+              <button class="w-100 btn btn-primary btn-lg" type="submit">Update Coupon</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="pagination-container" style="display: flex; justify-content: center; margin-top: 20px;">
+          <ul class="pagination" style="display: flex; list-style: none; padding: 0;">
+            <% if (currentPage > 1) { %>
+              <li class="page-item">
+                <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous" 
+                  style="background-color: #86c3ff; color: white; border: none; margin: 0 5px; padding: 8px 12px; text-decoration: none; border-radius: 5px;">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            <% } %>
+
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <li class="page-item" style="margin: 0 5px;">
+                <a class="page-link" href="?page=<%= i %>" 
+                  style="background-color: <%= i === currentPage ? '#2a6fb0' : '#3b91e5' %>; 
+                  color: white; border: none; padding: 8px 12px; text-decoration: none; 
+                  border-radius: 5px; font-weight: <%= i === currentPage ? 'bold' : 'normal' %>;">
+                  <%= i %>
+                </a>
+              </li>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+              <li class="page-item">
+                <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next" 
+                  style="background-color: #3b91e5; color: white; border: none; margin: 0 5px; padding: 8px 12px; text-decoration: none; border-radius: 5px;">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            <% } %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- MAIN -->
+
+<!-- New Coupon Form Script -->
+<script>
+  async function handleCouponFormSubmit(event) {
+    event.preventDefault();
+
+    const offcanvasElement = document.getElementById('offcanvasCoupon');
+    if (offcanvasElement) {
+      let offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+      if (!offcanvasInstance) {
+        offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
+      }
+      offcanvasInstance.hide();
+    }
+
+    const couponName = document.getElementById('couponName').value.trim();
+    const startDate = document.getElementById('startDate').value;
+    const expiryDate = document.getElementById('expiryDate').value;
+    const offerPrice = parseFloat(document.getElementById('offerPrice').value.trim());
+    const minPrice = parseFloat(document.getElementById('minPrice').value.trim());
+
+    // Get today's date object
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to avoid time issues
+
+    // Convert input dates to Date objects
+    const startDateObj = new Date(startDate);
+    const expiryDateObj = new Date(expiryDate);
+
+    // Validation
+    if (!couponName || !startDate || !expiryDate || isNaN(offerPrice) || isNaN(minPrice)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'All fields are required!',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    if (startDateObj < today) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Start Date!',
+        text: 'Start date cannot be in the past.',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    if (expiryDateObj <= startDateObj) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Expiry Date!',
+        text: 'Expiry date must be later than the start date.',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    if (offerPrice >= minPrice) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Pricing!',
+        text: 'Offer price should be less than the minimum price.',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    // Function to get current date in 'YYYY-MM-DD' format
+    function getCreatedOnDate() {
+      const date = new Date();
+      return date.toISOString().split('T')[0];
+    }
+
+    const newCoupon = {
+      name: couponName,
+      startDate,
+      expiryDate,
+      offerPrice,
+      minPrice,
+      createdOn: getCreatedOnDate()
+    };
+
+    try {
+      const response = await fetch('/admin/addCoupon', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newCoupon),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 201) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: result.message || 'Coupon added successfully',
+          confirmButtonColor: 'var(--blue)',
+        });
+        document.querySelector("form").reset();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: result.message || 'Failed to add coupon',
+          confirmButtonColor: 'var(--blue)',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Something went wrong! Try again.',
+        confirmButtonColor: 'var(--blue)',
+      });
+    }
+  }
+</script>
+
+<!-- Date Setup Script -->
+<script>
+  function setTodayDate() {
+    const today = new Date().toISOString().split('T')[0]; 
+    const startDateInput = document.getElementById('startDate');
+    startDateInput.value = today; 
+    startDateInput.setAttribute('min', today);
+  }
+
+  function validateStartDate() {
+    const startDateInput = document.getElementById('startDate');
+    const selectedDate = new Date(startDateInput.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
+      alert("Start date cannot be in the past!");
+      startDateInput.value = today.toISOString().split('T')[0];
+    }
+  }
+
+  window.onload = setTodayDate;
+</script>
+
+<!-- Edit Coupon Offcanvas and Form Script -->
+<script>
+  function openEditCoupon(offcanvasElement, couponData) {
+  document.getElementById('editCouponId').value = couponData._id;
+  document.getElementById('editCouponName').value = couponData.name;
+  document.getElementById('editStartDate').value = couponData.startDate; // now uses startDate
+  document.getElementById('editExpiryDate').value = couponData.expiryDate;
+  document.getElementById('editOfferPrice').value = couponData.offerPrice;
+  document.getElementById('editMinPrice').value = couponData.minimumPrice;
+  
+  let offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+  if (!offcanvasInstance) {
+    offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
+  }
+  offcanvasInstance.show();
+    }
+
+    // Attach event listener to each edit link
+    document.querySelectorAll('.edit-coupon-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const couponData = {
+        _id: this.getAttribute('data-id'),
+        name: this.getAttribute('data-name'),
+        startDate: this.getAttribute('data-start-date'), // dedicated start date
+        expiryDate: this.getAttribute('data-expiry-date'),
+        offerPrice: this.getAttribute('data-offer-price'),
+        minimumPrice: this.getAttribute('data-minimum-price')
+        };
+        const offcanvasElement = document.getElementById('offcanvasEditCoupon');
+        openEditCoupon(offcanvasElement, couponData);
+    });
+    });
+
+
+  // Handle the edit coupon form submission via AJAX
+  async function handleEditCouponFormSubmit(event) {
+    event.preventDefault();
+
+    const couponId = document.getElementById('editCouponId').value;
+    const couponName = document.getElementById('editCouponName').value.trim();
+    const startDate = document.getElementById('editStartDate').value;
+    const expiryDate = document.getElementById('editExpiryDate').value;
+    const offerPrice = parseFloat(document.getElementById('editOfferPrice').value.trim());
+    const minPrice = parseFloat(document.getElementById('editMinPrice').value.trim());
+
+    // Validate input similar to new coupon form
+    if (!couponName || !startDate || !expiryDate || isNaN(offerPrice) || isNaN(minPrice)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'All fields are required!',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    const startDateObj = new Date(startDate);
+    const expiryDateObj = new Date(expiryDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (startDateObj < today) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Start Date!',
+        text: 'Start date cannot be in the past.',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    if (expiryDateObj <= startDateObj) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Expiry Date!',
+        text: 'Expiry date must be later than the start date.',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    if (offerPrice >= minPrice) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Pricing!',
+        text: 'Offer price should be less than the minimum price.',
+        confirmButtonColor: 'var(--blue)'
+      });
+      return;
+    }
+
+    // Create updated coupon object
+    const updatedCoupon = {
+      name: couponName,
+      startDate,
+      expiryDate,
+      offerPrice,
+      minPrice
+    };
+
+    try {
+      // Make an AJAX request to update the coupon
+      const response = await fetch(`/admin/editCoupon?id=${couponId}`, {
+        method: 'PUT', // assuming you use PUT for updates
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedCoupon)
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: result.message || 'Coupon updated successfully',
+          confirmButtonColor: 'var(--blue)',
+        });
+        // Optionally refresh the page or update the table dynamically
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: result.message || 'Failed to update coupon',
+          confirmButtonColor: 'var(--blue)',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Something went wrong! Try again.',
+        confirmButtonColor: 'var(--blue)',
+      });
+    }
+  }
+</script>
+<!-- Attach event listener to all delete links -->
+<script>
+    document.querySelectorAll('.delete-coupon-link').forEach(link => {
+      link.addEventListener('click', async function(e) {
+        e.preventDefault();
+        const couponId = this.getAttribute('data-id');
+        
+        // Confirm deletion via Swal
+        const confirmed = await Swal.fire({
+          icon: 'warning',
+          title: 'Are you sure?',
+          text: 'Do you really want to delete this coupon?',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'Cancel'
+        });
+        
+        if (confirmed.isConfirmed) {
+          try {
+            // Use GET or DELETE method based on your route
+            const response = await fetch(`/admin/deleteCoupon?id=${couponId}`, {
+              method: 'GET'  // Change to DELETE if you have that route configured
+            });
+            const result = await response.json();
+            
+            if (response.status === 200) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: result.message,
+                confirmButtonColor: 'var(--blue)'
+              });
+              // Remove the coupon row from the table dynamically
+              const row = this.closest('tr');
+              if (row) row.remove();
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: result.message || 'Failed to delete coupon',
+                confirmButtonColor: 'var(--blue)'
+              });
+            }
+          } catch (error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong! Try again.',
+              confirmButtonColor: 'var(--blue)'
+            });
+          }
+        }
+      });
+    });
+  </script>
+  
+
+<%- include('../partials/admin/footer') %>

@@ -1,0 +1,119 @@
+<%- include('../partials/admin/header') %>
+
+		<!-- MAIN -->
+		<main style="background-color: #eeeeee;">
+            <div class="head-title">
+                <div class="left">
+                    <h1>Customers</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/admin">Dashboard</a></li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li><a class="active" href="/admin/customers">Customers</a></li>
+                    </ul>
+                </div>
+                <div class="right flex items-center gap-4 w-full">
+                    <!-- <a href="#" class="btn-download flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">
+                        <i class='bx bxs-cloud-download'></i>
+                        <span class="text font-medium">Download PDF</span>
+                    </a> -->
+                    
+                    <button class="filter-btn flex">
+                        <i class="bx bx-search text-lg"></i>
+                        <span class="text font-medium">Filter</span>
+                    </button>
+                    
+                </div>
+                
+                <div class="table-data">
+                    <div class="order">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Action</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i = 0; i < customers.length; i++) { %>
+                                    <tr>
+                                        <td><%= customers[i].name %></td>
+                                        <td><%= customers[i].email %></td>
+                                        <td><%= customers[i].phoneNumber %></td>
+                                        <td>
+                                            <% if (customers[i].isBlocked === true) { %>
+                                                <a href="javascript:void(0);" class="custom-btn custom-btn-success" onclick="confirmUnblock('<%= customers[i]._id %>')">Unblock</a>
+                                            <% } else { %>
+                                                <a href="javascript:void(0);" class="custom-btn custom-btn-danger" onclick="confirmBlock('<%= customers[i]._id %>')">Block</a>
+                                            <% } %>
+                                        </td>                                        
+                                        <td>                                        
+                                            <div class="dropdown">
+                                                <button class="dots-btn">
+                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a href="#" class="dropdown-item">Show</a>
+                                                    <a href="/admin/editCustomer?id=<%= customers[i]._id %>" class="dropdown-item">Edit</a>
+                                                    <a href="/admin/deleteCustomer?id=<%= customers[i]._id %>" class="dropdown-item">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>                        
+                        </table>
+
+                    </div>
+                </div>
+            </div>   
+        </main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+    <script>
+        function confirmBlock(customerId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to block this customer?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, block!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true,
+                customClass: {
+                    popup: 'custom-swal-popup'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/admin/blockCustomer?id=' + customerId;
+                }
+            });
+        }
+
+        function confirmUnblock(customerId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to unblock this customer?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, unblock!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true,
+                customClass: {
+                    popup: 'custom-swal-popup'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/admin/unblockCustomer?id=' + customerId;
+                }
+            });
+        }
+
+    </script>
+	<script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<%- include('../partials/user/header') %>
+
+<main class="style-38">
+    <nav class="breadcrumb-orders">
+        <div class="container">
+            <a href="/shop">Home</a> >
+            <a href="/account">Account</a> >
+            <a href="/account/orders">Orders</a> >
+            <span>Order Success</span>
+        </div>
+    </nav>
+
+    <div class="order-success-container" style="max-width: 800px; margin: 40px auto; padding: 30px; background-color: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;">
+        <div class="success-icon" style="margin-bottom: 30px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+        
+        <h1 style="color: #333; font-size: 28px; margin-bottom: 15px;">Order Placed Successfully!</h1>
+        
+        <p style="color: #666; font-size: 16px; margin-bottom: 30px;">
+            Thank you for your purchase. Your order has been received and is being processed.
+        </p>
+        
+        <div class="order-details" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: left;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span style="font-weight: bold; color: #555;">Order ID:</span>
+                <span><%= order.orderId %></span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span style="font-weight: bold; color: #555;">Date:</span>
+                <span><%= moment(order.createdAt).format('MMMM D, YYYY') %></span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span style="font-weight: bold; color: #555;">Payment Method:</span>
+                <span><%= order.paymentMethod %></span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: bold; color: #555;">Total Amount:</span>
+                <span>₹<%= order.finalAmount.toFixed(2) %></span>
+            </div>
+        </div>
+        
+        <div class="action-buttons" style="display: flex; justify-content: center; gap: 20px;">
+            <a href="/orderPlaced" style="display: inline-block; padding: 12px 24px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                View Order Details
+            </a>
+            
+            <a href="/shop" style="display: inline-block; padding: 12px 24px; background-color: #f8f9fa; color: #333; text-decoration: none; border-radius: 4px; font-weight: bold; border: 1px solid #ddd;">
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/user/footer') %>

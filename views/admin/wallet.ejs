@@ -1,0 +1,489 @@
+<%- include('../partials/admin/header') %>
+
+<!-- MAIN -->
+<main style="background-color: var(--grey);">
+    <div class="head-title">
+        <div class="left">
+            <h1>Wallet Management</h1>
+            <ul class="breadcrumb">
+                <li><a href="/admin">Dashboard</a></li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li><a class="active" href="/admin/wallet">Wallet</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section mb-4 p-3 bg-white rounded shadow-sm">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="dateRangeFilter" class="form-label">Date Range</label>
+                <div class="input-group">
+                    <input type="date" id="startDate" class="form-control">
+                    <span class="input-group-text">to</span>
+                    <input type="date" id="endDate" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="typeFilter" class="form-label">Transaction Type</label>
+                <select id="typeFilter" class="form-select">
+                    <option value="">All Types</option>
+                    <option value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="userFilter" class="form-label">User</label>
+                <select id="userFilter" class="form-select">
+                    <option value="">All Users</option>
+                    <!-- User options will be populated via JavaScript -->
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button id="applyFilters" class="btn btn-primary me-2">Apply Filters</button>
+                <button id="resetFilters" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Wallet Transactions</h3>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search transactions...">
+                    <i class='bx bx-search'></i>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionsTableBody">
+                    <% if (transactions && transactions.length > 0) { %>
+                        <% transactions.forEach(transaction => { %>
+                            <tr>
+                                <td><%= transaction.transactionId %></td>
+                                <td><%= new Date(transaction.date).toLocaleString() %></td>
+                                <td><%= transaction.userName %></td>
+                                <td>
+                                    <span class="status <%= transaction.type === 'credit' ? 'completed' : 'pending' %>">
+                                        <%= transaction.type === 'credit' ? 'Credit' : 'Debit' %>
+                                    </span>
+                                </td>
+                                <td>₹<%= transaction.amount.toFixed(2) %></td>
+                                <td>
+                                    <button class="view-details-btn" 
+                                            data-user-id="<%= transaction.userId %>" 
+                                            data-transaction-id="<%= transaction.transactionId %>">
+                                        <i class='bx bx-detail' style="margin-right: 5px;"></i> View Details
+                                    </button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center">No transactions found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Transaction Details Modal -->
+    <div class="modal fade" id="transactionDetailsModal" tabindex="-1" aria-labelledby="transactionDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transactionDetailsModalLabel">Transaction Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="transaction-details">
+                        <h4>Transaction Information</h4>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Transaction ID:</strong> <span id="modal-transaction-id"></span></p>
+                                <p><strong>Date:</strong> <span id="modal-transaction-date"></span></p>
+                                <p><strong>Type:</strong> <span id="modal-transaction-type"></span></p>
+                                <p><strong>Amount:</strong> <span id="modal-transaction-amount"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Description:</strong> <span id="modal-transaction-description"></span></p>
+
+                            </div>
+                        </div>
+
+                        <h4>User Information</h4>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Name:</strong> <span id="modal-user-name"></span></p>
+                                <p><strong>Email:</strong> <span id="modal-user-email"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Phone:</strong> <span id="modal-user-phone"></span></p>
+                            </div>
+                        </div>
+
+                        <!-- Order Information (shown only if transaction is related to an order) -->
+                        <div id="order-info-section" style="display: none;">
+                            <h4>Order Information</h4>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <p><strong>Order ID:</strong> <span id="modal-order-id"></span></p>
+                                    <p><strong>Order Date:</strong> <span id="modal-order-date"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Order Status:</strong> <span id="modal-order-status"></span></p>
+                                    <p><strong>Order Total:</strong> <span id="modal-order-total"></span></p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a id="view-order-btn" href="#" class="btn btn-primary">View Order Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Add this script at the end of the file -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set max date to today for date inputs
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('startDate').setAttribute('max', today);
+    document.getElementById('endDate').setAttribute('max', today);
+    
+    // Load users for the filter dropdown
+    loadUsers();
+    
+    // Set up event listeners
+    document.querySelectorAll('.view-details-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const userId = this.getAttribute('data-user-id');
+            const transactionId = this.getAttribute('data-transaction-id');
+            loadTransactionDetails(userId, transactionId);
+        });
+    });
+    
+    // Filter functionality
+    document.getElementById('applyFilters').addEventListener('click', applyFilters);
+    document.getElementById('resetFilters').addEventListener('click', resetFilters);
+    
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#transactionsTableBody tr');
+        
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(searchTerm) ? '' : 'none';
+        });
+    });
+});
+
+// Load users for filter dropdown
+function loadUsers() {
+    fetch('/admin/wallet/users')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const userSelect = document.getElementById('userFilter');
+                data.users.forEach(user => {
+                    const option = document.createElement('option');
+                    option.value = user._id;
+                    option.textContent = `${user.name} (${user.email})`;
+                    userSelect.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error('Error loading users:', error));
+}
+
+// Load transaction details
+
+function loadTransactionDetails(userId, transactionId) {
+    fetch(`/admin/wallet/transaction/${userId}/${transactionId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const transaction = data.transaction;
+                
+                // Fill transaction details
+                document.getElementById('modal-transaction-id').textContent = transaction.transactionId || transaction._id;
+                document.getElementById('modal-transaction-date').textContent = new Date(transaction.date).toLocaleString();
+                document.getElementById('modal-transaction-type').textContent = transaction.type === 'credit' ? 'Credit' : 'Debit';
+                document.getElementById('modal-transaction-amount').textContent = `₹${transaction.amount.toFixed(2)}`;
+                document.getElementById('modal-transaction-description').textContent = transaction.description || 'N/A';
+                
+                // Fill user details
+                document.getElementById('modal-user-name').textContent = transaction.userName;
+                document.getElementById('modal-user-email').textContent = transaction.userEmail;
+                document.getElementById('modal-user-phone').textContent = transaction.userPhone;
+                
+                // Get order section and view order button
+                const orderSection = document.getElementById('order-info-section');
+                const viewOrderBtn = document.getElementById('view-order-btn');
+                
+                // Initially hide the order section
+                orderSection.style.display = 'none';
+                
+                // Case 1: We have full order details from the backend
+                if (data.orderDetails) {
+                    const order = data.orderDetails;
+                    document.getElementById('modal-order-id').textContent = order.orderId;
+                    document.getElementById('modal-order-date').textContent = new Date(order.createdOn).toLocaleString();
+                    document.getElementById('modal-order-status').textContent = order.status;
+                    document.getElementById('modal-order-total').textContent = `₹${order.finalAmount.toFixed(2)}`;
+                    
+                    viewOrderBtn.href = `/admin/orderDetails/${order._id}`;
+                    viewOrderBtn.textContent = 'View Order Details';
+                    orderSection.style.display = 'block';
+                } 
+                // Case 2: We have orderId but no order details
+                else if (transaction.orderId) {
+                    document.getElementById('modal-order-id').textContent = transaction.orderId;
+                    document.getElementById('modal-order-date').textContent = 'Not available';
+                    document.getElementById('modal-order-status').textContent = 'See order details';
+                    document.getElementById('modal-order-total').textContent = 'Not available';
+                    
+                    // Set up search link based on the orderId format
+                    viewOrderBtn.href = `/admin/orders?search=${encodeURIComponent(transaction.orderId)}`;
+                    viewOrderBtn.textContent = 'Find Related Order';
+                    orderSection.style.display = 'block';
+                }
+                // Case 3: Transaction description suggests a return/cancel
+                else if (transaction.description && 
+                        (transaction.description.toLowerCase().includes('return') || 
+                         transaction.description.toLowerCase().includes('cancel'))) {
+    
+    // Try to extract an order ID from the description
+    const descPattern = /order[:\s]*#?([a-zA-Z0-9]+)/i;
+    const matchResult = transaction.description.match(descPattern);
+    const orderId = matchResult ? matchResult[1] : null;
+
+    document.getElementById('modal-order-id').textContent = orderId || 'Not specified';
+    document.getElementById('modal-order-date').textContent = 'Not available';
+    document.getElementById('modal-order-status').textContent = 'Returned/Cancelled';
+    document.getElementById('modal-order-total').textContent = 'Not available';
+
+    if (orderId) {
+        // If we have an order ID, link directly to the order details page
+        viewOrderBtn.href = `/admin/orderDetails/${orderId}`;
+        viewOrderBtn.textContent = 'View Order Details';
+        
+        // Fetch order details using the extracted order ID
+        fetch(`/admin/wallet/order-details/${orderId}`)
+            .then(response => response.json())
+            .then(orderData => {
+                if (orderData.success && orderData.order) {
+                    // Update order information with fetched details
+                    document.getElementById('modal-order-date').textContent = 
+                        new Date(orderData.order.createdOn).toLocaleString();
+                    document.getElementById('modal-order-status').textContent = 
+                        orderData.order.status;
+                    document.getElementById('modal-order-total').textContent = 
+                        `₹${orderData.order.finalAmount.toFixed(2)}`;
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching order details:', err);
+            });
+    } else {
+        // Otherwise, fall back to search
+        const searchTerm = transaction.description.substring(0, 30);
+        viewOrderBtn.href = `/admin/orders?search=${encodeURIComponent(searchTerm)}`;
+        viewOrderBtn.textContent = 'Search for Order';
+    }
+    
+    orderSection.style.display = 'block';
+}
+                
+                // Show the modal
+                const modal = new bootstrap.Modal(document.getElementById('transactionDetailsModal'));
+                modal.show();
+            } else {
+                alert('Error loading transaction details: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading transaction details:', error);
+            alert('An error occurred while loading transaction details.');
+        });
+}
+
+// Apply filters
+function applyFilters() {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    const type = document.getElementById('typeFilter').value;
+    const userId = document.getElementById('userFilter').value;
+    
+    // Build query string
+    let queryParams = [];
+    if (startDate) queryParams.push(`startDate=${startDate}`);
+    if (endDate) queryParams.push(`endDate=${endDate}`);
+    if (type) queryParams.push(`type=${type}`);
+    if (userId) queryParams.push(`userId=${userId}`);
+    
+    const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    
+    // Fetch filtered transactions
+    fetch(`/admin/wallet/filter${queryString}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                updateTransactionsTable(data.transactions);
+            } else {
+                alert('Error applying filters: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error applying filters:', error);
+            alert('An error occurred while applying filters.');
+        });
+}
+
+// Reset filters
+function resetFilters() {
+    document.getElementById('startDate').value = '';
+    document.getElementById('endDate').value = '';
+    document.getElementById('typeFilter').value = '';
+    document.getElementById('userFilter').value = '';
+    
+    // Reload the page to reset the table
+    window.location.reload();
+}
+
+// Update transactions table with filtered data
+function updateTransactionsTable(transactions) {
+    const tableBody = document.getElementById('transactionsTableBody');
+    tableBody.innerHTML = '';
+    
+    if (transactions.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="6" class="text-center">No transactions found</td>';
+        tableBody.appendChild(row);
+        return;
+    }
+    
+    transactions.forEach(transaction => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${transaction.transactionId}</td>
+            <td>${new Date(transaction.date).toLocaleString()}</td>
+            <td>${transaction.userName}</td>
+            <td>
+                <span class="status ${transaction.type === 'credit' ? 'completed' : 'pending'}">
+                    ${transaction.type === 'credit' ? 'Credit' : 'Debit'}
+                </span>
+            </td>
+            <td>₹${transaction.amount.toFixed(2)}</td>
+            <td>
+                <button class="view-details-btn" 
+                        data-user-id="${transaction.userId}" 
+                        data-transaction-id="${transaction.transactionId}">
+                    <i class='bx bx-detail' style="margin-right: 5px;"></i> View Details
+                </button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+        
+        // Add event listener to the new button
+        row.querySelector('.view-details-btn').addEventListener('click', function() {
+            const userId = this.getAttribute('data-user-id');
+            const transactionId = this.getAttribute('data-transaction-id');
+            loadTransactionDetails(userId, transactionId);
+        });
+    });
+}
+</script>
+
+<style>
+/* Custom styles for wallet management page */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.view-details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-details-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.view-details-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status.completed {
+    background-color: #4CAF50 !important;
+}
+
+.status.pending {
+    background-color: #d5251c !important;
+}
+
+.search-box {
+    position: relative;
+    margin-left: auto;
+}
+
+.search-box input {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 250px;
+}
+
+.search-box i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Modal styles */
+.transaction-details h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+#view-order-btn {
+    margin-top: 10px;
+}
+</style>
+
+<%- include('../partials/admin/footer') %>
