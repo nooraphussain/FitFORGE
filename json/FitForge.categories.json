@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "name": "Casual",
+  "description": "Explore our premium casual wear collection, designed for comfort and effortless style. From trendy t-shirts to relaxed jeans, find your perfect everyday outfit.",
+  "isAvailable": true,
+  "offerPrice": "0%",
+  "isListed": true,
+  "createdAt": {
+    "$date": "2025-01-01T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-01T12:00:00.000Z"
+  },
+  "isAdded": true,
+  "categoryOffer": "0"
+},
+{
+  "_id": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a002"
+  },
+  "name": "Gym",
+  "description": "Upgrade your workout wardrobe with our high-performance gym wear. Designed for flexibility and durability, our collection ensures you stay stylish and comfortable while training.",
+  "isAvailable": true,
+  "offerPrice": "4%",
+  "isListed": true,
+  "createdAt": {
+    "$date": "2025-01-05T11:30:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-02T14:45:00.000Z"
+  },
+  "isAdded": false,
+  "categoryOffer": "4"
+},
+{
+  "_id": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a003"
+  },
+  "name": "Formals",
+  "description": "                                                                                                                                                                                                                                                                                                                                                                         Dress to impress with our premium formals collection. From tailored suits to crisp shirts, our sophisticated designs ensure you look sharp for any occasion.\r\n                                    \r\n                                    \r\n                                    \r\n                                    \r\n                                    \r\n                                    \r\n                                    \r\n                                    \r\n                                    ",
+  "isAvailable": true,
+  "offerPrice": "5%",
+  "isListed": true,
+  "createdAt": {
+    "$date": "2025-01-10T09:15:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-05T16:20:00.000Z"
+  },
+  "isAdded": false,
+  "categoryOffer": "5"
+},
+{
+  "_id": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a004"
+  },
+  "name": "Party",
+  "description": "Make a statement with our stunning party wear collection. From dazzling dresses to stylish suits, find the perfect outfit to turn heads at any celebration.",
+  "isAvailable": true,
+  "offerPrice": "8%",
+  "isListed": true,
+  "createdAt": {
+    "$date": "2024-12-15T08:50:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-25T18:10:00.000Z"
+  },
+  "isAdded": true,
+  "categoryOffer": "8"
+}]

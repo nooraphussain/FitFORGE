@@ -1,0 +1,678 @@
+[{
+  "_id": {
+    "$oid": "67ac84ac8857f3ceec9a8eeb"
+  },
+  "productName": "Bubble Hem Vegan Leather Bomber Jacket",
+  "description": "On-trend bomber jacket in our soft vegan leather fabric, featuring a cinching detail at the waist, zip-up front, mock neckline and side entry pockets. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 149,
+  "salePrice": 138,
+  "offer": "7.38%",
+  "isListed": true,
+  "quantity": 50,
+  "color": "Black",
+  "productImage": [
+    "86594a0370dc3f8d33fab322d8050a71",
+    "651f62c6ae1d44029a8b5ccc867b0dfb",
+    "6913f2e9854174bc7d9b89630bb98b73",
+    "c2258e792dfd93148de7b7b6b3d88c40",
+    "bc833d26c329dd9a493c3c98a97af9fe",
+    "a013d6a6ad192301f0ebc294b5825095",
+    "e24b226895dbb58ce2225447a69530c7",
+    "355958f339d25c22089987dcff0936de"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T11:23:24.460Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T11:05:42.896Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac85d08857f3ceec9a8f02"
+  },
+  "productName": "Classic Vegan Suede Jacket",
+  "description": "Our new jacket in a vegan suede fabric and classic straight silhouette, featuring button-front closures, side entry pockets and a fold-down collar. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 149,
+  "salePrice": 138,
+  "offer": "7.38%",
+  "isListed": true,
+  "quantity": 30,
+  "color": "Brown",
+  "productImage": [
+    "1eb20a43ddec09811e1360b5904292fb",
+    "c09554805d2accd0eb4e1226dfb0f105",
+    "b65d313930032ae3dafee3c97214dcf0",
+    "4872dbe140797ac33cd67886292e932b",
+    "6a72f2f91546e0d2be3b632b685e3e42",
+    "eab82f110ff3518a240b46e85068fa9e"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T11:28:16.326Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T08:14:34.283Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac869785426ff593fc7c84"
+  },
+  "productName": "Short Waxed Workwear Jacket",
+  "description": "Our new workwear-style jacket in our waxed cotton fabric, featuring a zip-up front, corduroy fold-down collar and front patch pockets. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 250,
+  "salePrice": 118,
+  "offer": "52.8%",
+  "isListed": true,
+  "quantity": 100,
+  "color": "Dark brown",
+  "productImage": [
+    "a55c8f048340761cd49bbef956a6c536",
+    "a1edb6281331af970a32960279393305",
+    "a570613fbb0715f263855ab2953cb834",
+    "bdedc0d0fb1e701e3f2e9153bf1cbbca",
+    "04948b7cb090f6f04c92f40219bbd22b",
+    "874bee85d19efa991a3850489c27986f"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T11:31:35.250Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T08:11:23.037Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac88e67b4fba4eae7b02ae"
+  },
+  "productName": "Vegan Leather Collar Relaxed Short Trench Coat",
+  "description": "Our new trench coat in our wind- and water-resistant fabric and short length, featuring lightweight interior lining, double-breasted collar with a vegan leather collar detail and side entry pockets. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 250,
+  "salePrice": 118,
+  "offer": "52.8%",
+  "isListed": true,
+  "quantity": 75,
+  "color": "Caramel",
+  "productImage": [
+    "1cc59fce1edfb27f4f0757994d3a2b51",
+    "9abb927ffa36e5626085e2ab078f6d9c",
+    "54ae007ab1f03020edef630daf418dcb"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T11:41:26.713Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T08:12:41.571Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac89dc5d5937f10f633d40"
+  },
+  "productName": "Old duchesse dress",
+  "description": "The sophisticated silhouette of this duchesse dress combines precise lines with delicate draping that replicates a wrinkled effect, blurring the boundaries.",
+  "brand": "Prada",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a004"
+  },
+  "regularPrice": 499,
+  "salePrice": 399,
+  "offer": "20.04%",
+  "isListed": true,
+  "quantity": 40,
+  "color": "Red Rust",
+  "productImage": [
+    "3bd1f071991e46bf635c2e149480f81a",
+    "19925a09764b36c867a1f4f9e3f45958",
+    "be1d25d6b67659603f0060a6ae35eea7",
+    "1fb6dd58d89ff2e2d66157c8e55c4d78",
+    "8346ad00689acedd380d00c3886cc3ac",
+    "30d6a0e9e2b586d8afca4f8fffebeccc"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T11:45:32.661Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T11:45:32.661Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac8a9a744521f0265f4acc"
+  },
+  "productName": "YPB sculptLUX Halter Tank",
+  "description": "Slim-fitting active tank in our comfortable sculptLUX active fabric. Designed to hold you in, our sculptLUX fabric is compressive and supportive without being restrictive, as well as smoothing and sculpting without pinching. Features a cropped length, flattering halter neckline and interior lining with removable pads. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a002"
+  },
+  "regularPrice": 59,
+  "salePrice": 45,
+  "offer": "23.73%",
+  "isListed": true,
+  "quantity": 60,
+  "color": "Black",
+  "productImage": [
+    "fdd9aebb3e6796a125f360d9f0bf9c47",
+    "ae377325c1f961796bc1fcaecc7291a8",
+    "3585815f29a9ecad10a3fd0dc8c5bf6d",
+    "a25f1bae5de66b44535371afa8815a78",
+    "2658258ad6d23fde91fe9739afbb91ae",
+    "495196a5d914369b7c986023f6d74e39"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T11:48:42.598Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T11:48:42.598Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac8e7da404b74aa85be9aa"
+  },
+  "productName": "Wool Double-Breasted Blazer",
+  "description": "This slightly-shiny wool double-breasted blazer has peaked lapels and features an subtle Medusa stud on one button. The sartorial style is fully lined in a tonal jacquard Barocco pattern and is detailed by a jacquard Versace tailoring label on the sleeve.",
+  "brand": "Versace",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a003"
+  },
+  "regularPrice": 4000,
+  "salePrice": 3412,
+  "offer": "14.7%",
+  "isListed": true,
+  "quantity": 80,
+  "color": "Burgundy",
+  "productImage": [
+    "303511b345eb8d4b99461a6298a3d838",
+    "68bef3f4a87cd36c5b5dbb1dfd381c22",
+    "18f45383dbd288f870ecfed9b4d9aa7c",
+    "8204e39278944baa5a8d84f0663802ae",
+    "1c6c0b421f8695ddf8a01f7393a822ec"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T12:05:17.724Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T12:05:17.724Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac8ef95f90bc62e98946e0"
+  },
+  "productName": "Mini wool bouclé belted dress",
+  "description": "Enriching a selection of women's ready-to-wear pieces for the Cruise 2025 collection, the snake motif appears as a print or embroidered detail alongside the House logo. Here the mythical creature decorates the lining of this wool bouclé mini dress.",
+  "brand": "Gucci",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a004"
+  },
+  "regularPrice": 4900,
+  "salePrice": 3900,
+  "offer": "20.41%",
+  "isListed": true,
+  "quantity": 100,
+  "color": "Red Wool",
+  "productImage": [
+    "02c93666e7fc8b45d0f616e1f459e88f",
+    "e0e6b8d6b502b6f75d97ac74f3cf9030",
+    "a13e27121e071aa8fc22bbe5c35ca8a4",
+    "8944730bc9f9cfb8b5fff8913a90d5cb",
+    "311fc052a6ebf5ca160d61a83ae10cd6",
+    "1932dd2b543e62dbf205250873d8ff5e",
+    "5483e9388b5c022d82d50f684c0a1b67"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T12:07:21.392Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T08:11:39.019Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac72c0afad6fcacf175ba0"
+  },
+  "productName": "Short-sleeved Re-Nylon dress",
+  "description": "The functional character of Re-Nylon introduces the play of duality and contrasts that define this flared mini-dress. The triangle logo completes the style with sporty details, a synthesis of the distinctive codes of the Prada aesthetic. For sustainable care to preserve the product's characteristics and reduce microfiber shedding, we recommend not washing the item too often. Let the product air out after every use and have it dry cleaned at a specialized ecological dry cleaners.",
+  "brand": "Prada",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 79,
+  "salePrice": 56,
+  "offer": "8%",
+  "isListed": true,
+  "quantity": 89,
+  "color": "Black",
+  "productImage": [
+    "e3d5bce4ef118b3c4607ca312d01c6db",
+    "7385e9b96c5248261d56967a05364575",
+    "7593fd095274781589d14c083443daeb",
+    "b3c18e5689c8567b5b000a49ba668da6",
+    "075c96e4deefd1bd8ab05a6f4cf0a5dc"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T10:06:56.606Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T10:06:56.606Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac770272e1c2fb9f32b6a6"
+  },
+  "productName": "YPB neoKNIT Long-Sleeve Half-Zip Romper",
+  "description": "Easy-fitting long sleeve romper in our super soft neoKNIT active fabric. Designed with a smooth interior, our neoKNIT fabric is made from layerable sweat-wicking neoprene. Features a classic polo collar, half-zip detail, an elasticated drawstring waistband and pockets. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a002"
+  },
+  "regularPrice": 99,
+  "salePrice": 89,
+  "offer": "8%",
+  "isListed": true,
+  "quantity": 90,
+  "color": "Light blue",
+  "productImage": [
+    "d3cf66a8fd3eef5d23bbb4bc046b89dc",
+    "51d35437d918dd717b114a82fc630365",
+    "13f1b738b3261580dfdbe6a6c28934f6",
+    "06c231bbe1fb571ec59272943a443d80",
+    "96112ad23473a635554b4ba0105aa0df",
+    "6071415b4c439970042c85bf9498bac2",
+    "a1ab60db18e5c6db1a780cfbf7ac2e6e"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T10:25:06.100Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T08:02:49.996Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac8fc716463f0bb59b47bc"
+  },
+  "productName": "YPB sculptLUX High Rise Flirty Skirt",
+  "description": "Our high rise active skirt in our lightweight sculptLUX active fabric with a 3 inch (7 cm) shorts lining underneath. Designed to hold you in, our sculptLUX fabric is compressive and supportive without being restrictive, as well as smoothing and sculpting without pinching. This 2-in-1 skort features a flirty silhouette, elasticated waistband with adjustable drawcords and hidden side pockets on interior liner. Imported.",
+  "brand": "Abercrombie & Fitch",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a002"
+  },
+  "regularPrice": 59,
+  "salePrice": 49,
+  "offer": "8%",
+  "isListed": true,
+  "quantity": 45,
+  "color": "Black",
+  "productImage": [
+    "a49a6be9f08b71b718e06a515341c054",
+    "daa41f266fdd1e44444eca04491f4857",
+    "5aef011f6c893572de200f1701c79a49",
+    "37880d8bc336f555cf110c1434dcb3c9",
+    "2395960df07643d22c231c4877fc36b1",
+    "83ed28b0c6e5ee3c700b3fc35f3da2ac"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T12:10:47.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T05:46:13.929Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac928f299f9faea608c7b8"
+  },
+  "productName": "Sequined dress",
+  "description": "This dress with all-over sequins embodies Prada's sophisticated soul that combines a shimmering design with refined artisan workmanship. ",
+  "brand": "Prada",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a004"
+  },
+  "regularPrice": 499,
+  "salePrice": 399,
+  "offer": "12%",
+  "isListed": true,
+  "quantity": 34,
+  "color": "Gold",
+  "productImage": [
+    "f6e242057d068d4d50688a47e49841d6",
+    "d72de5e31e1ca1114b733375908a0ab9",
+    "b4c3fd227ecfbf260b90c02362794961",
+    "64f66a5f86dfb8a111c2b1b93f24838f",
+    "2d0a9754791412231092130715dbe2ad",
+    "4be5bb2c949f75ff2d0a32336defda6b"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T12:22:39.378Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T12:22:39.378Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac935591efdb648afa2cc6"
+  },
+  "productName": "Malfilé Crop Double-Breasted Blazer",
+  "description": "This cropped double-breasted blazer is crafted from a texture malfilé silk-blend yarn and is accented by signature Medusa buttons. The fully lined sartorial style has sharp padded shoulders and is completed by a jacquard Versace tailoring label at the sleeve.",
+  "brand": "Versace",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a003"
+  },
+  "regularPrice": 3500,
+  "salePrice": 3200,
+  "offer": "8%",
+  "isListed": true,
+  "quantity": 45,
+  "color": "Light Pink",
+  "productImage": [
+    "5f651c1ea9585750e3322be1c1a301d1",
+    "dc13672c41a4fe2a23962018d378a737",
+    "5f601016d59bf7827427daf529914582",
+    "9b7171ae695343687bd86aee95fd973c",
+    "5cf83aeea1d577c5afb004dd309f4458"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T12:25:57.276Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T12:25:57.276Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ac949ceea4e15cb7e157d8"
+  },
+  "productName": "Wool Tuxedo Hourglass Blazer",
+  "description": "A double-breasted blazer in grain de poudre virgin wool with contrasting satin trims, and peaked labels. The tailored style has defined hip volumes and padded shoulders, and is complete with a jacquard tonal Barocco lining, and a Versace label on the cuff.",
+  "brand": "Versace",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a003"
+  },
+  "regularPrice": 4100,
+  "salePrice": 4050,
+  "offer": "2%",
+  "isListed": true,
+  "quantity": 67,
+  "color": "White",
+  "productImage": [
+    "9ebd121d7debfab7c76da8b52180b6cd",
+    "d92180017226bebd5ab916269a33d2a8",
+    "9a58971d44901ecbc36065efe70f1800",
+    "a58d69e4c86d4a7e4746b78ddd47a294",
+    "b87d57247c2e340cd95fda54383729d5"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-12T12:31:24.470Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T12:31:24.470Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ad6ce787518ceb48ac281f"
+  },
+  "productName": "Lasered denim dress",
+  "description": "Denim keeps on being a staple material of the House. The Gucci Cruise 2025 collection rethinks shapes and signature materials through its lens, elevating the everyday wardrobe. This dress is crafted in blue two-tone stone washed and bleached cotton denim. Defined by a detachable point collar, a lasered Gucci logo further enhances the style.",
+  "brand": "Gucci",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 3500,
+  "salePrice": 3200,
+  "offer": "12%",
+  "isListed": true,
+  "quantity": 55,
+  "color": "Denim Blue",
+  "productImage": [
+    "7f98f70e1ff86c3601155d2232121fd0",
+    "5bb65b5e023c85e0566d78908e5bbe77",
+    "cbee1833f7175f30726fa1e0e7581c78",
+    "934c4879da239a77dcdd30cc63634eb4",
+    "0c7ddbb796a76b413f5ad71337eef0fe",
+    "9ed246639cc9b84cb6b3bac08fdc7deb",
+    "d6d8a38976a57718b16e69b3aea5776f"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-13T03:54:15.521Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-13T03:54:15.521Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ad6d8f87518ceb48ac2839"
+  },
+  "productName": "Short GG viscose jacquard dress",
+  "description": "The GG motif appears in unexpected colors and fabric combinations, from linen blend to nylon. This regular fit dress has been crafted from a GG viscose jacquard with a matte effect, paying homage to founder Guccio Gucci's instantly-recognizable monogram motif.",
+  "brand": "Gucci",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 2500,
+  "salePrice": 2350,
+  "offer": "12%",
+  "isListed": true,
+  "quantity": 45,
+  "color": "Black",
+  "productImage": [
+    "1abf78939000ba6adf364a15b650281f",
+    "b7a39fe1b3ed8a0d572b7bc02bb40823",
+    "8fdd1b801b4d21ca5b1a84eda361d7c5",
+    "4a4e8c478b8ef7280e4747ad5b0f139a",
+    "5b9b175bc6dcd65aaab484e2d127908b",
+    "05f3593e4e5952cb3e8267f82f6a95aa",
+    "9eb5f52107d2d456090ef2363c25e01c"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-13T03:57:03.960Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-13T03:57:03.960Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67aefc481d40011235de08b9"
+  },
+  "productName": "Short jersey jacquard dress",
+  "description": "The Gucci logo appears in unexpected colors and fabric combinations, from linen blend to nylon. This regular fit dress is presented in off white and black jersey jacquard, enriched with a tonal Gucci intarsia and bold Gucci zip puller",
+  "brand": "Gucci",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 3100,
+  "salePrice": 2100,
+  "offer": "12%",
+  "isListed": true,
+  "quantity": 33,
+  "color": "White",
+  "productImage": [
+    "4ed189f889b8e6f437023774b4c93295",
+    "ad67ca4afb0385bf4b8d78505ff71c6e",
+    "010d518df66ea7a59d48bdf8b55f6b52",
+    "a07794ca6d916bf5a21c356a03964dff",
+    "1888e7be4da5b7d666ef26331551a028",
+    "0289a4646c60905f592c033e91a2f437"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-14T08:18:16.789Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-14T08:18:16.789Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b2f99ab2d9f5dfa7dc7cbc"
+  },
+  "productName": "Scuba-Wool Double-Breasted Fitted Blazer",
+  "description": "This long-sleeved double-breasted blazer is crafted in grain de poudre wool and stretch bonded scuba. The structural design has a notched lapel and features tonal buttons with accent Medusa studs, complete with a jacquard tailoring label on the sleeve. It's fully lined in a lightweight crêpe.",
+  "brand": "Versace",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a003"
+  },
+  "regularPrice": 4300,
+  "salePrice": 3900,
+  "offer": "8%",
+  "isListed": true,
+  "quantity": 22,
+  "color": "Light blue",
+  "productImage": [
+    "cc0f7534da05550e30faa2f5b76ee9ee",
+    "2317c85bdfa169a0e783d298a511d3aa",
+    "d8149a1afcc8c18b42caa3f3ba7bbbc1",
+    "2b6f6803cb24e7421587bd77486642cc",
+    "e0bd7f786c30b05e6b2f53d3150a13e5"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-17T08:55:54.443Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-18T08:02:43.867Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b4a59a5bc6d4816cf05bc2"
+  },
+  "productName": "absolute",
+  "description": "sample",
+  "brand": "Versace",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 123,
+  "salePrice": 23,
+  "offer": "0",
+  "isListed": true,
+  "quantity": 34,
+  "color": "Black",
+  "productImage": [
+    "9b07856887aef611eb4ebe8ba2cb4505",
+    "593e577c676d3c0c2498915ba88e3d1b",
+    "1acc2a771608605784959806663b5e4d",
+    "c40aedf4fe345d454b0823303903b2e9",
+    "f9c1c676635e4fecd67edfa8d9652c8e",
+    "f08f9838acdb4e088ea9d71f793100c6"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-18T15:22:02.440Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-19T06:10:37.888Z"
+  },
+  "__v": 7
+},
+{
+  "_id": {
+    "$oid": "67b59627bd806ab8dc3f0bf0"
+  },
+  "productName": "Old Panama cotton jacket",
+  "description": "The pragmatic and functional style of workwear inspires this Panama cotton jacket characterized by classic utility pockets and completed with a drawstring.",
+  "brand": "Prada",
+  "category": {
+    "$oid": "65bdf3e1a7b9f5e5d6c1a001"
+  },
+  "regularPrice": 3550,
+  "salePrice": 3450,
+  "offer": "7.38%",
+  "isListed": true,
+  "quantity": 33,
+  "color": "Military Green",
+  "productImage": [
+    "e4e40fea5147650e6c10d10e43d0d341",
+    "5778199d0196fcb7f72b73f523bc13d8",
+    "8cef27f35e966ccac7ce7563ff6828aa",
+    "953c0fe03335c60751611742f74cdc34",
+    "d931ea5e14862b2207a15b2d157dc31d",
+    "1e2573996425886bec6927800ddcc994"
+  ],
+  "isBlocked": false,
+  "status": "Available",
+  "createdAt": {
+    "$date": "2025-02-19T08:28:23.926Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-19T08:28:23.926Z"
+  },
+  "__v": 0
+}]
