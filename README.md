@@ -58,9 +58,6 @@ nodemon app
 
 ## 📂 Project Structure
 
-
-## 📂 Project Structure
-
 ```text
 FitFORGE/
 ├── controllers/     # Business logic
