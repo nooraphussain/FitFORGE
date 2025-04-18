@@ -60,19 +60,24 @@ nodemon app
 ## 📂 Project Structure
 
 
-Supreme/
+## 📂 Project Structure
+
+```text
+FitFORGE/
 ├── controllers/     # Business logic
 ├── models/          # Database schemas
-│   ├── User.js
-│   ├── Product.js
-│   └── Order.js
+│   ├── userSchema.js
+│   ├── productSchema.js
+│   └── orderSchema.js #many more such...
 ├── routes/          # API endpoints
 │   ├── adminRoutes.js
 │   └── userRoutes.js
 ├── views/           # EJS templates
 ├── public/          # Static assets
 ├── middlewares/     # Authentication
-└── server.js        # Application entry
+└── app.js        # Application entry
+
+```
 
 
 
