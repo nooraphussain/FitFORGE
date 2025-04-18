@@ -1,4 +1,4 @@
-# 🛍️ FitFORGE – E-commerce Platform Supreme
+# 🛍️ FitFORGE – E-commerce Platform 
 
 An elegant and scalable **e-commerce web application** built with Node.js, Express, and MongoDB. Designed for both **customers and administrators**, FitFORGE integrates essential e-commerce features with powerful tools for sales and product management.
 
@@ -26,7 +26,6 @@ An elegant and scalable **e-commerce web application** built with Node.js, Expre
 | Database  | MongoDB                          |
 | Payments  | Razorpay                         |
 | Security  | bcrypt, Sessions                 |
-| Cloud     | Cloudinary                       |
 
 ---
 
