@@ -59,23 +59,21 @@ nodemon app
 
 ## 📂 Project Structure
 
-```
-FitFORGE/
-├── controllers/       # Application logic
-├── models/            # Mongoose schemas
-│   ├── userSchema.js
-│   ├── productSchema.js
-│   └── orderSchema.js # Similarly many more...
-├── routes/            # Route definitions
-│   ├── userRoutes.js
-│   └── adminRoutes.js
-├── views/             # EJS templates
-├── public/            # Static assets (CSS, JS, Images)
-├── middlewares/       # Custom middleware (auth, logger)
-└── app.js          # Main entry point
-```
+Supreme/
+├── controllers/     # Business logic
+├── models/          # Database schemas
+│   ├── User.js
+│   ├── Product.js
+│   └── Order.js
+├── routes/          # API endpoints
+│   ├── adminRoutes.js
+│   └── userRoutes.js
+├── views/           # EJS templates
+├── public/          # Static assets
+├── middlewares/     # Authentication
+└── server.js        # Application entry
 
----
+
 
 ## 🌟 Core Functionalities
 
