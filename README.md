@@ -3,6 +3,8 @@
 An elegant and scalable **e-commerce web application** built with Node.js, Express, and MongoDB. Designed for both **customers and administrators**, FitFORGE integrates essential e-commerce features with powerful tools for sales and product management.
 
 ---
+# Visit the hosted project
+https://fitforge.club/
 
 ## 🚀 Key Features
 
