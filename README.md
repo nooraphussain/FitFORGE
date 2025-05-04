@@ -112,7 +112,7 @@ FitFORGE/
 
 ## 👨‍💻 Author
 
-**Noora Phussain**  
+**Noora Hussain**  
 📧 [noorahussainp2002@gmail.com](mailto:noorahussainp2002@gmail.com)  
 🔗 [GitHub Profile](https://github.com/nooraphussain)
 
